@@ -3,7 +3,7 @@
     "provenance": "REAL_BROWSER_OBSERVATION",
     "code": "NO_USABLE_ENGLISH_CAPTIONS",
     "description": "Video contains caption tracks, but none match English (manual or ASR). Classified explicitly as unsupported for English dubbing.",
-    "observedOn": "kJQP7kiw5Fk (Despacito, Spanish only)",
+    "observedOn": "kJQP7kiw5Fk (Spanish only filter test)",
     "errorStage": "TRACK_SELECTION",
     "mitigation": "Classify as NO_USABLE_ENGLISH_CAPTIONS status without false success"
   },

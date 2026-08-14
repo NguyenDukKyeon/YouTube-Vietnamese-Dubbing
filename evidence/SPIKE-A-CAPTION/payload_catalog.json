@@ -3,17 +3,17 @@
     "provenance": "REAL_BROWSER_OBSERVATION",
     "format": "json3",
     "description": "YouTube JSON3 timedtext structure containing wireMagic, events array, tStartMs, dDurationMs, and segs text segments.",
-    "sampleSnippet": "{\n  \"wireMagic\": \"pb3\",\n  \"events\": [\n    {\n      \"tStartMs\": 0,\n      \"dDurationMs\": 2500,\n      \"segs\": [\n        {\n          \"utf8\": \"Alright, so here we are in front of the elephants.\"\n        }\n      ]\n    },\n    {\n      \"tStartMs\": 2500,\n      \"dDurationMs\": 3500,\n      \"segs\": [\n        {\n          \"utf8\": \"The cool thing about these guys is that they have really long trunks.\"\n        }\n      ]\n    }\n  ]\n}",
+    "sampleSnippet": "{\n  \"wireMagic\": \"pb3\",\n  \"events\": [\n    {\n      \"tStartMs\": 1360,\n      \"dDurationMs\": 1680,\n      \"segs\": [\n        {\n          \"utf8\": \"[♪♪♪]\"\n        }\n      ]\n    },\n    {\n      \"tStartMs\": 18560,\n      \"dDurationMs\": 3120,\n      \"segs\": [\n        {\n          \"utf8\": \"We're no strangers to love\"\n        }\n      ]\n    }\n  ]\n}",
     "normalizedOutput": [
       {
-        "startMs": 0,
-        "endMs": 2500,
-        "text": "Alright, so here we are in front of the elephants."
+        "startMs": 1360,
+        "endMs": 3040,
+        "text": "[♪♪♪]"
       },
       {
-        "startMs": 2500,
-        "endMs": 6000,
-        "text": "The cool thing about these guys is that they have really long trunks."
+        "startMs": 18560,
+        "endMs": 21680,
+        "text": "We're no strangers to love"
       }
     ]
   },

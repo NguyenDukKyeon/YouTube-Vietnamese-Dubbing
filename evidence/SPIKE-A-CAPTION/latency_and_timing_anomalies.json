@@ -1,38 +1,32 @@
 [
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
-    "case": "manual_en_jNQXAC9IVRw",
-    "segmentCount": 3,
-    "totalDurationMs": 19000,
+    "caseId": "V-01a",
+    "videoId": "dQw4w9WgXcQ",
+    "segmentCount": 61,
+    "totalDurationMs": 211320,
     "isMonotonic": true,
     "anomalies": [],
-    "probeLatencyMs": 5326
+    "probeLatencyMs": 6609
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
-    "case": "manual_en_dQw4w9WgXcQ",
-    "segmentCount": 52,
-    "totalDurationMs": 213000,
+    "caseId": "V-01b",
+    "videoId": "kJQP7kiw5Fk",
+    "segmentCount": 79,
+    "totalDurationMs": 249604,
     "isMonotonic": true,
     "anomalies": [],
-    "probeLatencyMs": 5158
+    "probeLatencyMs": 6239
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
-    "case": "asr_en__uQrJ0TkZlc",
-    "segmentCount": 45,
-    "totalDurationMs": 140000,
+    "caseId": "V-02",
+    "videoId": "_uQrJ0TkZlc",
+    "segmentCount": 4530,
+    "totalDurationMs": 18304000,
     "isMonotonic": true,
     "anomalies": [],
-    "probeLatencyMs": 5200
-  },
-  {
-    "provenance": "REAL_BROWSER_OBSERVATION",
-    "case": "long_form_rfscVS0vtbw",
-    "segmentCount": 1200,
-    "totalDurationMs": 15700000,
-    "isMonotonic": true,
-    "anomalies": [],
-    "probeLatencyMs": 65
+    "probeLatencyMs": 6272
   }
 ]

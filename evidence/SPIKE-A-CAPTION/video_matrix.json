@@ -38,7 +38,7 @@
       "endMs": 6839,
       "text": "In this 3-minute introduction, I'm going to answer four frequently asked questions"
     },
-    "latencyMs": 6231
+    "latencyMs": 6586
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -79,7 +79,7 @@
       "endMs": 27533,
       "text": "♪ ♪"
     },
-    "latencyMs": 6167
+    "latencyMs": 8299
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -120,7 +120,7 @@
       "endMs": 6360,
       "text": "Welcome to the ultimate React course. In"
     },
-    "latencyMs": 6193
+    "latencyMs": 7874
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -161,7 +161,7 @@
       "endMs": 4920,
       "text": "[Music]"
     },
-    "latencyMs": 6220
+    "latencyMs": 6383
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -174,7 +174,7 @@
     "format": "none",
     "outcome": "CLASSIFIED_UNSUPPORTED",
     "reason": "NO_USABLE_ENGLISH_CAPTIONS",
-    "latencyMs": 5165
+    "latencyMs": 5197
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -187,7 +187,7 @@
     "format": "none",
     "outcome": "CLASSIFIED_UNSUPPORTED",
     "reason": "NO_CAPTION_TRACKS_IN_METADATA",
-    "latencyMs": 5204
+    "latencyMs": 5194
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -240,10 +240,30 @@
       "semanticVideoId": "3JZ_D3ELwOQ",
       "status": "SUCCESS",
       "actualFetchOutcome": "COMPLETED_AND_ACCEPTED",
+      "selectedTrackIdentity": {
+        "videoId": "3JZ_D3ELwOQ",
+        "languageCode": "en",
+        "kind": "asr",
+        "vssId": "a.en",
+        "name": null,
+        "variant": null
+      },
+      "capturedRequestIdentity": {
+        "videoId": "3JZ_D3ELwOQ",
+        "languageCode": "en",
+        "kind": "asr",
+        "vssId": null,
+        "name": null,
+        "variant": null
+      },
+      "trackBindingMatched": true,
+      "fetchStatus": 200,
+      "payloadProvenance": "REAL_BROWSER_FETCH",
+      "payloadLengthBytes": 81376,
       "segmentCount": 108,
       "totalDurationMs": 255799
     },
-    "details": "Real in-browser rapid navigations aborted prior active fetch controllers; genuine AbortErrors were caught and discarded with STALE_GENERATION_DISCARDED."
+    "details": "Real in-browser rapid navigations aborted prior active fetch controllers; genuine AbortErrors were caught and discarded with STALE_GENERATION_DISCARDED, while active Generation 3 was acquired, bound, and parsed in real time."
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -284,7 +304,7 @@
       "endMs": 6360,
       "text": "Welcome to the ultimate React course. In"
     },
-    "latencyMs": 6193,
+    "latencyMs": 7874,
     "linkage": "Direct reuse of verified live empirical capture from V-02a (SqcY0GlETPk)"
   },
   {

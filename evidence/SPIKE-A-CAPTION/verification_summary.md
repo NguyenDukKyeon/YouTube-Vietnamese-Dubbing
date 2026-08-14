@@ -3,13 +3,13 @@
 - **Task ID**: `SPIKE-A-CAPTION`
 - **Type**: `technical-spike`
 - **Project Phase**: `TECHNICAL_SPIKES`
-- **Tested Implementation SHA**: `bd9b052350007afa879cd65b079fc57247f97dad`
-- **Execution Timestamp**: `2026-08-14T17:46:21.781Z`
+- **Tested Implementation SHA**: `1523bc5dcb554b07defd342c752c4fb58d062ca8`
+- **Execution Timestamp**: `2026-08-14T18:04:16.008Z`
 - **Target OS**: `Windows 11`
 - **Browser**: `Google Chrome 151.0.7922.109 (MV3, --mute-audio)`
 
 ## 1. Evidence Topology & Provenance
-This evidence artifact suite records empirical observations from live Chrome target-browser testing executed at `bd9b052350007afa879cd65b079fc57247f97dad`.
+This evidence artifact suite records empirical observations from live Chrome target-browser testing executed at `1523bc5dcb554b07defd342c752c4fb58d062ca8`.
 Every case distinguishes:
 - `REAL_BROWSER_OBSERVATION`: Live Chrome CDP target run on YouTube watch page
 - `TEST_FIXTURE`: Offline unit test / parser test fixture

@@ -7,7 +7,7 @@
     "totalDurationMs": 2896420,
     "isMonotonic": true,
     "anomalies": [],
-    "probeLatencyMs": 6231
+    "probeLatencyMs": 6586
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -17,7 +17,7 @@
     "totalDurationMs": 273500,
     "isMonotonic": true,
     "anomalies": [],
-    "probeLatencyMs": 6167
+    "probeLatencyMs": 8299
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -14812,7 +14812,7 @@
         "prevEndMs": 4798800
       }
     ],
-    "probeLatencyMs": 6193
+    "probeLatencyMs": 7874
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -15523,6 +15523,6 @@
         "prevEndMs": 255799
       }
     ],
-    "probeLatencyMs": 6220
+    "probeLatencyMs": 6383
   }
 ]

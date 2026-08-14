@@ -63,7 +63,7 @@
         "text": "In this 3-minute introduction, I'm going to answer four frequently asked questions"
       }
     },
-    "latencyMs": 6231
+    "latencyMs": 6586
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -165,7 +165,7 @@
         "text": "♪ ♪"
       }
     },
-    "latencyMs": 6167
+    "latencyMs": 8299
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -222,7 +222,7 @@
         "text": "Welcome to the ultimate React course. In"
       }
     },
-    "latencyMs": 6193
+    "latencyMs": 7874
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -279,7 +279,7 @@
         "text": "[Music]"
       }
     },
-    "latencyMs": 6220
+    "latencyMs": 6383
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -306,7 +306,7 @@
     "selectedTrackVssId": null,
     "selectedTrackKind": null,
     "classificationResult": "NO_USABLE_ENGLISH_CAPTIONS",
-    "latencyMs": 5165
+    "latencyMs": 5197
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -323,6 +323,6 @@
     "selectedTrackVssId": null,
     "selectedTrackKind": null,
     "classificationResult": "NO_CAPTION_TRACKS_IN_METADATA",
-    "latencyMs": 5204
+    "latencyMs": 5194
   }
 ]

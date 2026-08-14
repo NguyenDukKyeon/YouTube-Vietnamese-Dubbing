@@ -5,7 +5,10 @@ import {
   isAsrTrack,
   isEnglishLanguage,
   sanitizeTrackUrl,
-  extractTrackName
+  extractTrackName,
+  deriveTrackIdentityFromTrack,
+  deriveIdentityFromTimedtextUrl,
+  matchesTrackIdentity
 } from '../src/extractor/track-selector.js';
 import { TrackKind } from '../src/types.js';
 
@@ -125,3 +128,66 @@ test('selectBestEnglishTrack handles empty or null track list', () => {
   assert.equal(result2.selectedTrack, null);
   assert.equal(result2.reason, 'NO_CAPTION_TRACKS_IN_METADATA');
 });
+
+test('deriveTrackIdentityFromTrack and deriveIdentityFromTimedtextUrl produce canonical identities', () => {
+  const rawTrack = {
+    languageCode: 'en',
+    vssId: '.en.nP7-2PuUl7o',
+    baseUrl: 'https://www.youtube.com/api/timedtext?v=kJQP7kiw5Fk&lang=en&name=en&expire=123&signature=SECRET'
+  };
+  const trackId = deriveTrackIdentityFromTrack(rawTrack, 'kJQP7kiw5Fk');
+  assert.deepEqual(trackId, {
+    videoId: 'kJQP7kiw5Fk',
+    languageCode: 'en',
+    kind: 'manual',
+    vssId: '.en.nP7-2PuUl7o',
+    name: 'en',
+    variant: null
+  });
+
+  const reqUrl = 'https://www.youtube.com/api/timedtext?v=kJQP7kiw5Fk&lang=en&name=en&expire=999';
+  const reqId = deriveIdentityFromTimedtextUrl(reqUrl);
+  assert.deepEqual(reqId, {
+    videoId: 'kJQP7kiw5Fk',
+    languageCode: 'en',
+    kind: 'manual',
+    vssId: null,
+    name: 'en',
+    variant: null
+  });
+  assert.equal(matchesTrackIdentity(trackId, reqId), true);
+});
+
+test('matchesTrackIdentity rejects mismatched language variants (V-01b multi-track regression)', () => {
+  const selectedVariant = {
+    videoId: 'kJQP7kiw5Fk',
+    languageCode: 'en',
+    kind: 'manual',
+    vssId: '.en.nP7-2PuUl7o',
+    name: 'en',
+    variant: null
+  };
+
+  // Mismatched regional lang or name variant
+  const capturedRegional = {
+    videoId: 'kJQP7kiw5Fk',
+    languageCode: 'en-US',
+    kind: 'manual',
+    vssId: null,
+    name: 'English - United States',
+    variant: null
+  };
+  assert.equal(matchesTrackIdentity(selectedVariant, capturedRegional), false);
+
+  // Mismatched kind (ASR vs manual)
+  const capturedAsr = {
+    videoId: 'kJQP7kiw5Fk',
+    languageCode: 'en',
+    kind: 'asr',
+    vssId: null,
+    name: 'en',
+    variant: null
+  };
+  assert.equal(matchesTrackIdentity(selectedVariant, capturedAsr), false);
+});
+

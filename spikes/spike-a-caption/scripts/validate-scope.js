@@ -13,6 +13,8 @@ const ALLOWED_PATTERNS = [
   /^evidence\/SPIKE-A-CAPTION\//
 ];
 
+const IGNORED_UNCOMMITTED_PREFIXES = ['.agents/', '.gemini/', '.vscode/', 'node_modules/'];
+
 function getChangedFiles() {
   try {
     const files = new Set();
@@ -25,7 +27,9 @@ function getChangedFiles() {
     uncommitted.split(/\r?\n/).forEach(line => {
       if (line.length > 3) {
         const file = line.substring(3).trim().replace(/\\/g, '/');
-        if (file) files.add(file);
+        if (file && !IGNORED_UNCOMMITTED_PREFIXES.some(p => file.startsWith(p))) {
+          files.add(file);
+        }
       }
     });
 

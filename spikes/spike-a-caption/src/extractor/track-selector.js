@@ -60,7 +60,7 @@ export function sanitizeTrackUrl(rawUrl) {
     const url = new URL(rawUrl);
     const paramParts = [];
     for (const [key, value] of url.searchParams.entries()) {
-      if (['v', 'lang', 'name', 'fmt', 'subformat', 'type', 'kind'].includes(key)) {
+      if (['v', 'lang', 'name', 'fmt', 'subformat', 'type', 'kind', 'variant'].includes(key)) {
         paramParts.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`);
       } else {
         paramParts.push(`${encodeURIComponent(key)}=[REDACTED]`);
@@ -167,3 +167,135 @@ export function selectBestEnglishTrack(rawTracks) {
     reason: 'NO_USABLE_ENGLISH_CAPTIONS'
   };
 }
+
+/**
+ * Derives a canonical SAFE track identity from raw track metadata.
+ * Contains only non-sensitive identifying fields.
+ *
+ * @param {object} track
+ * @param {string} [videoId]
+ * @returns {{
+ *   videoId: string | null,
+ *   languageCode: string,
+ *   kind: 'manual' | 'asr',
+ *   vssId: string | null,
+ *   name: string | null,
+ *   variant: string | null
+ * } | null}
+ */
+export function deriveTrackIdentityFromTrack(track, videoId = null) {
+  if (!track) return null;
+  const asr = isAsrTrack(track);
+  const kind = asr ? 'asr' : 'manual';
+  let name = null;
+  let variant = null;
+
+  if (track.baseUrl) {
+    try {
+      const u = new URL(track.baseUrl);
+      if (u.searchParams.has('name')) {
+        name = u.searchParams.get('name');
+      }
+      if (u.searchParams.has('variant')) {
+        variant = u.searchParams.get('variant');
+      }
+    } catch {
+      // Ignore URL parsing failure
+    }
+  }
+
+  return {
+    videoId: videoId || null,
+    languageCode: track.languageCode || '',
+    kind,
+    vssId: track.vssId || null,
+    name: name || null,
+    variant: variant || null
+  };
+}
+
+/**
+ * Derives a canonical SAFE request identity from a timedtext URL.
+ *
+ * @param {string} url
+ * @returns {{
+ *   videoId: string | null,
+ *   languageCode: string | null,
+ *   kind: 'manual' | 'asr',
+ *   vssId: string | null,
+ *   name: string | null,
+ *   variant: string | null
+ * } | null}
+ */
+export function deriveIdentityFromTimedtextUrl(url) {
+  if (!url || typeof url !== 'string') return null;
+  try {
+    const u = new URL(url);
+    const videoId = u.searchParams.get('v') || null;
+    const languageCode = u.searchParams.get('lang') || null;
+    const kind = u.searchParams.get('kind') === 'asr' ? 'asr' : 'manual';
+    const name = u.searchParams.get('name') || null;
+    const variant = u.searchParams.get('variant') || null;
+    const vssId = u.searchParams.get('vss_id') || null;
+
+    return {
+      videoId,
+      languageCode,
+      kind,
+      vssId,
+      name,
+      variant
+    };
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Compares selected track identity and captured request identity.
+ * Uniquely identifies that the request matches the exact selected track.
+ *
+ * @param {object} selectedId
+ * @param {object} capturedId
+ * @returns {boolean}
+ */
+export function matchesTrackIdentity(selectedId, capturedId) {
+  if (!selectedId || !capturedId) return false;
+
+  // 1. videoId exact match (if present in both)
+  if (selectedId.videoId && capturedId.videoId && selectedId.videoId !== capturedId.videoId) {
+    return false;
+  }
+
+  // 2. languageCode exact match
+  if (!selectedId.languageCode || !capturedId.languageCode || selectedId.languageCode !== capturedId.languageCode) {
+    return false;
+  }
+
+  // 3. kind exact match (manual vs asr)
+  if (selectedId.kind !== capturedId.kind) {
+    return false;
+  }
+
+  // 4. name exact match (distinguishing variant name)
+  if (selectedId.name !== capturedId.name) {
+    return false;
+  }
+
+  // 5. variant match where present in selected track
+  if (selectedId.variant) {
+    if (capturedId.variant !== selectedId.variant) {
+      return false;
+    }
+  }
+
+  // 6. vssId match if captured URL includes explicit vss_id
+  if (selectedId.vssId && capturedId.vssId) {
+    if (selectedId.vssId !== capturedId.vssId) {
+      return false;
+    }
+  }
+
+  return true;
+}
+

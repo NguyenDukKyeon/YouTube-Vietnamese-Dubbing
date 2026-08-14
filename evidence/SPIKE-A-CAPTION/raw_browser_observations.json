@@ -32,6 +32,23 @@
     "isAsrOnly": false,
     "selectedTrackVssId": ".en",
     "selectedTrackKind": "manual",
+    "selectedTrackIdentity": {
+      "videoId": "W6NZfCO5SIk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": ".en",
+      "name": null,
+      "variant": null
+    },
+    "capturedRequestIdentity": {
+      "videoId": "W6NZfCO5SIk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": null,
+      "name": null,
+      "variant": null
+    },
+    "trackBindingMatched": true,
     "timedtextCapture": {
       "httpStatus": 200,
       "payloadProvenance": "REAL_BROWSER_FETCH",
@@ -46,7 +63,7 @@
         "text": "In this 3-minute introduction, I'm going to answer four frequently asked questions"
       }
     },
-    "latencyMs": 6255
+    "latencyMs": 6231
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -117,6 +134,23 @@
     "isAsrOnly": false,
     "selectedTrackVssId": ".en.nP7-2PuUl7o",
     "selectedTrackKind": "manual",
+    "selectedTrackIdentity": {
+      "videoId": "kJQP7kiw5Fk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": ".en.nP7-2PuUl7o",
+      "name": "en",
+      "variant": null
+    },
+    "capturedRequestIdentity": {
+      "videoId": "kJQP7kiw5Fk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": null,
+      "name": "en",
+      "variant": null
+    },
+    "trackBindingMatched": true,
     "timedtextCapture": {
       "httpStatus": 200,
       "payloadProvenance": "REAL_BROWSER_FETCH",
@@ -131,7 +165,7 @@
         "text": "♪ ♪"
       }
     },
-    "latencyMs": 6175
+    "latencyMs": 6167
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -149,7 +183,7 @@
         "name": {
           "simpleText": "English (auto-generated)"
         },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=SqcY0GlETPk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en&variant=[REDACTED]"
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=SqcY0GlETPk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en&variant=gemini"
       }
     ],
     "hasManualEn": false,
@@ -157,11 +191,28 @@
     "isAsrOnly": true,
     "selectedTrackVssId": "a.en",
     "selectedTrackKind": "asr",
+    "selectedTrackIdentity": {
+      "videoId": "SqcY0GlETPk",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": "a.en",
+      "name": null,
+      "variant": "gemini"
+    },
+    "capturedRequestIdentity": {
+      "videoId": "SqcY0GlETPk",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": null,
+      "name": null,
+      "variant": "gemini"
+    },
+    "trackBindingMatched": true,
     "timedtextCapture": {
       "httpStatus": 200,
       "payloadProvenance": "REAL_BROWSER_FETCH",
       "payloadLengthBytes": 1145797,
-      "sanitizedRequestUrl": "https://www.youtube.com/api/timedtext?v=SqcY0GlETPk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en&variant=[REDACTED]&potc=[REDACTED]&pot=[REDACTED]&fmt=json3&xorb=[REDACTED]&xobt=[REDACTED]&xovt=[REDACTED]&cbr=[REDACTED]&cbrver=[REDACTED]&c=[REDACTED]&cver=[REDACTED]&cplayer=[REDACTED]&cos=[REDACTED]&cosver=[REDACTED]&cplatform=[REDACTED]",
+      "sanitizedRequestUrl": "https://www.youtube.com/api/timedtext?v=SqcY0GlETPk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en&variant=gemini&potc=[REDACTED]&pot=[REDACTED]&fmt=json3&xorb=[REDACTED]&xobt=[REDACTED]&xovt=[REDACTED]&cbr=[REDACTED]&cbrver=[REDACTED]&c=[REDACTED]&cver=[REDACTED]&cplayer=[REDACTED]&cos=[REDACTED]&cosver=[REDACTED]&cplatform=[REDACTED]",
       "parsedSegmentCount": 2151,
       "totalDurationMs": 4798800,
       "isMonotonic": true,
@@ -171,7 +222,7 @@
         "text": "Welcome to the ultimate React course. In"
       }
     },
-    "latencyMs": 6176
+    "latencyMs": 6193
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -197,6 +248,23 @@
     "isAsrOnly": true,
     "selectedTrackVssId": "a.en",
     "selectedTrackKind": "asr",
+    "selectedTrackIdentity": {
+      "videoId": "3JZ_D3ELwOQ",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": "a.en",
+      "name": null,
+      "variant": null
+    },
+    "capturedRequestIdentity": {
+      "videoId": "3JZ_D3ELwOQ",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": null,
+      "name": null,
+      "variant": null
+    },
+    "trackBindingMatched": true,
     "timedtextCapture": {
       "httpStatus": 200,
       "payloadProvenance": "REAL_BROWSER_FETCH",
@@ -211,7 +279,7 @@
         "text": "[Music]"
       }
     },
-    "latencyMs": 6214
+    "latencyMs": 6220
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -238,7 +306,7 @@
     "selectedTrackVssId": null,
     "selectedTrackKind": null,
     "classificationResult": "NO_USABLE_ENGLISH_CAPTIONS",
-    "latencyMs": 5146
+    "latencyMs": 5165
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -255,6 +323,6 @@
     "selectedTrackVssId": null,
     "selectedTrackKind": null,
     "classificationResult": "NO_CAPTION_TRACKS_IN_METADATA",
-    "latencyMs": 5165
+    "latencyMs": 5204
   }
 ]

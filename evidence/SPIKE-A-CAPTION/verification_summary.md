@@ -3,13 +3,13 @@
 - **Task ID**: `SPIKE-A-CAPTION`
 - **Type**: `technical-spike`
 - **Project Phase**: `TECHNICAL_SPIKES`
-- **Tested Implementation SHA**: `86489ddefdb83d6f10d52d92bfdfceb2225efb6e`
-- **Execution Timestamp**: `2026-08-14T16:29:24.701Z`
+- **Tested Implementation SHA**: `bd9b052350007afa879cd65b079fc57247f97dad`
+- **Execution Timestamp**: `2026-08-14T17:46:21.781Z`
 - **Target OS**: `Windows 11`
 - **Browser**: `Google Chrome 151.0.7922.109 (MV3, --mute-audio)`
 
 ## 1. Evidence Topology & Provenance
-This evidence artifact suite records empirical observations from live Chrome target-browser testing executed at `86489ddefdb83d6f10d52d92bfdfceb2225efb6e`.
+This evidence artifact suite records empirical observations from live Chrome target-browser testing executed at `bd9b052350007afa879cd65b079fc57247f97dad`.
 Every case distinguishes:
 - `REAL_BROWSER_OBSERVATION`: Live Chrome CDP target run on YouTube watch page
 - `TEST_FIXTURE`: Offline unit test / parser test fixture
@@ -19,13 +19,13 @@ Every case distinguishes:
 
 | Acceptance Criterion | Result | Evidence & Provenance |
 |---|---|---|
-| **AC-01**: Multiple Manual English segments extraction | **PASS** | `video_matrix.json` (V-01a: W6NZfCO5SIk [524 segs, 2896420ms]; V-01b: kJQP7kiw5Fk [90 segs, 273500ms]) — `REAL_BROWSER_OBSERVATION` (exact 1:1 track-to-payload binding) |
-| **AC-02**: Multiple ASR-only English segments extraction | **PASS** | `video_matrix.json` (V-02a: SqcY0GlETPk [2151 segs, 4798800ms]; V-02b: 3JZ_D3ELwOQ [108 segs, 255799ms]) — `REAL_BROWSER_OBSERVATION` (verified zero manual English tracks) |
+| **AC-01**: Multiple Manual English segments extraction | **PASS** | `video_matrix.json` (V-01a: W6NZfCO5SIk [524 segs, 2896420ms]; V-01b: kJQP7kiw5Fk [90 segs, 273500ms]) — `REAL_BROWSER_OBSERVATION` (exact 1:1 track-to-payload canonical identity binding) |
+| **AC-02**: Multiple ASR-only English segments extraction | **PASS** | `video_matrix.json` (V-02a: SqcY0GlETPk [2151 segs, 4798800ms]; V-02b: 3JZ_D3ELwOQ [108 segs, 255799ms]) — `REAL_BROWSER_OBSERVATION` (verified zero manual English tracks, exact 1:1 identity binding) |
 | **AC-03**: Canonical segment format `{startMs, endMs, text}` | **PASS** | `payload_catalog.json` & live parsed JSON3 canonical segments |
 | **AC-04**: Monotonicity validation & anomaly logging | **PASS** | `latency_and_timing_anomalies.json` & `test/normalizer.test.js` |
 | **AC-05**: Classified failure for no English captions | **PASS** | `video_matrix.json` (V-03a: 9bZkp7q19f0 [`NO_USABLE_ENGLISH_CAPTIONS`], V-03b: fN1CmbGOz6I [`NO_CAPTION_TRACKS_IN_METADATA`]) — `REAL_BROWSER_OBSERVATION` |
 | **AC-06**: Genuine YouTube SPA navigation A→B→C reacquisition | **PASS** | `video_matrix.json` (V-04) & `navigation_timeline.json` — `REAL_BROWSER_OBSERVATION` (observed semantic player video IDs: `W6NZfCO5SIk` → `SqcY0GlETPk` → `3JZ_D3ELwOQ`) |
-| **AC-07**: Real rapid switching stale rejection & abort | **PASS** | `video_matrix.json` (V-05) & `navigation_timeline.json` — `REAL_BROWSER_OBSERVATION` (genuine pending caption operations aborted with `AbortError` and discarded with `STALE_GENERATION_DISCARDED`) |
+| **AC-07**: Real rapid switching stale rejection & abort | **PASS** | `video_matrix.json` (V-05) & `navigation_timeline.json` — `REAL_BROWSER_OBSERVATION` (genuine in-flight fetch operations aborted with native DOM `AbortError`, discarded with `STALE_GENERATION_DISCARDED`) |
 | **AC-08**: No OAuth uploader edit permission required | **PASS** | Empirically verified on public videos without login |
 | **AC-09**: Real-browser fetch context demonstrated | **PASS** | Real Chrome MV3 player probe and timedtext capture |
 | **AC-10**: Track/payload variants catalogued | **PASS** | `payload_catalog.json` (JSON3 from live V-01a, XML, VTT) |

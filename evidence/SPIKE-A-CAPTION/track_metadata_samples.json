@@ -4,6 +4,14 @@
     "caseId": "V-01a",
     "videoId": "W6NZfCO5SIk",
     "category": "V-01a_MANUAL_ENGLISH",
+    "selectedTrackIdentity": {
+      "videoId": "W6NZfCO5SIk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": ".en",
+      "name": null,
+      "variant": null
+    },
     "selectedTrackVssId": ".en",
     "allTracksSanitized": [
       {
@@ -31,6 +39,14 @@
     "caseId": "V-01b",
     "videoId": "kJQP7kiw5Fk",
     "category": "V-01b_MANUAL_ENGLISH_VARIANT",
+    "selectedTrackIdentity": {
+      "videoId": "kJQP7kiw5Fk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": ".en.nP7-2PuUl7o",
+      "name": "en",
+      "variant": null
+    },
     "selectedTrackVssId": ".en.nP7-2PuUl7o",
     "allTracksSanitized": [
       {
@@ -94,6 +110,14 @@
     "caseId": "V-02a",
     "videoId": "SqcY0GlETPk",
     "category": "V-02a_ASR_ONLY_ENGLISH",
+    "selectedTrackIdentity": {
+      "videoId": "SqcY0GlETPk",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": "a.en",
+      "name": null,
+      "variant": "gemini"
+    },
     "selectedTrackVssId": "a.en",
     "allTracksSanitized": [
       {
@@ -103,7 +127,7 @@
         "name": {
           "simpleText": "English (auto-generated)"
         },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=SqcY0GlETPk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en&variant=[REDACTED]"
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=SqcY0GlETPk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en&variant=gemini"
       }
     ]
   },
@@ -112,6 +136,14 @@
     "caseId": "V-02b",
     "videoId": "3JZ_D3ELwOQ",
     "category": "V-02b_ASR_ONLY_ENGLISH",
+    "selectedTrackIdentity": {
+      "videoId": "3JZ_D3ELwOQ",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": "a.en",
+      "name": null,
+      "variant": null
+    },
     "selectedTrackVssId": "a.en",
     "allTracksSanitized": [
       {

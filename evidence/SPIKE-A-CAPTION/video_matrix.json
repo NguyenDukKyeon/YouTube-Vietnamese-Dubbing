@@ -7,6 +7,23 @@
     "trackType": "manual",
     "languageCode": "en",
     "vssId": ".en",
+    "selectedTrackIdentity": {
+      "videoId": "W6NZfCO5SIk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": ".en",
+      "name": null,
+      "variant": null
+    },
+    "capturedRequestIdentity": {
+      "videoId": "W6NZfCO5SIk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": null,
+      "name": null,
+      "variant": null
+    },
+    "trackBindingMatched": true,
     "acquisitionMethod": "real_browser_player_probe_and_timedtext_capture",
     "format": "json3",
     "fetchStatus": 200,
@@ -21,7 +38,7 @@
       "endMs": 6839,
       "text": "In this 3-minute introduction, I'm going to answer four frequently asked questions"
     },
-    "latencyMs": 6255
+    "latencyMs": 6231
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -31,6 +48,23 @@
     "trackType": "manual",
     "languageCode": "en",
     "vssId": ".en.nP7-2PuUl7o",
+    "selectedTrackIdentity": {
+      "videoId": "kJQP7kiw5Fk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": ".en.nP7-2PuUl7o",
+      "name": "en",
+      "variant": null
+    },
+    "capturedRequestIdentity": {
+      "videoId": "kJQP7kiw5Fk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": null,
+      "name": "en",
+      "variant": null
+    },
+    "trackBindingMatched": true,
     "acquisitionMethod": "real_browser_player_probe_and_timedtext_capture",
     "format": "json3",
     "fetchStatus": 200,
@@ -45,7 +79,7 @@
       "endMs": 27533,
       "text": "♪ ♪"
     },
-    "latencyMs": 6175
+    "latencyMs": 6167
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -55,6 +89,23 @@
     "trackType": "asr",
     "languageCode": "en",
     "vssId": "a.en",
+    "selectedTrackIdentity": {
+      "videoId": "SqcY0GlETPk",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": "a.en",
+      "name": null,
+      "variant": "gemini"
+    },
+    "capturedRequestIdentity": {
+      "videoId": "SqcY0GlETPk",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": null,
+      "name": null,
+      "variant": "gemini"
+    },
+    "trackBindingMatched": true,
     "acquisitionMethod": "real_browser_player_probe_and_timedtext_capture",
     "format": "json3",
     "fetchStatus": 200,
@@ -69,7 +120,7 @@
       "endMs": 6360,
       "text": "Welcome to the ultimate React course. In"
     },
-    "latencyMs": 6176
+    "latencyMs": 6193
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -79,6 +130,23 @@
     "trackType": "asr",
     "languageCode": "en",
     "vssId": "a.en",
+    "selectedTrackIdentity": {
+      "videoId": "3JZ_D3ELwOQ",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": "a.en",
+      "name": null,
+      "variant": null
+    },
+    "capturedRequestIdentity": {
+      "videoId": "3JZ_D3ELwOQ",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": null,
+      "name": null,
+      "variant": null
+    },
+    "trackBindingMatched": true,
     "acquisitionMethod": "real_browser_player_probe_and_timedtext_capture",
     "format": "json3",
     "fetchStatus": 200,
@@ -93,7 +161,7 @@
       "endMs": 4920,
       "text": "[Music]"
     },
-    "latencyMs": 6214
+    "latencyMs": 6220
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -106,7 +174,7 @@
     "format": "none",
     "outcome": "CLASSIFIED_UNSUPPORTED",
     "reason": "NO_USABLE_ENGLISH_CAPTIONS",
-    "latencyMs": 5146
+    "latencyMs": 5165
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -119,7 +187,7 @@
     "format": "none",
     "outcome": "CLASSIFIED_UNSUPPORTED",
     "reason": "NO_CAPTION_TRACKS_IN_METADATA",
-    "latencyMs": 5165
+    "latencyMs": 5204
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -150,6 +218,7 @@
         "videoId": "W6NZfCO5SIk",
         "status": "STALE_GENERATION_DISCARDED",
         "aborted": true,
+        "actualOutcome": "ABORTED_BY_CONTROLLER",
         "abortError": "AbortError",
         "rejectionReason": "Navigation to SqcY0GlETPk (generation 1 < active generation 2)"
       },
@@ -159,6 +228,7 @@
         "videoId": "SqcY0GlETPk",
         "status": "STALE_GENERATION_DISCARDED",
         "aborted": true,
+        "actualOutcome": "ABORTED_BY_CONTROLLER",
         "abortError": "AbortError",
         "rejectionReason": "Navigation to 3JZ_D3ELwOQ (generation 2 < active generation 3)"
       }
@@ -182,6 +252,24 @@
     "title": "React Tutorial for Beginners (Long-form 1.33h)",
     "trackType": "asr",
     "languageCode": "en",
+    "vssId": "a.en",
+    "selectedTrackIdentity": {
+      "videoId": "SqcY0GlETPk",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": "a.en",
+      "name": null,
+      "variant": "gemini"
+    },
+    "capturedRequestIdentity": {
+      "videoId": "SqcY0GlETPk",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": null,
+      "name": null,
+      "variant": "gemini"
+    },
+    "trackBindingMatched": true,
     "acquisitionMethod": "real_browser_player_probe_and_timedtext_capture",
     "format": "json3",
     "fetchStatus": 200,
@@ -196,7 +284,7 @@
       "endMs": 6360,
       "text": "Welcome to the ultimate React course. In"
     },
-    "latencyMs": 6176,
+    "latencyMs": 6193,
     "linkage": "Direct reuse of verified live empirical capture from V-02a (SqcY0GlETPk)"
   },
   {

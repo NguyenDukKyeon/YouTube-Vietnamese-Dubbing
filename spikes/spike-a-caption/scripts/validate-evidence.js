@@ -9,10 +9,16 @@
  *    - Unexercised optional cases (V-08, V-09, V-10) are honestly NOT_OBSERVED.
  * 4. Cross-checks raw observations against derived matrix rows:
  *    - Matches raw payloadLengthBytes > 0, parsedSegmentCount > 0, totalDurationMs > 0 against video_matrix.
- *    - Validates 1:1 selectedTrack <-> capturedTimedtext binding (selectedTrackVssId matches request URL & matrix).
+ *    - Validates 1:1 selectedTrack <-> capturedTimedtext canonical identity binding:
+ *      * videoId exact match
+ *      * languageCode exact match
+ *      * kind (manual vs asr) exact match
+ *      * variant / name match where applicable
+ *      * raw.trackBindingMatched === true and mat.trackBindingMatched === true
+ *    - Runs regression assertion proving that multi-track variant (.en.nP7-2PuUl7o) rejects mismatched variants (lang=en-US).
  *    - Validates V-02a/V-02b are genuinely ASR-only (hasManualEn: false, isAsrOnly: true, selectedTrackKind: 'asr').
  *    - Validates V-03a/V-03b have real target-browser observation records in raw observations.
- *    - Validates V-05 has genuine async fetch race with real AbortController errors and stale discard records.
+ *    - Validates V-05 has genuine async fetch race with real AbortController AbortErrors and authoritative raw discard records.
  *    - Validates V-04 has distinct observed semantic player video IDs.
  *    - Validates payload_catalog.json REAL_BROWSER_OBSERVATION entry references real raw capture.
  * 5. Tested implementation SHA ancestry in git and zero source code drift.
@@ -22,6 +28,11 @@ import { readFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
+
+import {
+  deriveIdentityFromTimedtextUrl,
+  matchesTrackIdentity
+} from '../src/extractor/track-selector.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -129,11 +140,34 @@ function validateEvidence() {
     }
   }
 
-  // 3. Read and Cross-Check raw observations vs derived matrix
+  // 3. Multi-track Variant Regression Check (Self-Test)
+  const v1bTestSelected = {
+    videoId: 'kJQP7kiw5Fk',
+    languageCode: 'en',
+    kind: 'manual',
+    vssId: '.en.nP7-2PuUl7o',
+    name: 'en',
+    variant: null
+  };
+  const v1bMismatchedCaptured = {
+    videoId: 'kJQP7kiw5Fk',
+    languageCode: 'en-US',
+    kind: 'manual',
+    vssId: null,
+    name: 'English - United States',
+    variant: null
+  };
+  if (matchesTrackIdentity(v1bTestSelected, v1bMismatchedCaptured)) {
+    console.error('[Evidence Validator] Multi-track regression assertion failed: matchesTrackIdentity did not reject mismatched language variant (en vs en-US).');
+    hasErrors = true;
+  }
+
+  // 4. Read and Cross-Check raw observations vs derived matrix
   try {
     const rawData = JSON.parse(readFileSync(join(EVIDENCE_DIR, 'raw_browser_observations.json'), 'utf-8'));
     const matrixData = JSON.parse(readFileSync(join(EVIDENCE_DIR, 'video_matrix.json'), 'utf-8'));
     const payloadData = JSON.parse(readFileSync(join(EVIDENCE_DIR, 'payload_catalog.json'), 'utf-8'));
+    const timelineData = JSON.parse(readFileSync(join(EVIDENCE_DIR, 'navigation_timeline.json'), 'utf-8'));
 
     if (!Array.isArray(rawData) || rawData.length < 6) {
       console.error('[Evidence Validator] raw_browser_observations.json must contain observations for tested videos (V-01a, V-01b, V-02a, V-02b, V-03a, V-03b).');
@@ -209,17 +243,32 @@ function validateEvidence() {
         hasErrors = true;
       }
 
-      // Check exact 1:1 selectedTrack <-> capturedTimedtext binding
-      if (mat.vssId !== raw.selectedTrackVssId) {
-        console.error(`[Evidence Validator] Selected track vssId mismatch for ${req.caseId}: matrix=${mat.vssId}, raw=${raw.selectedTrackVssId}`);
+      // Check canonical SAFE identities & exact track binding
+      if (!raw.selectedTrackIdentity || typeof raw.selectedTrackIdentity !== 'object') {
+        console.error(`[Evidence Validator] Missing selectedTrackIdentity object for ${req.caseId}`);
         hasErrors = true;
       }
-      if (raw.selectedTrackVssId && raw.selectedTrackVssId.includes('.')) {
-        const subId = raw.selectedTrackVssId.split('.').filter(Boolean).pop();
-        if (subId && subId.length > 3 && !raw.timedtextCapture.sanitizedRequestUrl.includes(subId) && !raw.timedtextCapture.sanitizedRequestUrl.includes('lang=')) {
-          console.error(`[Evidence Validator] Captured timedtext URL does not match selected track identity for ${req.caseId}`);
-          hasErrors = true;
-        }
+      if (!raw.capturedRequestIdentity || typeof raw.capturedRequestIdentity !== 'object') {
+        console.error(`[Evidence Validator] Missing capturedRequestIdentity object for ${req.caseId}`);
+        hasErrors = true;
+      }
+      if (raw.trackBindingMatched !== true || mat.trackBindingMatched !== true) {
+        console.error(`[Evidence Validator] trackBindingMatched must be true for ${req.caseId}`);
+        hasErrors = true;
+      }
+
+      // Independently re-verify matching between selectedTrackIdentity and capturedRequestIdentity
+      const bindingCheck = matchesTrackIdentity(raw.selectedTrackIdentity, raw.capturedRequestIdentity);
+      if (!bindingCheck) {
+        console.error(`[Evidence Validator] Independent track identity verification failed for ${req.caseId}: Selected=${JSON.stringify(raw.selectedTrackIdentity)}, Captured=${JSON.stringify(raw.capturedRequestIdentity)}`);
+        hasErrors = true;
+      }
+
+      // Verify request URL conforms to captured identity
+      const reconstructedUrlIdentity = deriveIdentityFromTimedtextUrl(raw.timedtextCapture.sanitizedRequestUrl);
+      if (!matchesTrackIdentity(raw.selectedTrackIdentity, reconstructedUrlIdentity)) {
+        console.error(`[Evidence Validator] Sanitized request URL identity does not match selected track identity for ${req.caseId}`);
+        hasErrors = true;
       }
 
       // Check ASR-only requirement
@@ -264,7 +313,7 @@ function validateEvidence() {
       }
     }
 
-    // Validate V-05 (Rapid Switching Race)
+    // Validate V-05 (Rapid Switching Race with Authoritative Raw Abort Verification)
     const rapidEntry = matrixData.find(c => c.caseId === 'V-05');
     if (!rapidEntry) {
       console.error('[Evidence Validator] Missing V-05 in video_matrix.json');
@@ -274,9 +323,56 @@ function validateEvidence() {
         console.error('[Evidence Validator] V-05 must record at least 2 real stale discards.');
         hasErrors = true;
       } else {
-        for (const disc of rapidEntry.staleDiscards) {
-          if (!disc.operationId || !disc.abortError || disc.status !== 'STALE_GENERATION_DISCARDED') {
-            console.error('[Evidence Validator] V-05 stale discard missing operationId, abortError, or valid status');
+        // Find corresponding timeline raw records
+        const timelineDiscards = timelineData.filter(t => t.event === 'ACQUISITION_ABORTED_STALE');
+        if (timelineDiscards.length < 2) {
+          console.error('[Evidence Validator] navigation_timeline.json must contain at least 2 ACQUISITION_ABORTED_STALE records.');
+          hasErrors = true;
+        }
+
+        for (let i = 0; i < rapidEntry.staleDiscards.length; i++) {
+          const disc = rapidEntry.staleDiscards[i];
+          const rawDisc = timelineDiscards.find(t => t.operationId === disc.operationId);
+
+          if (!rawDisc) {
+            console.error(`[Evidence Validator] Missing authoritative raw timeline record for V-05 operation ${disc.operationId}`);
+            hasErrors = true;
+            continue;
+          }
+
+          // Check raw facts
+          if (rawDisc.requestStarted !== true) {
+            console.error(`[Evidence Validator] Raw V-05 discard ${disc.operationId} missing requestStarted=true`);
+            hasErrors = true;
+          }
+          if (!rawDisc.selectedTrackIdentity || typeof rawDisc.selectedTrackIdentity !== 'object') {
+            console.error(`[Evidence Validator] Raw V-05 discard ${disc.operationId} missing selectedTrackIdentity`);
+            hasErrors = true;
+          }
+          if (rawDisc.signalAborted !== true) {
+            console.error(`[Evidence Validator] Raw V-05 discard ${disc.operationId} missing signalAborted=true`);
+            hasErrors = true;
+          }
+          if (rawDisc.actualOutcome !== 'ABORTED_BY_CONTROLLER') {
+            console.error(`[Evidence Validator] Raw V-05 discard ${disc.operationId} must have actualOutcome === 'ABORTED_BY_CONTROLLER', found: ${rawDisc.actualOutcome}`);
+            hasErrors = true;
+          }
+          if (rawDisc.actualErrorName !== 'AbortError') {
+            console.error(`[Evidence Validator] Raw V-05 discard ${disc.operationId} must have actualErrorName === 'AbortError', found: ${rawDisc.actualErrorName}`);
+            hasErrors = true;
+          }
+
+          // Cross-check matrix row against raw record
+          if (disc.abortError !== rawDisc.actualErrorName) {
+            console.error(`[Evidence Validator] V-05 matrix abortError does not match raw actualErrorName for ${disc.operationId}`);
+            hasErrors = true;
+          }
+          if (disc.actualOutcome !== rawDisc.actualOutcome) {
+            console.error(`[Evidence Validator] V-05 matrix actualOutcome does not match raw actualOutcome for ${disc.operationId}`);
+            hasErrors = true;
+          }
+          if (disc.status !== 'STALE_GENERATION_DISCARDED') {
+            console.error(`[Evidence Validator] V-05 discard missing status 'STALE_GENERATION_DISCARDED'`);
             hasErrors = true;
           }
         }
@@ -329,7 +425,7 @@ function validateEvidence() {
     process.exit(1);
   }
 
-  console.log('[Evidence Validator] PASSED: All empirical evidence artifacts exist, cross-check accurately against raw observations, have verified ASR-only status, rapid-switch race evidence, exact track binding, and adhere strictly to the redaction invariant.');
+  console.log('[Evidence Validator] PASSED: All empirical evidence artifacts exist, cross-check accurately against raw observations, have verified canonical track identity binding, ASR-only status, rapid-switch real AbortError evidence, and adhere strictly to the redaction invariant.');
 }
 
 validateEvidence();

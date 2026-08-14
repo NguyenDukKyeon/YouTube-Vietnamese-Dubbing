@@ -1,0 +1,143 @@
+{
+  "corpusVersion": "1.0.0",
+  "task": "SPIKE-B-VIENEU",
+  "description": "Standardized, privacy-safe Vietnamese + code-switching TTS benchmark corpus covering required domains and chunk length distributions",
+  "samples": [
+    {
+      "id": "VN-NORM-01",
+      "category": "NORMAL_VIETNAMESE",
+      "chunkClass": "SHORT",
+      "text": "Xin chào các bạn, hôm nay chúng ta sẽ cùng tìm hiểu về một chủ đề thú vị.",
+      "domain": "Conversational / Intro",
+      "notes": "Short standard Vietnamese conversational greeting"
+    },
+    {
+      "id": "VN-NORM-02",
+      "category": "NORMAL_VIETNAMESE",
+      "chunkClass": "MEDIUM",
+      "text": "Trí tuệ nhân tạo đang thay đổi cách chúng ta học tập, nghiên cứu và làm việc mỗi ngày một cách sâu rộng trên toàn thế giới.",
+      "domain": "Educational narration",
+      "notes": "Medium length standard educational sentence"
+    },
+    {
+      "id": "VN-CS-01",
+      "category": "CODE_SWITCHING",
+      "chunkClass": "MEDIUM",
+      "text": "Để xây dựng một Chrome Extension với React và TypeScript, chúng ta cần cấu hình file manifest và gọi background API.",
+      "domain": "Web Development",
+      "notes": "Vietnamese with React, TypeScript, Chrome Extension, API keywords"
+    },
+    {
+      "id": "VN-CS-02",
+      "category": "CODE_SWITCHING",
+      "chunkClass": "MEDIUM",
+      "text": "Mô hình Transformer sử dụng cơ chế self-attention để xử lý các sequence token và lưu embedding vào bộ nhớ cache.",
+      "domain": "Machine Learning",
+      "notes": "Vietnamese with Transformer, token, cache, embedding keywords"
+    },
+    {
+      "id": "VN-CS-03",
+      "category": "CODE_SWITCHING",
+      "chunkClass": "MEDIUM",
+      "text": "Ứng dụng client gửi yêu cầu HTTP POST kèm theo JSON payload qua kết nối WebSocket tới server backend.",
+      "domain": "Networking / Architecture",
+      "notes": "Vietnamese with HTTP, JSON, WebSocket, client, server keywords"
+    },
+    {
+      "id": "VN-PROG-01",
+      "category": "PROGRAMMING_TECHNICAL",
+      "chunkClass": "MEDIUM",
+      "text": "Hàm fetchAndParseCaptions gọi endpoint timedtext với tham số fmt=json3 và xử lý mã lỗi 403 Forbidden một cách an toàn.",
+      "domain": "Software Engineering / Code",
+      "notes": "Technical identifiers, function names, query params, HTTP status codes"
+    },
+    {
+      "id": "VN-MATH-01",
+      "category": "MATHEMATICS",
+      "chunkClass": "MEDIUM",
+      "text": "Phân số ba phần tư nhân với hai mũ năm bằng hai mươi bốn, tương đương hai trăm bốn mươi phần trăm.",
+      "domain": "Mathematics (Spoken)",
+      "notes": "Fractions, powers, percentages in natural spoken form"
+    },
+    {
+      "id": "VN-MATH-02",
+      "category": "MATHEMATICS",
+      "chunkClass": "MEDIUM",
+      "text": "Phương trình bậc hai x bình phương cộng bốn x trừ năm bằng không có hai nghiệm phân biệt là một và âm năm.",
+      "domain": "Mathematics (Equations)",
+      "notes": "Algebraic equation spoken form"
+    },
+    {
+      "id": "VN-PHYS-01",
+      "category": "PHYSICS",
+      "chunkClass": "MEDIUM",
+      "text": "Vận tốc ban đầu bằng mười mét trên giây, gia tốc hai mét trên giây bình phương, lực tác dụng tổng cộng là năm mươi Newton.",
+      "domain": "Physics",
+      "notes": "Velocity, acceleration, Newton, force, SI units"
+    },
+    {
+      "id": "VN-CHEM-01",
+      "category": "CHEMISTRY",
+      "chunkClass": "MEDIUM",
+      "text": "Dung dịch axit sunfuric H2SO4 nồng độ không phẩy năm mol trên lít phản ứng hoàn toàn với dung dịch natri hidroxit NaOH.",
+      "domain": "Chemistry",
+      "notes": "Chemical names, chemical formulas, molar concentration"
+    },
+    {
+      "id": "VN-NUM-01",
+      "category": "NUMBERS_DATES_VERSIONS",
+      "chunkClass": "MEDIUM",
+      "text": "Vào ngày 15 tháng 8 năm 2026, phiên bản 3.2.1 được thử nghiệm với tốc độ phát lại 1.25x và 1.5x trên hệ thống 8 nhân CPU.",
+      "domain": "Dates / Versions / Numbers",
+      "notes": "Calendar dates, semantic versions, multipliers, decimal numbers"
+    },
+    {
+      "id": "VN-ACRO-01",
+      "category": "ACRONYMS",
+      "chunkClass": "SHORT",
+      "text": "Bộ xử lý CPU và bộ nhớ RAM giao tiếp trực tiếp với chip đồ họa GPU qua chuẩn bus PCIe thế hệ mới.",
+      "domain": "Hardware Acronyms",
+      "notes": "Hardware acronyms CPU, RAM, GPU, PCIe"
+    },
+    {
+      "id": "VN-PUNCT-01",
+      "category": "PUNCTUATION_HEAVY",
+      "chunkClass": "MEDIUM",
+      "text": "Chú ý: kiểm tra kỹ mã nguồn, cấu hình, và dữ liệu; nếu phát hiện lỗi bất thường (ví dụ: HTTP 500), hãy dừng lại ngay!",
+      "domain": "Punctuation / Tone",
+      "notes": "Colons, semicolons, commas, parentheses, exclamation marks"
+    },
+    {
+      "id": "VN-LONG-01",
+      "category": "LONG_PARAGRAPH",
+      "chunkClass": "LONG",
+      "text": "Trong kỷ nguyên số hiện đại, việc chuyển đổi văn bản thành giọng nói tự nhiên đóng vai trò then chốt trong việc hỗ trợ người dùng tiếp cận thông tin giáo dục toàn cầu, đặc biệt là khi kết hợp với công nghệ dịch thuật tự động để lồng tiếng cho các video bài giảng chất lượng cao trên Internet một cách chính xác và mượt mà.",
+      "domain": "Long paragraph / Dubbing context",
+      "notes": "Long continuous paragraph (>250 chars) for sustained throughput evaluation"
+    },
+    {
+      "id": "VN-FIT-01",
+      "category": "DURATION_FIT_SHORT",
+      "chunkClass": "SHORT",
+      "text": "Tiếp theo.",
+      "domain": "Dubbing short segment",
+      "notes": "Ultra-short fit text"
+    },
+    {
+      "id": "VN-FIT-02",
+      "category": "DURATION_FIT_SHORT",
+      "chunkClass": "SHORT",
+      "text": "Đúng vậy, chính xác là như thế.",
+      "domain": "Dubbing short segment",
+      "notes": "Short conversational phrase"
+    },
+    {
+      "id": "VN-FIT-03",
+      "category": "DURATION_FIT_SHORT",
+      "chunkClass": "SHORT",
+      "text": "Hãy lưu ý kỹ điểm quan trọng này.",
+      "domain": "Dubbing short segment",
+      "notes": "Short instructional phrase"
+    }
+  ]
+}

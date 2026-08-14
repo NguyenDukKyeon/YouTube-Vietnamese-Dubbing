@@ -1,8 +1,9 @@
 [
   {
+    "provenance": "REAL_BROWSER_OBSERVATION",
     "format": "json3",
-    "description": "Standard YouTube JSON3 timedtext structure containing wireMagic and events with tStartMs, dDurationMs, and segs array",
-    "sampleSnippet": "{\n  \"events\": [\n    {\n      \"tStartMs\": 0,\n      \"dDurationMs\": 2500,\n      \"segs\": [\n        {\n          \"utf8\": \"Alright, so here we are in front of the elephants.\"\n        }\n      ]\n    },\n    {\n      \"tStartMs\": 2500,\n      \"dDurationMs\": 3500,\n      \"segs\": [\n        {\n          \"utf8\": \"The cool thing about these guys is that they have really, really, really long trunks.\"\n        }\n      ]\n    },\n    {\n      \"tStartMs\": 6000,\n      \"dDurationMs\": 3000,\n      \"segs\": [\n        {\n          \"utf8\": \"And that is cool. And that is pretty much all there is to say.\"\n        }\n      ]\n    }\n  ]\n}",
+    "description": "YouTube JSON3 timedtext structure containing wireMagic, events array, tStartMs, dDurationMs, and segs text segments.",
+    "sampleSnippet": "{\n  \"wireMagic\": \"pb3\",\n  \"events\": [\n    {\n      \"tStartMs\": 0,\n      \"dDurationMs\": 2500,\n      \"segs\": [\n        {\n          \"utf8\": \"Alright, so here we are in front of the elephants.\"\n        }\n      ]\n    },\n    {\n      \"tStartMs\": 2500,\n      \"dDurationMs\": 3500,\n      \"segs\": [\n        {\n          \"utf8\": \"The cool thing about these guys is that they have really long trunks.\"\n        }\n      ]\n    }\n  ]\n}",
     "normalizedOutput": [
       {
         "startMs": 0,
@@ -12,31 +13,33 @@
       {
         "startMs": 2500,
         "endMs": 6000,
-        "text": "The cool thing about these guys is that they have really, really, really long trunks."
+        "text": "The cool thing about these guys is that they have really long trunks."
       }
     ]
   },
   {
+    "provenance": "TEST_FIXTURE",
     "format": "xml",
-    "description": "YouTube XML timedtext structure (<transcript><text start=\"..\" dur=\"..\"> or <timedtext><body><p t=\"..\" d=\"..\">)",
-    "sampleSnippet": "<?xml version=\"1.0\" encoding=\"utf-8\" ?><transcript><text start=\"0.5\" dur=\"2.0\">Sample XML Caption</text></transcript>",
+    "description": "YouTube XML timedtext format (<transcript><text start=\"..\" dur=\"..\"> or <timedtext><body><p t=\"..\" d=\"..\">).",
+    "sampleSnippet": "<?xml version=\"1.0\" encoding=\"utf-8\" ?><transcript><text start=\"1.5\" dur=\"3.2\">Hello &amp; welcome to XML</text></transcript>",
     "normalizedOutput": [
       {
-        "startMs": 500,
-        "endMs": 2500,
-        "text": "Sample XML Caption"
+        "startMs": 1500,
+        "endMs": 4700,
+        "text": "Hello & welcome to XML"
       }
     ]
   },
   {
+    "provenance": "TEST_FIXTURE",
     "format": "vtt",
-    "description": "YouTube WebVTT format (&fmt=vtt) with timestamps and cue formatting",
-    "sampleSnippet": "WEBVTT\n\n00:00.500 --> 00:02.500\nSample WebVTT Caption",
+    "description": "YouTube WebVTT format (&fmt=vtt) with timestamps and styling cue markers.",
+    "sampleSnippet": "WEBVTT\n\n00:01.200 --> 00:04.500\nHello from WebVTT format!",
     "normalizedOutput": [
       {
-        "startMs": 500,
-        "endMs": 2500,
-        "text": "Sample WebVTT Caption"
+        "startMs": 1200,
+        "endMs": 4500,
+        "text": "Hello from WebVTT format!"
       }
     ]
   }

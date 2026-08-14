@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "node --test test/**/*.test.js",
+    "test:empirical": "node scripts/empirical-browser-suite.js",
     "validate:evidence": "node scripts/validate-evidence.js",
     "validate:scope": "node scripts/validate-scope.js"
   },

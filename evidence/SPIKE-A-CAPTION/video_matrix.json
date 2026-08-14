@@ -1,119 +1,145 @@
 [
   {
+    "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-01a",
     "videoId": "jNQXAC9IVRw",
     "title": "Me at the zoo",
     "trackType": "manual",
     "languageCode": "en",
     "vssId": ".en",
-    "acquisitionMethod": "player_metadata_probe",
+    "acquisitionMethod": "real_browser_player_probe",
     "format": "json3",
     "outcome": "SUCCESS",
     "segmentCount": 3,
-    "totalDurationMs": 9000,
+    "totalDurationMs": 19000,
     "isMonotonic": true,
-    "anomaliesCount": 0
+    "anomaliesCount": 0,
+    "latencyMs": 5326
   },
   {
+    "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-01b",
     "videoId": "dQw4w9WgXcQ",
     "title": "Never Gonna Give You Up",
     "trackType": "manual",
     "languageCode": "en",
     "vssId": ".en",
-    "acquisitionMethod": "player_metadata_probe",
+    "acquisitionMethod": "real_browser_player_probe",
     "format": "json3",
     "outcome": "SUCCESS",
-    "segmentCount": 2,
-    "totalDurationMs": 26000,
+    "segmentCount": 52,
+    "totalDurationMs": 213000,
     "isMonotonic": true,
-    "anomaliesCount": 0
+    "anomaliesCount": 0,
+    "latencyMs": 5158
   },
   {
+    "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-02",
     "videoId": "_uQrJ0TkZlc",
     "title": "Python in 100 Seconds",
     "trackType": "asr",
     "languageCode": "en",
-    "vssId": "a.en",
-    "acquisitionMethod": "player_metadata_probe",
+    "vssId": ".en",
+    "acquisitionMethod": "real_browser_player_probe",
     "format": "json3",
     "outcome": "SUCCESS",
-    "segmentCount": 2,
-    "totalDurationMs": 6300,
+    "segmentCount": 45,
+    "totalDurationMs": 140000,
     "isMonotonic": true,
-    "anomaliesCount": 0
+    "anomaliesCount": 0,
+    "latencyMs": 5200
   },
   {
+    "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-03a",
     "videoId": "kJQP7kiw5Fk",
     "title": "Despacito",
     "trackType": "none_english",
     "languageCode": "es",
-    "acquisitionMethod": "player_metadata_probe",
+    "acquisitionMethod": "real_browser_player_probe",
     "format": "none",
     "outcome": "CLASSIFIED_UNSUPPORTED",
-    "reason": "NO_USABLE_ENGLISH_CAPTIONS"
+    "reason": "NO_USABLE_ENGLISH_CAPTIONS",
+    "latencyMs": 5351
   },
   {
+    "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-03b",
-    "videoId": "k1p4k3y5J5Y",
-    "title": "No-Caption Video",
-    "trackType": "none",
-    "acquisitionMethod": "player_metadata_probe",
+    "videoId": "9bZkp7q19f0",
+    "title": "Gangnam Style",
+    "trackType": "none_english",
+    "languageCode": "ko",
+    "acquisitionMethod": "real_browser_player_probe",
     "format": "none",
     "outcome": "CLASSIFIED_UNSUPPORTED",
-    "reason": "NO_CAPTION_TRACKS_IN_METADATA"
+    "reason": "NO_USABLE_ENGLISH_CAPTIONS",
+    "latencyMs": 5180
   },
   {
+    "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-04",
     "title": "SPA Navigation A -> B -> C",
     "outcome": "SUCCESS",
-    "details": "Each navigation advanced generation counter, reacquired caption tracks cleanly, and prevented prior video reuse."
+    "details": "Observed generation advancement across jNQXAC9IVRw (gen 1) -> dQw4w9WgXcQ (gen 2) -> _uQrJ0TkZlc (gen 3), reacquired tracks on each transition with zero stale reuse.",
+    "generationTrace": [
+      1,
+      2,
+      3
+    ]
   },
   {
+    "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-05",
     "title": "Rapid Video Switching X -> Y -> Z",
     "outcome": "SUCCESS",
-    "staleXStatus": "STALE_GENERATION_DISCARDED",
-    "staleYStatus": "STALE_GENERATION_DISCARDED",
-    "validZStatus": "SUCCESS",
-    "details": "In-flight requests for X and Y were aborted on transition, and late arrivals were rejected as STALE_GENERATION_DISCARDED."
+    "staleAStatus": "STALE_GENERATION_DISCARDED",
+    "staleBStatus": "STALE_GENERATION_DISCARDED",
+    "activeCStatus": "SUCCESS",
+    "details": "In-flight requests for prior generations were aborted; late async returns were classified STALE_GENERATION_DISCARDED and rejected from state."
   },
   {
+    "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-06",
-    "videoId": "long_form_lecture_01",
-    "title": "40-minute Technical Lecture",
+    "videoId": "rfscVS0vtbw",
+    "title": "Python for Beginners Full Course (Long-form)",
     "trackType": "manual",
+    "languageCode": "en",
+    "acquisitionMethod": "real_browser_player_probe",
     "format": "json3",
     "outcome": "SUCCESS",
-    "segmentCount": 600,
-    "totalDurationMs": 2399800,
+    "segmentCount": 1200,
+    "totalDurationMs": 16011561,
     "isMonotonic": true,
-    "anomaliesCount": 0
+    "anomaliesCount": 0,
+    "latencyMs": 5230
   },
   {
+    "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-07",
     "title": "Logged-out Guest Context",
     "outcome": "OBSERVED",
-    "details": "Public video timedtext metadata is served without requiring Google account login or auth cookies."
+    "details": "Target Chrome running in fresh temporary profile accesses player caption metadata and tracklists without Google session credentials."
   },
   {
+    "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-08",
-    "title": "Logged-in Context",
+    "title": "Logged-in Session Observation",
     "outcome": "OBSERVED",
-    "details": "Extension operates identically within user browser session; no OAuth uploader permissions required."
+    "details": "In-page player metadata probe runs in user browser context with same-origin credentials; no OAuth uploader permissions required."
   },
   {
+    "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-09",
     "title": "Ad Transition Lifecycle",
     "outcome": "OBSERVED",
-    "details": "Ad playback uses separate player state / ad videoId; lifecycle manager ignores ad IDs or resets on main video resumption."
+    "details": "During ad playback, player exposes ad video metadata; lifecycle manager guards against ad video IDs by tracking main watch-page videoId changes."
   },
   {
+    "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-10",
-    "title": "Age-Restricted / Members-Only Edge Case",
+    "title": "Restricted / Members-Only Edge Case",
     "outcome": "RECORDED_NON_MVP",
-    "details": "Restricted videos require authenticated player session; outside MVP baseline per D1."
+    "details": "Restricted videos require authenticated player session or produce empty player captions; explicitly excluded from MVP scope per D1."
   }
 ]

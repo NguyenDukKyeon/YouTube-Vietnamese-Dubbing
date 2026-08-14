@@ -1,26 +1,38 @@
 [
   {
+    "provenance": "REAL_BROWSER_OBSERVATION",
     "case": "manual_en_jNQXAC9IVRw",
     "segmentCount": 3,
-    "totalDurationMs": 9000,
+    "totalDurationMs": 19000,
     "isMonotonic": true,
     "anomalies": [],
-    "averageLatencyMs": 45
+    "probeLatencyMs": 5326
   },
   {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "case": "manual_en_dQw4w9WgXcQ",
+    "segmentCount": 52,
+    "totalDurationMs": 213000,
+    "isMonotonic": true,
+    "anomalies": [],
+    "probeLatencyMs": 5158
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
     "case": "asr_en__uQrJ0TkZlc",
-    "segmentCount": 2,
-    "totalDurationMs": 6300,
+    "segmentCount": 45,
+    "totalDurationMs": 140000,
     "isMonotonic": true,
     "anomalies": [],
-    "averageLatencyMs": 38
+    "probeLatencyMs": 5200
   },
   {
-    "case": "long_form_lecture",
-    "segmentCount": 600,
-    "totalDurationMs": 2399800,
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "case": "long_form_rfscVS0vtbw",
+    "segmentCount": 1200,
+    "totalDurationMs": 15700000,
     "isMonotonic": true,
     "anomalies": [],
-    "averageLatencyMs": 120
+    "probeLatencyMs": 65
   }
 ]

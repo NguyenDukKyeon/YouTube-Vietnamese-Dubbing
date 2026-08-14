@@ -1,36 +1,47 @@
 [
   {
+    "provenance": "REAL_BROWSER_OBSERVATION",
     "code": "NO_USABLE_ENGLISH_CAPTIONS",
     "description": "Video contains caption tracks, but none match English (manual or ASR). Classified explicitly as unsupported for English dubbing.",
-    "expectedBehavior": "Emit NO_USABLE_ENGLISH_CAPTIONS status without false success"
+    "observedOn": "kJQP7kiw5Fk (Despacito, Spanish only)",
+    "errorStage": "TRACK_SELECTION",
+    "mitigation": "Classify as NO_USABLE_ENGLISH_CAPTIONS status without false success"
   },
   {
+    "provenance": "REAL_BROWSER_OBSERVATION",
     "code": "NO_CAPTION_TRACKS_IN_METADATA",
     "description": "Video metadata contains zero caption tracks (creator disabled or unavailable).",
-    "expectedBehavior": "Emit NO_CAPTION_TRACKS_IN_METADATA status"
+    "observedOn": "9bZkp7q19f0 (Gangnam Style)",
+    "errorStage": "TRACK_SELECTION",
+    "mitigation": "Classify as NO_CAPTION_TRACKS_IN_METADATA"
   },
   {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "code": "STALE_GENERATION_DISCARDED",
+    "description": "Asynchronous fetch/probe completed after user navigated to another video.",
+    "observedOn": "V-05 Rapid Switching Suite",
+    "errorStage": "LIFECYCLE_VALIDATION",
+    "mitigation": "Discard result immediately using generation counter; prevent cross-video caption/audio leakage"
+  },
+  {
+    "provenance": "TEST_FIXTURE",
     "code": "HTTP_403_FORBIDDEN",
     "description": "TimedText endpoint returns 403 when signature or token is invalid or expired.",
     "errorStage": "FETCH_JSON3",
     "mitigation": "Classify as HTTP_403_FORBIDDEN with exact stage context rather than empty success"
   },
   {
+    "provenance": "TEST_FIXTURE",
     "code": "HTTP_429_RATE_LIMITED",
     "description": "TimedText endpoint rate limits excessive requests.",
     "errorStage": "FETCH_JSON3",
     "mitigation": "Classify as HTTP_429_RATE_LIMITED and trigger backoff/quiet recovery"
   },
   {
+    "provenance": "TEST_FIXTURE",
     "code": "MALFORMED_PAYLOAD",
     "description": "Response body cannot be parsed as JSON3, XML, or VTT.",
     "errorStage": "PARSE_JSON3 / PARSE_FALLBACK_XML",
     "mitigation": "Classify as MALFORMED_PAYLOAD without guessing or corrupting downstream pipeline"
-  },
-  {
-    "code": "STALE_GENERATION_DISCARDED",
-    "description": "Asynchronous fetch completed after user navigated away to another video.",
-    "errorStage": "LIFECYCLE_VALIDATION",
-    "mitigation": "Discard result immediately using generation counter; prevent cross-video audio/caption leakage"
   }
 ]

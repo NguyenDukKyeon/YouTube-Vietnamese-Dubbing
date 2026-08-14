@@ -1,135 +1,144 @@
 [
   {
-    "timestamp": 1786695089945,
+    "timestamp": 1786696843024,
     "event": "VIDEO_TRANSITION_STARTED",
-    "videoId": "vid_A",
+    "videoId": "jNQXAC9IVRw",
     "generation": 1,
-    "details": {}
+    "details": {},
+    "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786695089946,
+    "timestamp": 1786696846235,
     "event": "ACQUISITION_COMPLETED",
-    "videoId": "vid_A",
+    "videoId": "jNQXAC9IVRw",
     "generation": 1,
     "details": {
       "status": "SUCCESS"
-    }
+    },
+    "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786695089947,
+    "timestamp": 1786696846236,
     "event": "ABORT_PRIOR_REQUEST",
-    "videoId": "vid_A",
+    "videoId": "jNQXAC9IVRw",
     "generation": 1,
-    "details": {}
+    "details": {},
+    "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786695089947,
+    "timestamp": 1786696846236,
     "event": "VIDEO_TRANSITION_STARTED",
-    "videoId": "vid_B",
+    "videoId": "dQw4w9WgXcQ",
     "generation": 2,
-    "details": {}
+    "details": {},
+    "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786695089947,
+    "timestamp": 1786696849278,
     "event": "ACQUISITION_COMPLETED",
-    "videoId": "vid_B",
+    "videoId": "dQw4w9WgXcQ",
     "generation": 2,
     "details": {
       "status": "SUCCESS"
-    }
+    },
+    "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786695089947,
+    "timestamp": 1786696849278,
     "event": "ABORT_PRIOR_REQUEST",
-    "videoId": "vid_B",
+    "videoId": "dQw4w9WgXcQ",
     "generation": 2,
-    "details": {}
+    "details": {},
+    "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786695089947,
+    "timestamp": 1786696849278,
     "event": "VIDEO_TRANSITION_STARTED",
-    "videoId": "vid_C",
+    "videoId": "_uQrJ0TkZlc",
     "generation": 3,
-    "details": {}
+    "details": {},
+    "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786695089947,
+    "timestamp": 1786696852299,
     "event": "ACQUISITION_COMPLETED",
-    "videoId": "vid_C",
+    "videoId": "_uQrJ0TkZlc",
     "generation": 3,
     "details": {
       "status": "SUCCESS"
-    }
+    },
+    "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786695089947,
+    "timestamp": 1786696852299,
+    "event": "VIDEO_TRANSITION_STARTED",
+    "videoId": "jNQXAC9IVRw",
+    "generation": 1,
+    "details": {},
+    "suite": "RAPID_SWITCHING_X_Y_Z"
+  },
+  {
+    "timestamp": 1786696852299,
     "event": "ABORT_PRIOR_REQUEST",
-    "videoId": "vid_C",
+    "videoId": "jNQXAC9IVRw",
+    "generation": 1,
+    "details": {},
+    "suite": "RAPID_SWITCHING_X_Y_Z"
+  },
+  {
+    "timestamp": 1786696852299,
+    "event": "VIDEO_TRANSITION_STARTED",
+    "videoId": "dQw4w9WgXcQ",
+    "generation": 2,
+    "details": {},
+    "suite": "RAPID_SWITCHING_X_Y_Z"
+  },
+  {
+    "timestamp": 1786696852299,
+    "event": "ABORT_PRIOR_REQUEST",
+    "videoId": "dQw4w9WgXcQ",
+    "generation": 2,
+    "details": {},
+    "suite": "RAPID_SWITCHING_X_Y_Z"
+  },
+  {
+    "timestamp": 1786696852299,
+    "event": "VIDEO_TRANSITION_STARTED",
+    "videoId": "_uQrJ0TkZlc",
     "generation": 3,
-    "details": {}
+    "details": {},
+    "suite": "RAPID_SWITCHING_X_Y_Z"
   },
   {
-    "timestamp": 1786695089947,
-    "event": "VIDEO_TRANSITION_STARTED",
-    "videoId": "vid_RAPID_X",
-    "generation": 4,
-    "details": {}
-  },
-  {
-    "timestamp": 1786695089947,
-    "event": "ABORT_PRIOR_REQUEST",
-    "videoId": "vid_RAPID_X",
-    "generation": 4,
-    "details": {}
-  },
-  {
-    "timestamp": 1786695089947,
-    "event": "VIDEO_TRANSITION_STARTED",
-    "videoId": "vid_RAPID_Y",
-    "generation": 5,
-    "details": {}
-  },
-  {
-    "timestamp": 1786695089947,
-    "event": "ABORT_PRIOR_REQUEST",
-    "videoId": "vid_RAPID_Y",
-    "generation": 5,
-    "details": {}
-  },
-  {
-    "timestamp": 1786695089947,
-    "event": "VIDEO_TRANSITION_STARTED",
-    "videoId": "vid_RAPID_Z",
-    "generation": 6,
-    "details": {}
-  },
-  {
-    "timestamp": 1786695089947,
+    "timestamp": 1786696852299,
     "event": "STALE_RESULT_REJECTED",
-    "videoId": "vid_RAPID_X",
-    "generation": 4,
+    "videoId": "jNQXAC9IVRw",
+    "generation": 1,
     "details": {
-      "currentGeneration": 6,
-      "currentVideoId": "vid_RAPID_Z"
-    }
+      "currentGeneration": 3,
+      "currentVideoId": "_uQrJ0TkZlc"
+    },
+    "suite": "RAPID_SWITCHING_X_Y_Z"
   },
   {
-    "timestamp": 1786695089947,
+    "timestamp": 1786696852299,
     "event": "STALE_RESULT_REJECTED",
-    "videoId": "vid_RAPID_Y",
-    "generation": 5,
+    "videoId": "dQw4w9WgXcQ",
+    "generation": 2,
     "details": {
-      "currentGeneration": 6,
-      "currentVideoId": "vid_RAPID_Z"
-    }
+      "currentGeneration": 3,
+      "currentVideoId": "_uQrJ0TkZlc"
+    },
+    "suite": "RAPID_SWITCHING_X_Y_Z"
   },
   {
-    "timestamp": 1786695089947,
+    "timestamp": 1786696852299,
     "event": "ACQUISITION_COMPLETED",
-    "videoId": "vid_RAPID_Z",
-    "generation": 6,
+    "videoId": "_uQrJ0TkZlc",
+    "generation": 3,
     "details": {
       "status": "SUCCESS"
-    }
+    },
+    "suite": "RAPID_SWITCHING_X_Y_Z"
   }
 ]

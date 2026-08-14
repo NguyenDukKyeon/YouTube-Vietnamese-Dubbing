@@ -2,7 +2,7 @@
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-01a",
-    "videoId": "dQw4w9WgXcQ",
+    "videoId": "W6NZfCO5SIk",
     "category": "V-01a_MANUAL_ENGLISH",
     "selectedTrackVssId": ".en",
     "allTracksSanitized": [
@@ -13,7 +13,7 @@
         "name": {
           "simpleText": "English"
         },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=dQw4w9WgXcQ&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=en"
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=W6NZfCO5SIk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=en"
       },
       {
         "languageCode": "en",
@@ -22,43 +22,7 @@
         "name": {
           "simpleText": "English (auto-generated)"
         },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=dQw4w9WgXcQ&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en"
-      },
-      {
-        "languageCode": "de-DE",
-        "vssId": ".de-DE",
-        "kind": "manual",
-        "name": {
-          "simpleText": "German (Germany)"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=dQw4w9WgXcQ&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=de-DE"
-      },
-      {
-        "languageCode": "ja",
-        "vssId": ".ja",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Japanese"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=dQw4w9WgXcQ&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=ja"
-      },
-      {
-        "languageCode": "pt-BR",
-        "vssId": ".pt-BR",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Portuguese (Brazil)"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=dQw4w9WgXcQ&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=pt-BR"
-      },
-      {
-        "languageCode": "es-419",
-        "vssId": ".es-419",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Spanish (Latin America)"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=dQw4w9WgXcQ&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=es-419"
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=W6NZfCO5SIk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en"
       }
     ]
   },
@@ -127,29 +91,11 @@
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
-    "caseId": "V-02",
-    "videoId": "_uQrJ0TkZlc",
-    "category": "V-02_ENGLISH_COMPREHENSIVE",
-    "selectedTrackVssId": ".en",
+    "caseId": "V-02a",
+    "videoId": "SqcY0GlETPk",
+    "category": "V-02a_ASR_ONLY_ENGLISH",
+    "selectedTrackVssId": "a.en",
     "allTracksSanitized": [
-      {
-        "languageCode": "zh-CN",
-        "vssId": ".zh-CN",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Chinese (China)"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=zh-CN"
-      },
-      {
-        "languageCode": "en",
-        "vssId": ".en",
-        "kind": "manual",
-        "name": {
-          "simpleText": "English"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=en"
-      },
       {
         "languageCode": "en",
         "vssId": "a.en",
@@ -157,61 +103,25 @@
         "name": {
           "simpleText": "English (auto-generated)"
         },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en"
-      },
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=SqcY0GlETPk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en&variant=[REDACTED]"
+      }
+    ]
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-02b",
+    "videoId": "3JZ_D3ELwOQ",
+    "category": "V-02b_ASR_ONLY_ENGLISH",
+    "selectedTrackVssId": "a.en",
+    "allTracksSanitized": [
       {
-        "languageCode": "id",
-        "vssId": ".id",
-        "kind": "manual",
+        "languageCode": "en",
+        "vssId": "a.en",
+        "kind": "asr",
         "name": {
-          "simpleText": "Indonesian"
+          "simpleText": "English (auto-generated)"
         },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=id"
-      },
-      {
-        "languageCode": "fa",
-        "vssId": ".fa",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Persian"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=fa"
-      },
-      {
-        "languageCode": "pt",
-        "vssId": ".pt",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Portuguese"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=pt"
-      },
-      {
-        "languageCode": "ru",
-        "vssId": ".ru",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Russian"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=ru"
-      },
-      {
-        "languageCode": "es-419",
-        "vssId": ".es-419",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Spanish (Latin America)"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=es-419"
-      },
-      {
-        "languageCode": "tr",
-        "vssId": ".tr",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Turkish"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=tr"
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=3JZ_D3ELwOQ&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en"
       }
     ]
   }

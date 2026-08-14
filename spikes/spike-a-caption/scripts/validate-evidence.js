@@ -1,16 +1,17 @@
 /**
- * Evidence Validator Script (Comprehensive Empirical & Redaction Enforcement)
+ * Evidence Validator Script (Comprehensive Empirical Cross-Checking & Redaction Enforcement)
  *
  * Verifies:
  * 1. Existence and valid schema for all required evidence artifacts.
  * 2. Strict redaction invariant: no unredacted signatures, session tokens, keys, expirations, cookies.
  * 3. Provenance integrity:
- *    - Real cases (V-01a, V-01b, V-02, V-03a, V-03b, V-04, V-05, V-06, V-07) are REAL_BROWSER_OBSERVATION.
+ *    - Real cases (V-01a, V-01b, V-02a, V-02b, V-03a, V-03b, V-04, V-05, V-06, V-07) are REAL_BROWSER_OBSERVATION.
  *    - Unexercised optional cases (V-08, V-09, V-10) are honestly NOT_OBSERVED.
- * 4. Concrete empirical assertions:
- *    - Live timedtext capture verified (status 200, parsed segment count > 0, total duration > 0, monotonic).
- *    - Genuine SPA navigation verified (observed semantic video IDs are genuinely distinct).
- *    - Real rapid switching verified (contains stale discard records and active generation).
+ * 4. Cross-checks raw observations against derived matrix rows:
+ *    - Matches raw payloadLengthBytes > 0, parsedSegmentCount > 0, totalDurationMs > 0 against video_matrix.
+ *    - Validates V-02a/V-02b are genuinely ASR-only (hasManualEn: false, isAsrOnly: true, selectedTrackKind: 'asr').
+ *    - Validates V-05 has real pending operation IDs and stale cancellation records.
+ *    - Validates V-04 has distinct observed semantic player video IDs.
  * 5. Tested implementation SHA ancestry in git and zero source code drift.
  */
 
@@ -125,102 +126,162 @@ function validateEvidence() {
     }
   }
 
-  // 3. Validate video_matrix.json empirical provenance & concrete fields
-  try {
-    const matrixData = JSON.parse(readFileSync(join(EVIDENCE_DIR, 'video_matrix.json'), 'utf-8'));
-
-    // Empirical cases
-    const empiricalCases = ['V-01a', 'V-01b', 'V-02', 'V-03a', 'V-03b', 'V-04', 'V-05', 'V-06', 'V-07'];
-    for (const cId of empiricalCases) {
-      const entry = matrixData.find(c => c.caseId === cId);
-      if (!entry) {
-        console.error(`[Evidence Validator] video_matrix.json missing case: ${cId}`);
-        hasErrors = true;
-      } else if (entry.provenance !== 'REAL_BROWSER_OBSERVATION') {
-        console.error(`[Evidence Validator] Case ${cId} must be REAL_BROWSER_OBSERVATION, found: ${entry.provenance}`);
-        hasErrors = true;
-      }
-    }
-
-    // Honest unexercised cases
-    const unexercisedCases = ['V-08', 'V-09', 'V-10'];
-    for (const cId of unexercisedCases) {
-      const entry = matrixData.find(c => c.caseId === cId);
-      if (!entry) {
-        console.error(`[Evidence Validator] video_matrix.json missing case: ${cId}`);
-        hasErrors = true;
-      } else if (entry.provenance !== 'NOT_OBSERVED') {
-        console.error(`[Evidence Validator] Case ${cId} must be NOT_OBSERVED, found: ${entry.provenance}`);
-        hasErrors = true;
-      }
-    }
-
-    // Verify live parsed segment statistics on V-01a, V-01b, V-02, V-06
-    for (const cId of ['V-01a', 'V-01b', 'V-02', 'V-06']) {
-      const entry = matrixData.find(c => c.caseId === cId);
-      if (entry) {
-        if (typeof entry.segmentCount !== 'number' || entry.segmentCount <= 0) {
-          console.error(`[Evidence Validator] Case ${cId} missing valid dynamic segmentCount`);
-          hasErrors = true;
-        }
-        if (typeof entry.totalDurationMs !== 'number' || entry.totalDurationMs <= 0) {
-          console.error(`[Evidence Validator] Case ${cId} missing valid dynamic totalDurationMs`);
-          hasErrors = true;
-        }
-        if (entry.isMonotonic !== true) {
-          console.error(`[Evidence Validator] Case ${cId} isMonotonic must be true`);
-          hasErrors = true;
-        }
-      }
-    }
-
-    // Verify SPA distinct semantic video IDs
-    const spaEntry = matrixData.find(c => c.caseId === 'V-04');
-    if (spaEntry) {
-      const ids = spaEntry.observedSemanticVideoIds;
-      if (!Array.isArray(ids) || ids.length < 3 || ids[0] === ids[1] || ids[1] === ids[2]) {
-        console.error('[Evidence Validator] Case V-04 must have 3 distinct observed semantic player video IDs.');
-        hasErrors = true;
-      }
-    }
-
-    // Verify Rapid Switch stale discards
-    const rapidEntry = matrixData.find(c => c.caseId === 'V-05');
-    if (rapidEntry) {
-      if (!Array.isArray(rapidEntry.staleDiscards) || rapidEntry.staleDiscards.length < 2) {
-        console.error('[Evidence Validator] Case V-05 must record real stale discards.');
-        hasErrors = true;
-      }
-    }
-  } catch (err) {
-    console.error('[Evidence Validator] Failed to parse video_matrix.json:', err.message);
-    hasErrors = true;
-  }
-
-  // 4. Validate raw_browser_observations.json
+  // 3. Read and Cross-Check raw observations vs derived matrix
   try {
     const rawData = JSON.parse(readFileSync(join(EVIDENCE_DIR, 'raw_browser_observations.json'), 'utf-8'));
-    if (!Array.isArray(rawData) || rawData.length < 3) {
-      console.error('[Evidence Validator] raw_browser_observations.json must contain observations for tested videos.');
+    const matrixData = JSON.parse(readFileSync(join(EVIDENCE_DIR, 'video_matrix.json'), 'utf-8'));
+
+    if (!Array.isArray(rawData) || rawData.length < 4) {
+      console.error('[Evidence Validator] raw_browser_observations.json must contain observations for tested videos (V-01a, V-01b, V-02a, V-02b).');
       hasErrors = true;
     }
-    for (const obs of rawData) {
-      if (obs.provenance !== 'REAL_BROWSER_OBSERVATION' || !obs.videoId || !obs.semanticPlayerVideoId) {
-        console.error(`[Evidence Validator] Invalid observation record for ${obs.videoId}`);
+
+    // Cross-check each empirical video case
+    const liveFetchCases = [
+      { caseId: 'V-01a', expectedKind: 'manual', requireAsrOnly: false },
+      { caseId: 'V-01b', expectedKind: 'manual', requireAsrOnly: false },
+      { caseId: 'V-02a', expectedKind: 'asr', requireAsrOnly: true },
+      { caseId: 'V-02b', expectedKind: 'asr', requireAsrOnly: true }
+    ];
+
+    for (const req of liveFetchCases) {
+      const raw = rawData.find(r => r.caseId === req.caseId);
+      const mat = matrixData.find(m => m.caseId === req.caseId);
+
+      if (!raw) {
+        console.error(`[Evidence Validator] Missing raw observation record for ${req.caseId}`);
+        hasErrors = true;
+        continue;
+      }
+      if (!mat) {
+        console.error(`[Evidence Validator] Missing video_matrix record for ${req.caseId}`);
+        hasErrors = true;
+        continue;
+      }
+
+      // Check raw provenance
+      if (raw.provenance !== 'REAL_BROWSER_OBSERVATION') {
+        console.error(`[Evidence Validator] Raw observation for ${req.caseId} must have provenance REAL_BROWSER_OBSERVATION`);
         hasErrors = true;
       }
-      // Ensure all tracks in raw observations are sanitized
-      if (Array.isArray(obs.allTracksSanitized)) {
-        for (const t of obs.allTracksSanitized) {
-          if (t.baseUrl && !t.baseUrlSanitized) {
-            console.error(`[Evidence Validator] Unsanitized track URL in observation record ${obs.videoId}`);
+      if (raw.timedtextCapture?.payloadProvenance !== 'REAL_BROWSER_FETCH') {
+        console.error(`[Evidence Validator] Raw timedtextCapture for ${req.caseId} must have payloadProvenance REAL_BROWSER_FETCH`);
+        hasErrors = true;
+      }
+      if (typeof raw.timedtextCapture?.payloadLengthBytes !== 'number' || raw.timedtextCapture.payloadLengthBytes <= 0) {
+        console.error(`[Evidence Validator] Raw observation for ${req.caseId} must have payloadLengthBytes > 0, found: ${raw.timedtextCapture?.payloadLengthBytes}`);
+        hasErrors = true;
+      }
+      if (typeof raw.timedtextCapture?.parsedSegmentCount !== 'number' || raw.timedtextCapture.parsedSegmentCount <= 0) {
+        console.error(`[Evidence Validator] Raw observation for ${req.caseId} must have parsedSegmentCount > 0, found: ${raw.timedtextCapture?.parsedSegmentCount}`);
+        hasErrors = true;
+      }
+      if (!raw.timedtextCapture?.sampleSegment) {
+        console.error(`[Evidence Validator] Raw observation for ${req.caseId} missing sampleSegment`);
+        hasErrors = true;
+      }
+
+      // Cross-check exact match between raw observation and video_matrix row
+      if (mat.segmentCount !== raw.timedtextCapture.parsedSegmentCount) {
+        console.error(`[Evidence Validator] Mismatch in segmentCount for ${req.caseId}: matrix=${mat.segmentCount}, raw=${raw.timedtextCapture.parsedSegmentCount}`);
+        hasErrors = true;
+      }
+      if (mat.totalDurationMs !== raw.timedtextCapture.totalDurationMs) {
+        console.error(`[Evidence Validator] Mismatch in totalDurationMs for ${req.caseId}: matrix=${mat.totalDurationMs}, raw=${raw.timedtextCapture.totalDurationMs}`);
+        hasErrors = true;
+      }
+      if (mat.fetchStatus !== raw.timedtextCapture.httpStatus) {
+        console.error(`[Evidence Validator] Mismatch in fetchStatus for ${req.caseId}: matrix=${mat.fetchStatus}, raw=${raw.timedtextCapture.httpStatus}`);
+        hasErrors = true;
+      }
+      if (mat.payloadProvenance !== raw.timedtextCapture.payloadProvenance) {
+        console.error(`[Evidence Validator] Mismatch in payloadProvenance for ${req.caseId}: matrix=${mat.payloadProvenance}, raw=${raw.timedtextCapture.payloadProvenance}`);
+        hasErrors = true;
+      }
+
+      // Check track type
+      if (mat.trackType !== req.expectedKind || raw.selectedTrackKind !== req.expectedKind) {
+        console.error(`[Evidence Validator] Track type mismatch for ${req.caseId}: expected ${req.expectedKind}, found mat=${mat.trackType}, raw=${raw.selectedTrackKind}`);
+        hasErrors = true;
+      }
+
+      // Check ASR-only requirement
+      if (req.requireAsrOnly) {
+        if (raw.isAsrOnly !== true || raw.hasManualEn !== false || raw.hasAsrEn !== true) {
+          console.error(`[Evidence Validator] Case ${req.caseId} must be ASR-only (isAsrOnly=true, hasManualEn=false, hasAsrEn=true)`);
+          hasErrors = true;
+        }
+        const hasManualTrack = raw.allTracksSanitized?.some(t => t.languageCode === 'en' && t.kind !== 'asr');
+        if (hasManualTrack) {
+          console.error(`[Evidence Validator] Case ${req.caseId} contains manual English track in inventory; violates ASR-only requirement`);
+          hasErrors = true;
+        }
+      }
+    }
+
+    // Validate V-04 (SPA)
+    const spaEntry = matrixData.find(c => c.caseId === 'V-04');
+    if (!spaEntry) {
+      console.error('[Evidence Validator] Missing V-04 in video_matrix.json');
+      hasErrors = true;
+    } else {
+      const ids = spaEntry.observedSemanticVideoIds;
+      if (!Array.isArray(ids) || ids.length < 3 || ids[0] === ids[1] || ids[1] === ids[2]) {
+        console.error('[Evidence Validator] V-04 must have 3 distinct observed semantic player video IDs.');
+        hasErrors = true;
+      }
+    }
+
+    // Validate V-05 (Rapid Switching Race)
+    const rapidEntry = matrixData.find(c => c.caseId === 'V-05');
+    if (!rapidEntry) {
+      console.error('[Evidence Validator] Missing V-05 in video_matrix.json');
+      hasErrors = true;
+    } else {
+      if (!Array.isArray(rapidEntry.staleDiscards) || rapidEntry.staleDiscards.length < 2) {
+        console.error('[Evidence Validator] V-05 must record at least 2 real stale discards.');
+        hasErrors = true;
+      } else {
+        for (const disc of rapidEntry.staleDiscards) {
+          if (!disc.operationId || !disc.abortReason || disc.status !== 'STALE_GENERATION_DISCARDED') {
+            console.error('[Evidence Validator] V-05 stale discard missing operationId, abortReason, or valid status');
             hasErrors = true;
           }
         }
       }
+      if (!rapidEntry.activeGeneration?.operationId || rapidEntry.activeGeneration.status !== 'SUCCESS') {
+        console.error('[Evidence Validator] V-05 missing valid activeGeneration record');
+        hasErrors = true;
+      }
+    }
+
+    // Validate V-06 (Long-form)
+    const v6Entry = matrixData.find(c => c.caseId === 'V-06');
+    const v2aRaw = rawData.find(r => r.caseId === 'V-02a');
+    if (!v6Entry) {
+      console.error('[Evidence Validator] Missing V-06 in video_matrix.json');
+      hasErrors = true;
+    } else {
+      if (v6Entry.segmentCount !== v2aRaw?.timedtextCapture.parsedSegmentCount) {
+        console.error('[Evidence Validator] V-06 segmentCount does not match reused V-02a empirical capture');
+        hasErrors = true;
+      }
+      if (v6Entry.totalDurationMs < 3600000) {
+        console.error('[Evidence Validator] V-06 totalDurationMs must be > 1 hour (3,600,000 ms) for long-form case');
+        hasErrors = true;
+      }
+    }
+
+    // Validate V-08, V-09, V-10 honest NOT_OBSERVED
+    for (const cId of ['V-08', 'V-09', 'V-10']) {
+      const entry = matrixData.find(c => c.caseId === cId);
+      if (!entry || entry.provenance !== 'NOT_OBSERVED') {
+        console.error(`[Evidence Validator] Case ${cId} must be honestly marked NOT_OBSERVED`);
+        hasErrors = true;
+      }
     }
   } catch (err) {
-    console.error('[Evidence Validator] Failed to parse raw_browser_observations.json:', err.message);
+    console.error('[Evidence Validator] Failed to cross-check observations and matrix:', err.message);
     hasErrors = true;
   }
 
@@ -229,7 +290,7 @@ function validateEvidence() {
     process.exit(1);
   }
 
-  console.log('[Evidence Validator] PASSED: All empirical evidence artifacts exist, are valid, have verified provenance and ancestry, and adhere strictly to the redaction invariant.');
+  console.log('[Evidence Validator] PASSED: All empirical evidence artifacts exist, cross-check accurately against raw observations, have verified ASR-only status, rapid-switch race evidence, and adhere strictly to the redaction invariant.');
 }
 
 validateEvidence();

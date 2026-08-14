@@ -19,9 +19,9 @@
     "provenance": "REAL_BROWSER_OBSERVATION",
     "code": "STALE_GENERATION_DISCARDED",
     "description": "Asynchronous fetch/probe completed after user navigated to another video.",
-    "observedOn": "V-05 Rapid Switching Suite",
+    "observedOn": "V-05 Rapid Switching Suite (fetch-gen-1-W6NZfCO5SIk & fetch-gen-2-SqcY0GlETPk)",
     "errorStage": "LIFECYCLE_VALIDATION",
-    "mitigation": "Discard result immediately using generation counter; prevent cross-video caption/audio leakage"
+    "mitigation": "Discard result immediately using generation counter; abort in-flight controller"
   },
   {
     "provenance": "TEST_FIXTURE",

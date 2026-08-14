@@ -1,16 +1,16 @@
 [
   {
-    "timestamp": 1786722926939,
+    "timestamp": 1786724219320,
     "event": "VIDEO_TRANSITION_STARTED",
-    "videoId": "dQw4w9WgXcQ",
+    "videoId": "W6NZfCO5SIk",
     "generation": 1,
     "details": {},
     "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786722933269,
+    "timestamp": 1786724225489,
     "event": "ACQUISITION_COMPLETED",
-    "videoId": "dQw4w9WgXcQ",
+    "videoId": "W6NZfCO5SIk",
     "generation": 1,
     "details": {
       "status": "SUCCESS"
@@ -18,25 +18,25 @@
     "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786722933270,
+    "timestamp": 1786724225490,
     "event": "ABORT_PRIOR_REQUEST",
-    "videoId": "dQw4w9WgXcQ",
+    "videoId": "W6NZfCO5SIk",
     "generation": 1,
     "details": {},
     "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786722933270,
+    "timestamp": 1786724225490,
     "event": "VIDEO_TRANSITION_STARTED",
-    "videoId": "_uQrJ0TkZlc",
+    "videoId": "SqcY0GlETPk",
     "generation": 2,
     "details": {},
     "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786722937327,
+    "timestamp": 1786724229539,
     "event": "ACQUISITION_COMPLETED",
-    "videoId": "_uQrJ0TkZlc",
+    "videoId": "SqcY0GlETPk",
     "generation": 2,
     "details": {
       "status": "SUCCESS"
@@ -44,25 +44,25 @@
     "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786722937327,
+    "timestamp": 1786724229540,
     "event": "ABORT_PRIOR_REQUEST",
-    "videoId": "_uQrJ0TkZlc",
+    "videoId": "SqcY0GlETPk",
     "generation": 2,
     "details": {},
     "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786722937327,
+    "timestamp": 1786724229540,
     "event": "VIDEO_TRANSITION_STARTED",
-    "videoId": "M576WGiDBdQ",
+    "videoId": "3JZ_D3ELwOQ",
     "generation": 3,
     "details": {},
     "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786722941405,
+    "timestamp": 1786724233585,
     "event": "ACQUISITION_COMPLETED",
-    "videoId": "M576WGiDBdQ",
+    "videoId": "3JZ_D3ELwOQ",
     "generation": 3,
     "details": {
       "status": "SUCCESS"
@@ -70,75 +70,49 @@
     "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786722941406,
-    "event": "VIDEO_TRANSITION_STARTED",
-    "videoId": "dQw4w9WgXcQ",
+    "event": "ACQUISITION_STARTED",
+    "operationId": "fetch-gen-1-W6NZfCO5SIk",
     "generation": 1,
-    "details": {},
+    "videoId": "W6NZfCO5SIk",
+    "startTime": 1786724233585,
+    "status": "PENDING",
     "suite": "RAPID_SWITCHING_X_Y_Z"
   },
   {
-    "timestamp": 1786722941434,
-    "event": "ABORT_PRIOR_REQUEST",
-    "videoId": "dQw4w9WgXcQ",
+    "event": "ACQUISITION_ABORTED_STALE",
+    "operationId": "fetch-gen-1-W6NZfCO5SIk",
     "generation": 1,
-    "details": {},
+    "videoId": "W6NZfCO5SIk",
+    "timestamp": 1786724233614,
+    "reason": "Navigation to SqcY0GlETPk",
     "suite": "RAPID_SWITCHING_X_Y_Z"
   },
   {
-    "timestamp": 1786722941434,
-    "event": "VIDEO_TRANSITION_STARTED",
-    "videoId": "_uQrJ0TkZlc",
+    "event": "ACQUISITION_STARTED",
+    "operationId": "fetch-gen-2-SqcY0GlETPk",
     "generation": 2,
-    "details": {},
+    "videoId": "SqcY0GlETPk",
+    "startTime": 1786724233615,
+    "status": "PENDING",
     "suite": "RAPID_SWITCHING_X_Y_Z"
   },
   {
-    "timestamp": 1786722941464,
-    "event": "ABORT_PRIOR_REQUEST",
-    "videoId": "_uQrJ0TkZlc",
+    "event": "ACQUISITION_ABORTED_STALE",
+    "operationId": "fetch-gen-2-SqcY0GlETPk",
     "generation": 2,
-    "details": {},
+    "videoId": "SqcY0GlETPk",
+    "timestamp": 1786724233630,
+    "reason": "Navigation to 3JZ_D3ELwOQ",
     "suite": "RAPID_SWITCHING_X_Y_Z"
   },
   {
-    "timestamp": 1786722941464,
-    "event": "VIDEO_TRANSITION_STARTED",
-    "videoId": "M576WGiDBdQ",
-    "generation": 3,
-    "details": {},
-    "suite": "RAPID_SWITCHING_X_Y_Z"
-  },
-  {
-    "timestamp": 1786722944656,
-    "event": "STALE_RESULT_REJECTED",
-    "videoId": "dQw4w9WgXcQ",
-    "generation": 1,
-    "details": {
-      "currentGeneration": 3,
-      "currentVideoId": "M576WGiDBdQ"
-    },
-    "suite": "RAPID_SWITCHING_X_Y_Z"
-  },
-  {
-    "timestamp": 1786722944656,
-    "event": "STALE_RESULT_REJECTED",
-    "videoId": "_uQrJ0TkZlc",
-    "generation": 2,
-    "details": {
-      "currentGeneration": 3,
-      "currentVideoId": "M576WGiDBdQ"
-    },
-    "suite": "RAPID_SWITCHING_X_Y_Z"
-  },
-  {
-    "timestamp": 1786722944658,
     "event": "ACQUISITION_COMPLETED",
-    "videoId": "M576WGiDBdQ",
+    "operationId": "fetch-gen-3-3JZ_D3ELwOQ",
     "generation": 3,
-    "details": {
-      "status": "SUCCESS"
-    },
+    "videoId": "3JZ_D3ELwOQ",
+    "semanticVideoId": "3JZ_D3ELwOQ",
+    "status": "SUCCESS",
+    "timestamp": 1786724237221,
     "suite": "RAPID_SWITCHING_X_Y_Z"
   }
 ]

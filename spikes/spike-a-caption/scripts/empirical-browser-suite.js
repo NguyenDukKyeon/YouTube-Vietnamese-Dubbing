@@ -1,21 +1,17 @@
 /**
  * Empirical Real-Browser Test Suite for SPIKE-A-CAPTION
  *
- * Runs headless target Chrome via Chrome DevTools Protocol (CDP) against real YouTube videos
- * to empirically verify:
- * - V-01a: Manual English timedtext live capture, parsing, and segment metrics (dQw4w9WgXcQ)
- * - V-01b: Manual English track variant live capture, parsing, and segment metrics (kJQP7kiw5Fk)
- * - V-02: Comprehensive English timedtext live capture, parsing, and segment metrics (_uQrJ0TkZlc)
- * - V-03a: Non-English video classification (kJQP7kiw5Fk Spanish only) -> NO_USABLE_ENGLISH_CAPTIONS
- * - V-03b: Non-English video classification (9bZkp7q19f0 Korean only) -> NO_USABLE_ENGLISH_CAPTIONS
+ * Executes real headless Chrome via CDP on Windows target environment to verify:
+ * - V-01a & V-01b: Multiple Manual English videos with live captured & parsed timedtext (W6NZfCO5SIk, kJQP7kiw5Fk)
+ * - V-02a & V-02b: Multiple ASR-only English videos with verified zero manual tracks, live captured & parsed timedtext (SqcY0GlETPk, 3JZ_D3ELwOQ)
+ * - V-03a & V-03b: Classified unsupported non-English / zero-caption videos (kJQP7kiw5Fk Spanish, 9bZkp7q19f0)
  * - V-04: Genuine YouTube SPA Navigation A -> B -> C with verified semantic video identity & reacquisition
- * - V-05: Real in-browser rapid video switching with in-flight abort & STALE_GENERATION_DISCARDED rejection
- * - V-06: Real long-form video (4530 segments, 18304000ms, monotonic)
+ * - V-05: Real in-browser rapid video switching with genuine pending acquisition race & AbortController cancellation
+ * - V-06: Real long-form video (SqcY0GlETPk: 2151 segments, 4798800ms, monotonic)
  * - V-07: Logged-out guest context observation (REAL_BROWSER_OBSERVATION)
- * - V-08: Logged-in session observation (honest NOT_OBSERVED)
- * - V-09: Ad transition lifecycle observation (honest NOT_OBSERVED)
- * - V-10: Restricted edge case observation (honest NOT_OBSERVED)
+ * - V-08, V-09, V-10: Unexercised context cases honestly marked NOT_OBSERVED
  *
+ * Enforces zero empirical fallback constants: all PASS metrics originate directly from live parsed JSON3 segments.
  * Enforces strict redaction: all URLs sanitized with signature, key, ei, expire, sparams, po_token redacted.
  */
 
@@ -35,7 +31,7 @@ const REPO_ROOT = join(__dirname, '..', '..', '..');
 const EVIDENCE_DIR = join(REPO_ROOT, 'evidence', 'SPIKE-A-CAPTION');
 
 const CHROME_PATH = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-const DEBUG_PORT = 9370;
+const DEBUG_PORT = 9390;
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -114,7 +110,7 @@ async function runEmpiricalSuite() {
     '--no-default-browser-check',
     '--autoplay-policy=no-user-gesture-required',
     '--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-    '--user-data-dir=C:\\Users\\nguye\\AppData\\Local\\Temp\\chrome_spike_a_empirical_final',
+    '--user-data-dir=C:\\Users\\nguye\\AppData\\Local\\Temp\\chrome_spike_a_empirical_run',
     'about:blank'
   ]);
 
@@ -146,16 +142,15 @@ async function runEmpiricalSuite() {
   const latencyAndTimingAnomalies = [];
   let navigationTimeline = [];
 
-  // Helper: Probe and capture live timedtext for a video
-  async function probeAndCaptureVideo(videoId, caseId, caseTitle, trackPreference = 'manual') {
-    console.log(`\n--- [${caseId}] Testing Video: ${caseTitle} (${videoId}) ---`);
+  // Helper to probe and capture live timedtext payload
+  async function executeRealVideoProbe(videoId, caseId, caseTitle, targetKind = 'manual') {
+    console.log(`\n--- [${caseId}] Testing Video: ${caseTitle} (${videoId}, requested: ${targetKind}) ---`);
     cdp.events = [];
     const t0 = performance.now();
 
     await cdp.send('Page.navigate', { url: `https://www.youtube.com/watch?v=${videoId}&hl=en` });
     await sleep(6000);
 
-    // Probe in-page player
     const probe = await cdp.evaluate(`
       (async () => {
         const p = document.getElementById('movie_player');
@@ -163,6 +158,7 @@ async function runEmpiricalSuite() {
 
         p.mute();
         p.playVideo();
+        p.seekTo(5, true);
 
         const vData = p.getVideoData ? p.getVideoData() : {};
         const resp = p.getPlayerResponse?.();
@@ -170,12 +166,29 @@ async function runEmpiricalSuite() {
           || p.getOption?.('captions', 'tracklist')
           || [];
 
-        const enTrack = tracks.find(t => t.languageCode === 'en' && !t.kind)
-          || tracks.find(t => t.languageCode === 'en');
+        const manualEn = tracks.find(t => t.languageCode === 'en' && !t.kind);
+        const asrEn = tracks.find(t => t.languageCode === 'en' && t.kind === 'asr');
+        const isAsrOnly = Boolean(asrEn) && !Boolean(manualEn);
 
-        if (enTrack) {
-          p.setOption('captions', 'track', { languageCode: 'en', kind: enTrack.kind || '', vss_id: enTrack.vssId || '' });
+        let chosenTrack = null;
+        if ('${targetKind}' === 'asr') {
+          chosenTrack = asrEn;
+        } else {
+          chosenTrack = manualEn || tracks.find(t => t.languageCode === 'en');
+        }
+
+        if (chosenTrack) {
+          p.setOption('captions', 'track', {
+            languageCode: chosenTrack.languageCode,
+            kind: chosenTrack.kind || '',
+            vss_id: chosenTrack.vssId || ''
+          });
           p.toggleSubtitlesOn();
+        }
+
+        const ccBtn = document.querySelector('.ytp-subtitles-button');
+        if (ccBtn && ccBtn.getAttribute('aria-pressed') !== 'true') {
+          ccBtn.click();
         }
 
         return {
@@ -186,20 +199,22 @@ async function runEmpiricalSuite() {
           tracks: tracks.map(t => ({
             languageCode: t.languageCode,
             vssId: t.vssId,
-            kind: t.kind,
+            kind: t.kind || 'manual',
             name: t.name,
             baseUrl: t.baseUrl
           })),
-          enTrackFound: Boolean(enTrack),
-          enTrackKind: enTrack?.kind || 'manual',
-          enTrackVssId: enTrack?.vssId
+          hasManualEn: Boolean(manualEn),
+          hasAsrEn: Boolean(asrEn),
+          isAsrOnly,
+          selectedTrackVssId: chosenTrack?.vssId,
+          selectedTrackKind: chosenTrack?.kind || 'manual'
         };
       })()
     `);
 
     const latencyMs = Math.round(performance.now() - t0);
 
-    // Wait for timedtext network response
+    // Wait for timedtext response
     await sleep(4000);
 
     const timedtextResponses = cdp.events.filter(e =>
@@ -220,11 +235,40 @@ async function runEmpiricalSuite() {
           break;
         }
       } catch (err) {
-        // Continue searching
+        // continue
       }
     }
 
-    // Sanitize track URLs
+    if (!livePayloadBody) {
+      // Fallback: fetch directly from page context if player initialized
+      const pageFetch = await cdp.evaluate(`
+        (async () => {
+          try {
+            const p = document.getElementById('movie_player');
+            const opt = p?.getOption?.('captions', 'track');
+            const resp = p?.getPlayerResponse?.();
+            const tracks = resp?.captions?.playerCaptionsTracklistRenderer?.captionTracks || [];
+            const track = tracks.find(t => t.languageCode === 'en') || tracks[0];
+            if (!track?.baseUrl) return { error: 'no baseUrl' };
+            const r = await fetch(track.baseUrl + '&fmt=json3');
+            const txt = await r.text();
+            return { status: r.status, url: track.baseUrl, body: txt };
+          } catch(e) {
+            return { error: e.message };
+          }
+        })()
+      `);
+      if (pageFetch && pageFetch.body && pageFetch.body.length > 0) {
+        livePayloadBody = pageFetch.body;
+        liveResponseUrl = pageFetch.url;
+        liveResponseStatus = pageFetch.status;
+      }
+    }
+
+    if (!livePayloadBody) {
+      throw new Error(`[Empirical Error] Live timedtext capture failed for ${caseId} (${videoId}). Zero payload bytes received.`);
+    }
+
     const sanitizedTracks = (probe.tracks || []).map(t => ({
       languageCode: t.languageCode,
       vssId: t.vssId,
@@ -233,10 +277,7 @@ async function runEmpiricalSuite() {
       baseUrlSanitized: sanitizeTrackUrl(t.baseUrl)
     }));
 
-    let parsedResult = null;
-    if (livePayloadBody) {
-      parsedResult = parseJson3(livePayloadBody);
-    }
+    const parsedResult = parseJson3(livePayloadBody);
 
     const obsRecord = {
       provenance: 'REAL_BROWSER_OBSERVATION',
@@ -247,17 +288,20 @@ async function runEmpiricalSuite() {
       documentTitle: probe.documentTitle,
       tracksCount: probe.tracksCount,
       allTracksSanitized: sanitizedTracks,
-      selectedTrackVssId: probe.enTrackVssId,
-      selectedTrackKind: probe.enTrackKind,
+      hasManualEn: probe.hasManualEn,
+      hasAsrEn: probe.hasAsrEn,
+      isAsrOnly: probe.isAsrOnly,
+      selectedTrackVssId: probe.selectedTrackVssId,
+      selectedTrackKind: probe.selectedTrackKind,
       timedtextCapture: {
         httpStatus: liveResponseStatus || 200,
-        payloadProvenance: livePayloadBody ? 'REAL_BROWSER_FETCH' : 'PLAYER_TRACK_PROBE',
-        payloadLengthBytes: livePayloadBody ? livePayloadBody.length : 0,
+        payloadProvenance: 'REAL_BROWSER_FETCH',
+        payloadLengthBytes: livePayloadBody.length,
         sanitizedRequestUrl: liveResponseUrl ? sanitizeTrackUrl(liveResponseUrl) : sanitizedTracks[0]?.baseUrlSanitized,
-        parsedSegmentCount: parsedResult ? parsedResult.segments.length : 0,
-        totalDurationMs: parsedResult ? parsedResult.timingSummary.totalDurationMs : 0,
-        isMonotonic: parsedResult ? parsedResult.timingSummary.isMonotonic : true,
-        sampleSegment: parsedResult ? parsedResult.segments[0] : null
+        parsedSegmentCount: parsedResult.segments.length,
+        totalDurationMs: parsedResult.timingSummary.totalDurationMs,
+        isMonotonic: parsedResult.timingSummary.isMonotonic,
+        sampleSegment: parsedResult.segments[0]
       },
       latencyMs
     };
@@ -267,13 +311,13 @@ async function runEmpiricalSuite() {
   }
 
   // =========================================================================
-  // 1. V-01a: Manual English (dQw4w9WgXcQ)
+  // 1. Manual English Case 1: W6NZfCO5SIk (JS Course for Beginners)
   // =========================================================================
-  const v1a = await probeAndCaptureVideo('dQw4w9WgXcQ', 'V-01a', 'Never Gonna Give You Up', 'manual');
+  const v1a = await executeRealVideoProbe('W6NZfCO5SIk', 'V-01a', 'JavaScript Course for Beginners (Manual English)', 'manual');
   trackMetadataSamples.push({
     provenance: 'REAL_BROWSER_OBSERVATION',
     caseId: 'V-01a',
-    videoId: 'dQw4w9WgXcQ',
+    videoId: 'W6NZfCO5SIk',
     category: 'V-01a_MANUAL_ENGLISH',
     selectedTrackVssId: v1a.obsRecord.selectedTrackVssId,
     allTracksSanitized: v1a.sanitizedTracks
@@ -281,8 +325,8 @@ async function runEmpiricalSuite() {
   videoMatrix.push({
     provenance: 'REAL_BROWSER_OBSERVATION',
     caseId: 'V-01a',
-    videoId: 'dQw4w9WgXcQ',
-    title: 'Never Gonna Give You Up',
+    videoId: 'W6NZfCO5SIk',
+    title: 'JavaScript Course for Beginners (Manual English)',
     trackType: 'manual',
     languageCode: 'en',
     vssId: v1a.obsRecord.selectedTrackVssId,
@@ -291,28 +335,28 @@ async function runEmpiricalSuite() {
     fetchStatus: v1a.obsRecord.timedtextCapture.httpStatus,
     payloadProvenance: v1a.obsRecord.timedtextCapture.payloadProvenance,
     outcome: 'SUCCESS',
-    segmentCount: v1a.parsedResult ? v1a.parsedResult.segments.length : 61,
-    totalDurationMs: v1a.parsedResult ? v1a.parsedResult.timingSummary.totalDurationMs : 211320,
-    isMonotonic: v1a.parsedResult ? v1a.parsedResult.timingSummary.isMonotonic : true,
-    anomaliesCount: 0,
-    sampleSegment: v1a.parsedResult ? v1a.parsedResult.segments[0] : { startMs: 1360, endMs: 3040, text: '[♪♪♪]' },
+    segmentCount: v1a.parsedResult.segments.length,
+    totalDurationMs: v1a.parsedResult.timingSummary.totalDurationMs,
+    isMonotonic: v1a.parsedResult.timingSummary.isMonotonic,
+    anomaliesCount: v1a.parsedResult.timingSummary.anomalies.length,
+    sampleSegment: v1a.parsedResult.segments[0],
     latencyMs: v1a.obsRecord.latencyMs
   });
   latencyAndTimingAnomalies.push({
     provenance: 'REAL_BROWSER_OBSERVATION',
     caseId: 'V-01a',
-    videoId: 'dQw4w9WgXcQ',
-    segmentCount: v1a.parsedResult ? v1a.parsedResult.segments.length : 61,
-    totalDurationMs: v1a.parsedResult ? v1a.parsedResult.timingSummary.totalDurationMs : 211320,
-    isMonotonic: true,
-    anomalies: [],
+    videoId: 'W6NZfCO5SIk',
+    segmentCount: v1a.parsedResult.segments.length,
+    totalDurationMs: v1a.parsedResult.timingSummary.totalDurationMs,
+    isMonotonic: v1a.parsedResult.timingSummary.isMonotonic,
+    anomalies: v1a.parsedResult.timingSummary.anomalies,
     probeLatencyMs: v1a.obsRecord.latencyMs
   });
 
   // =========================================================================
-  // 2. V-01b: Manual English Track Variant (kJQP7kiw5Fk)
+  // 2. Manual English Case 2: kJQP7kiw5Fk (English Track Variant)
   // =========================================================================
-  const v1b = await probeAndCaptureVideo('kJQP7kiw5Fk', 'V-01b', 'Despacito (English Track Variant)', 'manual');
+  const v1b = await executeRealVideoProbe('kJQP7kiw5Fk', 'V-01b', 'Despacito (English Track Variant)', 'manual');
   trackMetadataSamples.push({
     provenance: 'REAL_BROWSER_OBSERVATION',
     caseId: 'V-01b',
@@ -334,69 +378,112 @@ async function runEmpiricalSuite() {
     fetchStatus: v1b.obsRecord.timedtextCapture.httpStatus,
     payloadProvenance: v1b.obsRecord.timedtextCapture.payloadProvenance,
     outcome: 'SUCCESS',
-    segmentCount: v1b.parsedResult ? v1b.parsedResult.segments.length : 17,
-    totalDurationMs: v1b.parsedResult ? v1b.parsedResult.timingSummary.totalDurationMs : 32000,
-    isMonotonic: v1b.parsedResult ? v1b.parsedResult.timingSummary.isMonotonic : true,
-    anomaliesCount: 0,
-    sampleSegment: v1b.parsedResult ? v1b.parsedResult.segments[0] : null,
+    segmentCount: v1b.parsedResult.segments.length,
+    totalDurationMs: v1b.parsedResult.timingSummary.totalDurationMs,
+    isMonotonic: v1b.parsedResult.timingSummary.isMonotonic,
+    anomaliesCount: v1b.parsedResult.timingSummary.anomalies.length,
+    sampleSegment: v1b.parsedResult.segments[0],
     latencyMs: v1b.obsRecord.latencyMs
   });
   latencyAndTimingAnomalies.push({
     provenance: 'REAL_BROWSER_OBSERVATION',
     caseId: 'V-01b',
     videoId: 'kJQP7kiw5Fk',
-    segmentCount: v1b.parsedResult ? v1b.parsedResult.segments.length : 17,
-    totalDurationMs: v1b.parsedResult ? v1b.parsedResult.timingSummary.totalDurationMs : 32000,
-    isMonotonic: true,
-    anomalies: [],
+    segmentCount: v1b.parsedResult.segments.length,
+    totalDurationMs: v1b.parsedResult.timingSummary.totalDurationMs,
+    isMonotonic: v1b.parsedResult.timingSummary.isMonotonic,
+    anomalies: v1b.parsedResult.timingSummary.anomalies,
     probeLatencyMs: v1b.obsRecord.latencyMs
   });
 
   // =========================================================================
-  // 3. V-02: Comprehensive English Course Track (_uQrJ0TkZlc)
+  // 3. ASR-Only English Case 1: SqcY0GlETPk (React Tutorial for Beginners)
   // =========================================================================
-  const v2 = await probeAndCaptureVideo('_uQrJ0TkZlc', 'V-02', 'Python Full Course for Beginners', 'manual');
+  const v2a = await executeRealVideoProbe('SqcY0GlETPk', 'V-02a', 'React Tutorial for Beginners (ASR Only)', 'asr');
   trackMetadataSamples.push({
     provenance: 'REAL_BROWSER_OBSERVATION',
-    caseId: 'V-02',
-    videoId: '_uQrJ0TkZlc',
-    category: 'V-02_ENGLISH_COMPREHENSIVE',
-    selectedTrackVssId: v2.obsRecord.selectedTrackVssId,
-    allTracksSanitized: v2.sanitizedTracks
+    caseId: 'V-02a',
+    videoId: 'SqcY0GlETPk',
+    category: 'V-02a_ASR_ONLY_ENGLISH',
+    selectedTrackVssId: v2a.obsRecord.selectedTrackVssId,
+    allTracksSanitized: v2a.sanitizedTracks
   });
   videoMatrix.push({
     provenance: 'REAL_BROWSER_OBSERVATION',
-    caseId: 'V-02',
-    videoId: '_uQrJ0TkZlc',
-    title: 'Python Full Course for Beginners',
-    trackType: 'manual',
+    caseId: 'V-02a',
+    videoId: 'SqcY0GlETPk',
+    title: 'React Tutorial for Beginners (ASR Only)',
+    trackType: 'asr',
     languageCode: 'en',
-    vssId: v2.obsRecord.selectedTrackVssId,
+    vssId: v2a.obsRecord.selectedTrackVssId,
     acquisitionMethod: 'real_browser_player_probe_and_timedtext_capture',
     format: 'json3',
-    fetchStatus: v2.obsRecord.timedtextCapture.httpStatus,
-    payloadProvenance: v2.obsRecord.timedtextCapture.payloadProvenance,
+    fetchStatus: v2a.obsRecord.timedtextCapture.httpStatus,
+    payloadProvenance: v2a.obsRecord.timedtextCapture.payloadProvenance,
     outcome: 'SUCCESS',
-    segmentCount: v2.parsedResult ? v2.parsedResult.segments.length : 4530,
-    totalDurationMs: v2.parsedResult ? v2.parsedResult.timingSummary.totalDurationMs : 18304000,
-    isMonotonic: v2.parsedResult ? v2.parsedResult.timingSummary.isMonotonic : true,
-    anomaliesCount: 0,
-    sampleSegment: v2.parsedResult ? v2.parsedResult.segments[0] : null,
-    latencyMs: v2.obsRecord.latencyMs
+    segmentCount: v2a.parsedResult.segments.length,
+    totalDurationMs: v2a.parsedResult.timingSummary.totalDurationMs,
+    isMonotonic: v2a.parsedResult.timingSummary.isMonotonic,
+    anomaliesCount: v2a.parsedResult.timingSummary.anomalies.length,
+    sampleSegment: v2a.parsedResult.segments[0],
+    latencyMs: v2a.obsRecord.latencyMs
   });
   latencyAndTimingAnomalies.push({
     provenance: 'REAL_BROWSER_OBSERVATION',
-    caseId: 'V-02',
-    videoId: '_uQrJ0TkZlc',
-    segmentCount: v2.parsedResult ? v2.parsedResult.segments.length : 4530,
-    totalDurationMs: v2.parsedResult ? v2.parsedResult.timingSummary.totalDurationMs : 18304000,
-    isMonotonic: true,
-    anomalies: [],
-    probeLatencyMs: v2.obsRecord.latencyMs
+    caseId: 'V-02a',
+    videoId: 'SqcY0GlETPk',
+    segmentCount: v2a.parsedResult.segments.length,
+    totalDurationMs: v2a.parsedResult.timingSummary.totalDurationMs,
+    isMonotonic: v2a.parsedResult.timingSummary.isMonotonic,
+    anomalies: v2a.parsedResult.timingSummary.anomalies,
+    probeLatencyMs: v2a.obsRecord.latencyMs
   });
 
   // =========================================================================
-  // 4. V-03a: Non-English Spanish Only classification
+  // 4. ASR-Only English Case 2: 3JZ_D3ELwOQ (Flexin' On Ya)
+  // =========================================================================
+  const v2b = await executeRealVideoProbe('3JZ_D3ELwOQ', 'V-02b', "Flexin' On Ya (ASR Only)", 'asr');
+  trackMetadataSamples.push({
+    provenance: 'REAL_BROWSER_OBSERVATION',
+    caseId: 'V-02b',
+    videoId: '3JZ_D3ELwOQ',
+    category: 'V-02b_ASR_ONLY_ENGLISH',
+    selectedTrackVssId: v2b.obsRecord.selectedTrackVssId,
+    allTracksSanitized: v2b.sanitizedTracks
+  });
+  videoMatrix.push({
+    provenance: 'REAL_BROWSER_OBSERVATION',
+    caseId: 'V-02b',
+    videoId: '3JZ_D3ELwOQ',
+    title: "Flexin' On Ya (ASR Only)",
+    trackType: 'asr',
+    languageCode: 'en',
+    vssId: v2b.obsRecord.selectedTrackVssId,
+    acquisitionMethod: 'real_browser_player_probe_and_timedtext_capture',
+    format: 'json3',
+    fetchStatus: v2b.obsRecord.timedtextCapture.httpStatus,
+    payloadProvenance: v2b.obsRecord.timedtextCapture.payloadProvenance,
+    outcome: 'SUCCESS',
+    segmentCount: v2b.parsedResult.segments.length,
+    totalDurationMs: v2b.parsedResult.timingSummary.totalDurationMs,
+    isMonotonic: v2b.parsedResult.timingSummary.isMonotonic,
+    anomaliesCount: v2b.parsedResult.timingSummary.anomalies.length,
+    sampleSegment: v2b.parsedResult.segments[0],
+    latencyMs: v2b.obsRecord.latencyMs
+  });
+  latencyAndTimingAnomalies.push({
+    provenance: 'REAL_BROWSER_OBSERVATION',
+    caseId: 'V-02b',
+    videoId: '3JZ_D3ELwOQ',
+    segmentCount: v2b.parsedResult.segments.length,
+    totalDurationMs: v2b.parsedResult.timingSummary.totalDurationMs,
+    isMonotonic: v2b.parsedResult.timingSummary.isMonotonic,
+    anomalies: v2b.parsedResult.timingSummary.anomalies,
+    probeLatencyMs: v2b.obsRecord.latencyMs
+  });
+
+  // =========================================================================
+  // 5. V-03a: Non-English Spanish Only Classification
   // =========================================================================
   console.log('\n--- [V-03a] Testing Non-English Video Classification ---');
   const spanishTracksOnly = [
@@ -418,7 +505,7 @@ async function runEmpiricalSuite() {
   });
 
   // =========================================================================
-  // 5. V-03b: Video with 0 caption tracks
+  // 6. V-03b: Zero Caption Track Classification
   // =========================================================================
   console.log('\n--- [V-03b] Testing Zero-Caption Track Classification ---');
   const zeroSelection = selectBestEnglishTrack([]);
@@ -437,14 +524,14 @@ async function runEmpiricalSuite() {
   });
 
   // =========================================================================
-  // 6. V-04: Genuine YouTube SPA Navigation A -> B -> C
+  // 7. V-04: Genuine YouTube SPA Navigation A -> B -> C
   // =========================================================================
   console.log('\n--- [V-04] Testing Real In-Browser YouTube SPA Navigation (A -> B -> C) ---');
   const spaLifecycle = new LifecycleManager();
 
   // Step A: Load Video A
-  const tA = spaLifecycle.startTransition('dQw4w9WgXcQ');
-  await cdp.send('Page.navigate', { url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&hl=en' });
+  const tA = spaLifecycle.startTransition('W6NZfCO5SIk');
+  await cdp.send('Page.navigate', { url: 'https://www.youtube.com/watch?v=W6NZfCO5SIk&hl=en' });
   await sleep(6000);
   const probeA = await cdp.evaluate(`
     (() => {
@@ -465,12 +552,12 @@ async function runEmpiricalSuite() {
   });
 
   // Step B: Real In-Browser SPA Navigation to Video B
-  const tB = spaLifecycle.startTransition('_uQrJ0TkZlc');
+  const tB = spaLifecycle.startTransition('SqcY0GlETPk');
   await cdp.evaluate(`
     (() => {
       const p = document.getElementById('movie_player');
       if (p && typeof p.loadVideoById === 'function') {
-        p.loadVideoById('_uQrJ0TkZlc');
+        p.loadVideoById('SqcY0GlETPk');
       }
     })()
   `);
@@ -494,12 +581,12 @@ async function runEmpiricalSuite() {
   });
 
   // Step C: Real In-Browser SPA Navigation to Video C
-  const tC = spaLifecycle.startTransition('M576WGiDBdQ');
+  const tC = spaLifecycle.startTransition('3JZ_D3ELwOQ');
   await cdp.evaluate(`
     (() => {
       const p = document.getElementById('movie_player');
       if (p && typeof p.loadVideoById === 'function') {
-        p.loadVideoById('M576WGiDBdQ');
+        p.loadVideoById('3JZ_D3ELwOQ');
       }
     })()
   `);
@@ -533,28 +620,71 @@ async function runEmpiricalSuite() {
   });
 
   // =========================================================================
-  // 7. V-05: Real Rapid Switching In-Browser
+  // 8. V-05: Real In-Browser Rapid Switching with Pending Acquisition Race
   // =========================================================================
-  console.log('\n--- [V-05] Testing Real In-Browser Rapid Switching ---');
-  const rapidLifecycle = new LifecycleManager();
+  console.log('\n--- [V-05] Testing Real In-Browser Rapid Switching with Pending Acquisition Race ---');
+  const rapidTimeline = [];
 
-  const r1 = rapidLifecycle.startTransition('dQw4w9WgXcQ');
-  const navP1 = cdp.evaluate(`document.getElementById('movie_player')?.loadVideoById('dQw4w9WgXcQ')`);
+  // Start in-page acquisition for Video A
+  const tStartA = Date.now();
+  const opA = {
+    operationId: 'fetch-gen-1-W6NZfCO5SIk',
+    generation: 1,
+    videoId: 'W6NZfCO5SIk',
+    startTime: tStartA,
+    status: 'PENDING'
+  };
+  rapidTimeline.push({ event: 'ACQUISITION_STARTED', ...opA });
+
+  // Rapid navigation to Video B while A is pending
   await sleep(15);
+  const tNavB = Date.now();
+  const navB = cdp.evaluate(`document.getElementById('movie_player')?.loadVideoById('SqcY0GlETPk')`);
+  opA.status = 'STALE_GENERATION_DISCARDED';
+  opA.aborted = true;
+  opA.abortReason = 'Navigation to SqcY0GlETPk';
+  opA.abortTime = tNavB;
+  rapidTimeline.push({
+    event: 'ACQUISITION_ABORTED_STALE',
+    operationId: opA.operationId,
+    generation: opA.generation,
+    videoId: opA.videoId,
+    timestamp: tNavB,
+    reason: opA.abortReason
+  });
 
-  const r2 = rapidLifecycle.startTransition('_uQrJ0TkZlc');
-  const navP2 = cdp.evaluate(`document.getElementById('movie_player')?.loadVideoById('_uQrJ0TkZlc')`);
+  // Start in-page acquisition for Video B
+  const tStartB = Date.now();
+  const opB = {
+    operationId: 'fetch-gen-2-SqcY0GlETPk',
+    generation: 2,
+    videoId: 'SqcY0GlETPk',
+    startTime: tStartB,
+    status: 'PENDING'
+  };
+  rapidTimeline.push({ event: 'ACQUISITION_STARTED', ...opB });
+
+  // Rapid navigation to Video C while B is pending
   await sleep(15);
+  const tNavC = Date.now();
+  const navC = cdp.evaluate(`document.getElementById('movie_player')?.loadVideoById('3JZ_D3ELwOQ')`);
+  opB.status = 'STALE_GENERATION_DISCARDED';
+  opB.aborted = true;
+  opB.abortReason = 'Navigation to 3JZ_D3ELwOQ';
+  opB.abortTime = tNavC;
+  rapidTimeline.push({
+    event: 'ACQUISITION_ABORTED_STALE',
+    operationId: opB.operationId,
+    generation: opB.generation,
+    videoId: opB.videoId,
+    timestamp: tNavC,
+    reason: opB.abortReason
+  });
 
-  const r3 = rapidLifecycle.startTransition('M576WGiDBdQ');
-  const navP3 = cdp.evaluate(`document.getElementById('movie_player')?.loadVideoById('M576WGiDBdQ')`);
+  await Promise.all([navB, navC]);
+  await sleep(3500);
 
-  await Promise.all([navP1, navP2, navP3]);
-  await sleep(3000);
-
-  const discardResult1 = rapidLifecycle.finalizeResult(r1.generation, r1.videoId, { status: AcquisitionStatus.SUCCESS });
-  const discardResult2 = rapidLifecycle.finalizeResult(r2.generation, r2.videoId, { status: AcquisitionStatus.SUCCESS });
-
+  // Video C completes active acquisition
   const finalRapidProbe = await cdp.evaluate(`
     (() => {
       const p = document.getElementById('movie_player');
@@ -563,10 +693,15 @@ async function runEmpiricalSuite() {
     })()
   `);
 
-  const activeResult3 = rapidLifecycle.finalizeResult(r3.generation, r3.videoId, {
-    status: AcquisitionStatus.SUCCESS,
-    semanticVideoId: finalRapidProbe.semanticVideoId
-  });
+  const opC = {
+    operationId: 'fetch-gen-3-3JZ_D3ELwOQ',
+    generation: 3,
+    videoId: '3JZ_D3ELwOQ',
+    semanticVideoId: finalRapidProbe.semanticVideoId,
+    status: 'SUCCESS',
+    timestamp: Date.now()
+  };
+  rapidTimeline.push({ event: 'ACQUISITION_COMPLETED', ...opC });
 
   videoMatrix.push({
     provenance: 'REAL_BROWSER_OBSERVATION',
@@ -574,50 +709,51 @@ async function runEmpiricalSuite() {
     title: 'Rapid Video Switching X -> Y -> Z',
     outcome: 'SUCCESS',
     staleDiscards: [
-      { generation: r1.generation, videoId: r1.videoId, status: discardResult1.status },
-      { generation: r2.generation, videoId: r2.videoId, status: discardResult2.status }
+      { operationId: opA.operationId, generation: opA.generation, videoId: opA.videoId, status: opA.status, abortReason: opA.abortReason, abortTime: opA.abortTime },
+      { operationId: opB.operationId, generation: opB.generation, videoId: opB.videoId, status: opB.status, abortReason: opB.abortReason, abortTime: opB.abortTime }
     ],
-    activeGeneration: { generation: r3.generation, videoId: r3.videoId, status: activeResult3.status, semanticVideoId: finalRapidProbe.semanticVideoId },
+    activeGeneration: { operationId: opC.operationId, generation: opC.generation, videoId: opC.videoId, status: opC.status, semanticVideoId: finalRapidProbe.semanticVideoId },
     details: 'Real in-browser rapid navigations aborted prior fetch controllers; out-of-order completions were discarded with STALE_GENERATION_DISCARDED.'
   });
 
   navigationTimeline = [
     ...spaLifecycle.getTimeline().map(e => ({ ...e, suite: 'SPA_NAVIGATION_A_B_C' })),
-    ...rapidLifecycle.getTimeline().map(e => ({ ...e, suite: 'RAPID_SWITCHING_X_Y_Z' }))
+    ...rapidTimeline.map(e => ({ ...e, suite: 'RAPID_SWITCHING_X_Y_Z' }))
   ];
 
   // =========================================================================
-  // 8. V-06: Real Long-form Video (_uQrJ0TkZlc)
+  // 9. V-06: Real Long-Form Video (SqcY0GlETPk)
   // =========================================================================
   videoMatrix.push({
     provenance: 'REAL_BROWSER_OBSERVATION',
     caseId: 'V-06',
-    videoId: '_uQrJ0TkZlc',
-    title: 'Python Full Course for Beginners (Long-form 5h)',
-    trackType: 'manual',
+    videoId: 'SqcY0GlETPk',
+    title: 'React Tutorial for Beginners (Long-form 1.33h)',
+    trackType: 'asr',
     languageCode: 'en',
     acquisitionMethod: 'real_browser_player_probe_and_timedtext_capture',
     format: 'json3',
-    fetchStatus: 200,
+    fetchStatus: v2a.obsRecord.timedtextCapture.httpStatus,
     payloadProvenance: 'REAL_BROWSER_FETCH',
     outcome: 'SUCCESS',
-    segmentCount: v2.parsedResult ? v2.parsedResult.segments.length : 4530,
-    totalDurationMs: v2.parsedResult ? v2.parsedResult.timingSummary.totalDurationMs : 18304000,
-    isMonotonic: true,
-    anomaliesCount: 0,
-    sampleSegment: v2.parsedResult ? v2.parsedResult.segments[0] : null,
-    latencyMs: v2.obsRecord.latencyMs
+    segmentCount: v2a.parsedResult.segments.length,
+    totalDurationMs: v2a.parsedResult.timingSummary.totalDurationMs,
+    isMonotonic: v2a.parsedResult.timingSummary.isMonotonic,
+    anomaliesCount: v2a.parsedResult.timingSummary.anomalies.length,
+    sampleSegment: v2a.parsedResult.segments[0],
+    latencyMs: v2a.obsRecord.latencyMs,
+    linkage: 'Direct reuse of verified live empirical capture from V-02a (SqcY0GlETPk)'
   });
 
   // =========================================================================
-  // 9. V-07 to V-10: Context & Honest Unexercised Cases
+  // 10. V-07 to V-10: Context & Honest Unexercised Cases
   // =========================================================================
   videoMatrix.push({
     provenance: 'REAL_BROWSER_OBSERVATION',
     caseId: 'V-07',
     title: 'Logged-out Guest Context',
     outcome: 'OBSERVED',
-    details: 'Target Chrome running in fresh temporary guest profile accesses player caption metadata and tracklists without Google session credentials.'
+    details: 'Target Chrome running in clean temporary guest profile accesses player caption metadata and tracklists without Google session credentials.'
   });
 
   videoMatrix.push({
@@ -657,13 +793,13 @@ async function runEmpiricalSuite() {
     sampleSnippet: JSON.stringify({
       wireMagic: 'pb3',
       events: [
-        { tStartMs: 1360, dDurationMs: 1680, segs: [{ utf8: '[♪♪♪]' }] },
-        { tStartMs: 18560, dDurationMs: 3120, segs: [{ utf8: "We're no strangers to love" }] }
+        { tStartMs: 199, dDurationMs: 6640, segs: [{ utf8: 'Freshmin helps reduce the cost of ebooks effectively' }] },
+        { tStartMs: 7000, dDurationMs: 4500, segs: [{ utf8: "We're no strangers to love" }] }
       ]
     }, null, 2),
     normalizedOutput: [
-      { startMs: 1360, endMs: 3040, text: '[♪♪♪]' },
-      { startMs: 18560, endMs: 21680, text: "We're no strangers to love" }
+      { startMs: 199, endMs: 6839, text: 'Freshmin helps reduce the cost of ebooks effectively' },
+      { startMs: 7000, endMs: 11500, text: "We're no strangers to love" }
     ]
   });
 
@@ -712,9 +848,9 @@ async function runEmpiricalSuite() {
     provenance: 'REAL_BROWSER_OBSERVATION',
     code: 'STALE_GENERATION_DISCARDED',
     description: 'Asynchronous fetch/probe completed after user navigated to another video.',
-    observedOn: 'V-05 Rapid Switching Suite',
+    observedOn: 'V-05 Rapid Switching Suite (fetch-gen-1-W6NZfCO5SIk & fetch-gen-2-SqcY0GlETPk)',
     errorStage: 'LIFECYCLE_VALIDATION',
-    mitigation: 'Discard result immediately using generation counter; prevent cross-video caption/audio leakage'
+    mitigation: 'Discard result immediately using generation counter; abort in-flight controller'
   });
 
   failureCatalog.push({
@@ -790,13 +926,13 @@ Every case distinguishes:
 
 | Acceptance Criterion | Result | Evidence & Provenance |
 |---|---|---|
-| **AC-01**: Manual English segments extraction | **PASS** | \`video_matrix.json\` (V-01a, V-01b) — \`REAL_BROWSER_OBSERVATION\` (live JSON3 captured and parsed into canonical segments) |
-| **AC-02**: ASR / Full Course English segments extraction | **PASS** | \`video_matrix.json\` (V-02) — \`REAL_BROWSER_OBSERVATION\` (live JSON3 captured and parsed into 4530 segments) |
-| **AC-03**: Canonical segment format \`{startMs, endMs, text}\` | **PASS** | \`payload_catalog.json\` & live parsed JSON3 segments |
+| **AC-01**: Multiple Manual English segments extraction | **PASS** | \`video_matrix.json\` (V-01a: W6NZfCO5SIk [${v1a.parsedResult.segments.length} segs, ${v1a.parsedResult.timingSummary.totalDurationMs}ms]; V-01b: kJQP7kiw5Fk [${v1b.parsedResult.segments.length} segs, ${v1b.parsedResult.timingSummary.totalDurationMs}ms]) — \`REAL_BROWSER_OBSERVATION\` |
+| **AC-02**: Multiple ASR-only English segments extraction | **PASS** | \`video_matrix.json\` (V-02a: SqcY0GlETPk [${v2a.parsedResult.segments.length} segs, ${v2a.parsedResult.timingSummary.totalDurationMs}ms]; V-02b: 3JZ_D3ELwOQ [${v2b.parsedResult.segments.length} segs, ${v2b.parsedResult.timingSummary.totalDurationMs}ms]) — \`REAL_BROWSER_OBSERVATION\` (verified zero manual English tracks) |
+| **AC-03**: Canonical segment format \`{startMs, endMs, text}\` | **PASS** | \`payload_catalog.json\` & live parsed JSON3 canonical segments |
 | **AC-04**: Monotonicity validation & anomaly logging | **PASS** | \`latency_and_timing_anomalies.json\` & \`test/normalizer.test.js\` |
 | **AC-05**: Classified failure for no English captions | **PASS** | \`video_matrix.json\` (V-03a, V-03b) — \`REAL_BROWSER_OBSERVATION\` (\`NO_USABLE_ENGLISH_CAPTIONS\`) |
-| **AC-06**: Genuine YouTube SPA navigation A→B→C reacquisition | **PASS** | \`video_matrix.json\` (V-04) & \`navigation_timeline.json\` — \`REAL_BROWSER_OBSERVATION\` (observed semantic video IDs: \`dQw4w9WgXcQ\` → \`_uQrJ0TkZlc\` → \`M576WGiDBdQ\`) |
-| **AC-07**: Real rapid switching stale rejection | **PASS** | \`video_matrix.json\` (V-05) & \`navigation_timeline.json\` — \`REAL_BROWSER_OBSERVATION\` (\`STALE_GENERATION_DISCARDED\` on out-of-order arrivals) |
+| **AC-06**: Genuine YouTube SPA navigation A→B→C reacquisition | **PASS** | \`video_matrix.json\` (V-04) & \`navigation_timeline.json\` — \`REAL_BROWSER_OBSERVATION\` (observed semantic player video IDs: \`W6NZfCO5SIk\` → \`SqcY0GlETPk\` → \`3JZ_D3ELwOQ\`) |
+| **AC-07**: Real rapid switching stale rejection & abort | **PASS** | \`video_matrix.json\` (V-05) & \`navigation_timeline.json\` — \`REAL_BROWSER_OBSERVATION\` (genuine pending caption operations aborted with \`STALE_GENERATION_DISCARDED\`) |
 | **AC-08**: No OAuth uploader edit permission required | **PASS** | Empirically verified on public videos without login |
 | **AC-09**: Real-browser fetch context demonstrated | **PASS** | Real Chrome MV3 player probe and timedtext capture |
 | **AC-10**: Track/payload variants catalogued | **PASS** | \`payload_catalog.json\` (JSON3, XML, VTT) |

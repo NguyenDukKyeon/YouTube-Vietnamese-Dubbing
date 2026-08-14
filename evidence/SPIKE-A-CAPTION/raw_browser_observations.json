@@ -2,11 +2,11 @@
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-01a",
-    "videoId": "dQw4w9WgXcQ",
-    "semanticPlayerVideoId": "dQw4w9WgXcQ",
-    "title": "Never Gonna Give You Up",
-    "documentTitle": "Rick Astley - Never Gonna Give You Up (Official Video) (4K Remaster) - YouTube",
-    "tracksCount": 6,
+    "videoId": "W6NZfCO5SIk",
+    "semanticPlayerVideoId": "W6NZfCO5SIk",
+    "title": "JavaScript Course for Beginners (Manual English)",
+    "documentTitle": "JavaScript Course for Beginners – Your First Step to Web Development - YouTube",
+    "tracksCount": 2,
     "allTracksSanitized": [
       {
         "languageCode": "en",
@@ -15,7 +15,7 @@
         "name": {
           "simpleText": "English"
         },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=dQw4w9WgXcQ&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=en"
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=W6NZfCO5SIk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=en"
       },
       {
         "languageCode": "en",
@@ -24,58 +24,29 @@
         "name": {
           "simpleText": "English (auto-generated)"
         },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=dQw4w9WgXcQ&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en"
-      },
-      {
-        "languageCode": "de-DE",
-        "vssId": ".de-DE",
-        "kind": "manual",
-        "name": {
-          "simpleText": "German (Germany)"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=dQw4w9WgXcQ&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=de-DE"
-      },
-      {
-        "languageCode": "ja",
-        "vssId": ".ja",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Japanese"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=dQw4w9WgXcQ&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=ja"
-      },
-      {
-        "languageCode": "pt-BR",
-        "vssId": ".pt-BR",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Portuguese (Brazil)"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=dQw4w9WgXcQ&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=pt-BR"
-      },
-      {
-        "languageCode": "es-419",
-        "vssId": ".es-419",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Spanish (Latin America)"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=dQw4w9WgXcQ&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=es-419"
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=W6NZfCO5SIk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en"
       }
     ],
+    "hasManualEn": true,
+    "hasAsrEn": true,
+    "isAsrOnly": false,
     "selectedTrackVssId": ".en",
     "selectedTrackKind": "manual",
     "timedtextCapture": {
       "httpStatus": 200,
-      "payloadProvenance": "PLAYER_TRACK_PROBE",
-      "payloadLengthBytes": 0,
-      "sanitizedRequestUrl": "https://www.youtube.com/api/timedtext?v=dQw4w9WgXcQ&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=en",
-      "parsedSegmentCount": 0,
-      "totalDurationMs": 0,
+      "payloadProvenance": "REAL_BROWSER_FETCH",
+      "payloadLengthBytes": 90146,
+      "sanitizedRequestUrl": "https://www.youtube.com/api/timedtext?v=W6NZfCO5SIk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=en&potc=[REDACTED]&pot=[REDACTED]&fmt=json3&xorb=[REDACTED]&xobt=[REDACTED]&xovt=[REDACTED]&cbr=[REDACTED]&cbrver=[REDACTED]&c=[REDACTED]&cver=[REDACTED]&cplayer=[REDACTED]&cos=[REDACTED]&cosver=[REDACTED]&cplatform=[REDACTED]",
+      "parsedSegmentCount": 524,
+      "totalDurationMs": 2896420,
       "isMonotonic": true,
-      "sampleSegment": null
+      "sampleSegment": {
+        "startMs": 1310,
+        "endMs": 6839,
+        "text": "In this 3-minute introduction, I'm going to answer four frequently asked questions"
+      }
     },
-    "latencyMs": 6609
+    "latencyMs": 6296
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -141,6 +112,9 @@
         "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=kJQP7kiw5Fk&ei=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=es-ES&name=Spanish%20-%20Spain"
       }
     ],
+    "hasManualEn": true,
+    "hasAsrEn": false,
+    "isAsrOnly": false,
     "selectedTrackVssId": ".en.nP7-2PuUl7o",
     "selectedTrackKind": "manual",
     "timedtextCapture": {
@@ -157,35 +131,17 @@
         "text": "Oh,"
       }
     },
-    "latencyMs": 6239
+    "latencyMs": 6182
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
-    "caseId": "V-02",
-    "videoId": "_uQrJ0TkZlc",
-    "semanticPlayerVideoId": "_uQrJ0TkZlc",
-    "title": "Python Full Course for Beginners",
-    "documentTitle": "Python Full Course for Beginners - YouTube",
-    "tracksCount": 9,
+    "caseId": "V-02a",
+    "videoId": "SqcY0GlETPk",
+    "semanticPlayerVideoId": "SqcY0GlETPk",
+    "title": "React Tutorial for Beginners (ASR Only)",
+    "documentTitle": "React Tutorial for Beginners - YouTube",
+    "tracksCount": 1,
     "allTracksSanitized": [
-      {
-        "languageCode": "zh-CN",
-        "vssId": ".zh-CN",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Chinese (China)"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=zh-CN"
-      },
-      {
-        "languageCode": "en",
-        "vssId": ".en",
-        "kind": "manual",
-        "name": {
-          "simpleText": "English"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=en"
-      },
       {
         "languageCode": "en",
         "vssId": "a.en",
@@ -193,75 +149,68 @@
         "name": {
           "simpleText": "English (auto-generated)"
         },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en"
-      },
-      {
-        "languageCode": "id",
-        "vssId": ".id",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Indonesian"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=id"
-      },
-      {
-        "languageCode": "fa",
-        "vssId": ".fa",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Persian"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=fa"
-      },
-      {
-        "languageCode": "pt",
-        "vssId": ".pt",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Portuguese"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=pt"
-      },
-      {
-        "languageCode": "ru",
-        "vssId": ".ru",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Russian"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=ru"
-      },
-      {
-        "languageCode": "es-419",
-        "vssId": ".es-419",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Spanish (Latin America)"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=es-419"
-      },
-      {
-        "languageCode": "tr",
-        "vssId": ".tr",
-        "kind": "manual",
-        "name": {
-          "simpleText": "Turkish"
-        },
-        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=tr"
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=SqcY0GlETPk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en&variant=[REDACTED]"
       }
     ],
-    "selectedTrackVssId": ".en",
-    "selectedTrackKind": "manual",
+    "hasManualEn": false,
+    "hasAsrEn": true,
+    "isAsrOnly": true,
+    "selectedTrackVssId": "a.en",
+    "selectedTrackKind": "asr",
     "timedtextCapture": {
       "httpStatus": 200,
-      "payloadProvenance": "PLAYER_TRACK_PROBE",
-      "payloadLengthBytes": 0,
-      "sanitizedRequestUrl": "https://www.youtube.com/api/timedtext?v=_uQrJ0TkZlc&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=zh-CN",
-      "parsedSegmentCount": 0,
-      "totalDurationMs": 0,
+      "payloadProvenance": "REAL_BROWSER_FETCH",
+      "payloadLengthBytes": 1145797,
+      "sanitizedRequestUrl": "https://www.youtube.com/api/timedtext?v=SqcY0GlETPk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en&variant=[REDACTED]&potc=[REDACTED]&pot=[REDACTED]&fmt=json3&xorb=[REDACTED]&xobt=[REDACTED]&xovt=[REDACTED]&cbr=[REDACTED]&cbrver=[REDACTED]&c=[REDACTED]&cver=[REDACTED]&cplayer=[REDACTED]&cos=[REDACTED]&cosver=[REDACTED]&cplatform=[REDACTED]",
+      "parsedSegmentCount": 2151,
+      "totalDurationMs": 4798800,
       "isMonotonic": true,
-      "sampleSegment": null
+      "sampleSegment": {
+        "startMs": 2360,
+        "endMs": 6360,
+        "text": "Welcome to the ultimate React course. In"
+      }
     },
-    "latencyMs": 6272
+    "latencyMs": 6164
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-02b",
+    "videoId": "3JZ_D3ELwOQ",
+    "semanticPlayerVideoId": "3JZ_D3ELwOQ",
+    "title": "Flexin' On Ya (ASR Only)",
+    "documentTitle": "Flexin' On Ya (2014) - YouTube",
+    "tracksCount": 1,
+    "allTracksSanitized": [
+      {
+        "languageCode": "en",
+        "vssId": "a.en",
+        "kind": "asr",
+        "name": {
+          "simpleText": "English (auto-generated)"
+        },
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=3JZ_D3ELwOQ&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en"
+      }
+    ],
+    "hasManualEn": false,
+    "hasAsrEn": true,
+    "isAsrOnly": true,
+    "selectedTrackVssId": "a.en",
+    "selectedTrackKind": "asr",
+    "timedtextCapture": {
+      "httpStatus": 200,
+      "payloadProvenance": "REAL_BROWSER_FETCH",
+      "payloadLengthBytes": 81376,
+      "sanitizedRequestUrl": "https://www.youtube.com/api/timedtext?v=3JZ_D3ELwOQ&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en&potc=[REDACTED]&pot=[REDACTED]&fmt=json3&xorb=[REDACTED]&xobt=[REDACTED]&xovt=[REDACTED]&cbr=[REDACTED]&cbrver=[REDACTED]&c=[REDACTED]&cver=[REDACTED]&cplayer=[REDACTED]&cos=[REDACTED]&cosver=[REDACTED]&cplatform=[REDACTED]",
+      "parsedSegmentCount": 108,
+      "totalDurationMs": 255799,
+      "isMonotonic": true,
+      "sampleSegment": {
+        "startMs": 300,
+        "endMs": 4920,
+        "text": "[Music]"
+      }
+    },
+    "latencyMs": 6235
   }
 ]

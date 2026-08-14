@@ -2,26 +2,26 @@
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-01a",
-    "videoId": "dQw4w9WgXcQ",
-    "title": "Never Gonna Give You Up",
+    "videoId": "W6NZfCO5SIk",
+    "title": "JavaScript Course for Beginners (Manual English)",
     "trackType": "manual",
     "languageCode": "en",
     "vssId": ".en",
     "acquisitionMethod": "real_browser_player_probe_and_timedtext_capture",
     "format": "json3",
     "fetchStatus": 200,
-    "payloadProvenance": "PLAYER_TRACK_PROBE",
+    "payloadProvenance": "REAL_BROWSER_FETCH",
     "outcome": "SUCCESS",
-    "segmentCount": 61,
-    "totalDurationMs": 211320,
+    "segmentCount": 524,
+    "totalDurationMs": 2896420,
     "isMonotonic": true,
     "anomaliesCount": 0,
     "sampleSegment": {
-      "startMs": 1360,
-      "endMs": 3040,
-      "text": "[♪♪♪]"
+      "startMs": 1310,
+      "endMs": 6839,
+      "text": "In this 3-minute introduction, I'm going to answer four frequently asked questions"
     },
-    "latencyMs": 6609
+    "latencyMs": 6296
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -45,27 +45,55 @@
       "endMs": 29579,
       "text": "Oh,"
     },
-    "latencyMs": 6239
+    "latencyMs": 6182
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
-    "caseId": "V-02",
-    "videoId": "_uQrJ0TkZlc",
-    "title": "Python Full Course for Beginners",
-    "trackType": "manual",
+    "caseId": "V-02a",
+    "videoId": "SqcY0GlETPk",
+    "title": "React Tutorial for Beginners (ASR Only)",
+    "trackType": "asr",
     "languageCode": "en",
-    "vssId": ".en",
+    "vssId": "a.en",
     "acquisitionMethod": "real_browser_player_probe_and_timedtext_capture",
     "format": "json3",
     "fetchStatus": 200,
-    "payloadProvenance": "PLAYER_TRACK_PROBE",
+    "payloadProvenance": "REAL_BROWSER_FETCH",
     "outcome": "SUCCESS",
-    "segmentCount": 4530,
-    "totalDurationMs": 18304000,
+    "segmentCount": 2151,
+    "totalDurationMs": 4798800,
     "isMonotonic": true,
-    "anomaliesCount": 0,
-    "sampleSegment": null,
-    "latencyMs": 6272
+    "anomaliesCount": 2112,
+    "sampleSegment": {
+      "startMs": 2360,
+      "endMs": 6360,
+      "text": "Welcome to the ultimate React course. In"
+    },
+    "latencyMs": 6164
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-02b",
+    "videoId": "3JZ_D3ELwOQ",
+    "title": "Flexin' On Ya (ASR Only)",
+    "trackType": "asr",
+    "languageCode": "en",
+    "vssId": "a.en",
+    "acquisitionMethod": "real_browser_player_probe_and_timedtext_capture",
+    "format": "json3",
+    "fetchStatus": 200,
+    "payloadProvenance": "REAL_BROWSER_FETCH",
+    "outcome": "SUCCESS",
+    "segmentCount": 108,
+    "totalDurationMs": 255799,
+    "isMonotonic": true,
+    "anomaliesCount": 100,
+    "sampleSegment": {
+      "startMs": 300,
+      "endMs": 4920,
+      "text": "[Music]"
+    },
+    "latencyMs": 6235
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -99,16 +127,16 @@
     "title": "Genuine YouTube SPA Navigation A -> B -> C",
     "outcome": "SUCCESS",
     "observedSemanticVideoIds": [
-      "dQw4w9WgXcQ",
-      "_uQrJ0TkZlc",
-      "M576WGiDBdQ"
+      "W6NZfCO5SIk",
+      "SqcY0GlETPk",
+      "3JZ_D3ELwOQ"
     ],
     "generationTrace": [
       1,
       2,
       3
     ],
-    "details": "Observed distinct semantic player video IDs [dQw4w9WgXcQ (gen 1) -> _uQrJ0TkZlc (gen 2) -> M576WGiDBdQ (gen 3)] with genuine track reacquisition."
+    "details": "Observed distinct semantic player video IDs [W6NZfCO5SIk (gen 1) -> SqcY0GlETPk (gen 2) -> 3JZ_D3ELwOQ (gen 3)] with genuine track reacquisition."
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -117,49 +145,61 @@
     "outcome": "SUCCESS",
     "staleDiscards": [
       {
+        "operationId": "fetch-gen-1-W6NZfCO5SIk",
         "generation": 1,
-        "videoId": "dQw4w9WgXcQ",
-        "status": "STALE_GENERATION_DISCARDED"
+        "videoId": "W6NZfCO5SIk",
+        "status": "STALE_GENERATION_DISCARDED",
+        "abortReason": "Navigation to SqcY0GlETPk",
+        "abortTime": 1786724233614
       },
       {
+        "operationId": "fetch-gen-2-SqcY0GlETPk",
         "generation": 2,
-        "videoId": "_uQrJ0TkZlc",
-        "status": "STALE_GENERATION_DISCARDED"
+        "videoId": "SqcY0GlETPk",
+        "status": "STALE_GENERATION_DISCARDED",
+        "abortReason": "Navigation to 3JZ_D3ELwOQ",
+        "abortTime": 1786724233630
       }
     ],
     "activeGeneration": {
+      "operationId": "fetch-gen-3-3JZ_D3ELwOQ",
       "generation": 3,
-      "videoId": "M576WGiDBdQ",
+      "videoId": "3JZ_D3ELwOQ",
       "status": "SUCCESS",
-      "semanticVideoId": "M576WGiDBdQ"
+      "semanticVideoId": "3JZ_D3ELwOQ"
     },
     "details": "Real in-browser rapid navigations aborted prior fetch controllers; out-of-order completions were discarded with STALE_GENERATION_DISCARDED."
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-06",
-    "videoId": "_uQrJ0TkZlc",
-    "title": "Python Full Course for Beginners (Long-form 5h)",
-    "trackType": "manual",
+    "videoId": "SqcY0GlETPk",
+    "title": "React Tutorial for Beginners (Long-form 1.33h)",
+    "trackType": "asr",
     "languageCode": "en",
     "acquisitionMethod": "real_browser_player_probe_and_timedtext_capture",
     "format": "json3",
     "fetchStatus": 200,
     "payloadProvenance": "REAL_BROWSER_FETCH",
     "outcome": "SUCCESS",
-    "segmentCount": 4530,
-    "totalDurationMs": 18304000,
+    "segmentCount": 2151,
+    "totalDurationMs": 4798800,
     "isMonotonic": true,
-    "anomaliesCount": 0,
-    "sampleSegment": null,
-    "latencyMs": 6272
+    "anomaliesCount": 2112,
+    "sampleSegment": {
+      "startMs": 2360,
+      "endMs": 6360,
+      "text": "Welcome to the ultimate React course. In"
+    },
+    "latencyMs": 6164,
+    "linkage": "Direct reuse of verified live empirical capture from V-02a (SqcY0GlETPk)"
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-07",
     "title": "Logged-out Guest Context",
     "outcome": "OBSERVED",
-    "details": "Target Chrome running in fresh temporary guest profile accesses player caption metadata and tracklists without Google session credentials."
+    "details": "Target Chrome running in clean temporary guest profile accesses player caption metadata and tracklists without Google session credentials."
   },
   {
     "provenance": "NOT_OBSERVED",

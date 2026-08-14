@@ -114,15 +114,15 @@ function validateEvidence() {
       console.log(`[Evidence Validator] Verified testedImplementationSha ${testedImplementationSha} is a valid ancestor of HEAD.`);
 
       const diffCode = execSync(
-        `git diff --name-only ${testedImplementationSha} HEAD -- spikes/spike-a-caption/src spikes/spike-a-caption/test`,
+        `git diff --name-only ${testedImplementationSha} HEAD -- spikes/spike-a-caption/src spikes/spike-a-caption/test spikes/spike-a-caption/scripts/empirical-browser-suite.js spikes/spike-a-caption/scripts/validate-evidence.js`,
         { cwd: REPO_ROOT, encoding: 'utf-8' }
       ).trim();
 
       if (diffCode) {
-        console.error('[Evidence Validator] Implementation code changed after testedImplementationSha without re-running empirical evidence:', diffCode);
+        console.error('[Evidence Validator] Implementation or test/harness code changed after testedImplementationSha without re-running empirical evidence:', diffCode);
         hasErrors = true;
       } else {
-        console.log('[Evidence Validator] Verified zero implementation code diffs since empirical run.');
+        console.log('[Evidence Validator] Verified zero executable code diffs between testedImplementationSha and HEAD.');
       }
     } catch (err) {
       try {
@@ -380,6 +380,71 @@ function validateEvidence() {
       if (!rapidEntry.activeGeneration?.operationId || rapidEntry.activeGeneration.status !== 'SUCCESS') {
         console.error('[Evidence Validator] V-05 missing valid activeGeneration record');
         hasErrors = true;
+      } else {
+        const gen3Raw = timelineData.find(t => t.event === 'ACQUISITION_COMPLETED' && t.operationId === rapidEntry.activeGeneration.operationId);
+        if (!gen3Raw) {
+          console.error('[Evidence Validator] V-05 missing authoritative ACQUISITION_COMPLETED raw record in navigation_timeline.json');
+          hasErrors = true;
+        } else {
+          if (gen3Raw.generation !== 3 || gen3Raw.videoId !== '3JZ_D3ELwOQ' || gen3Raw.semanticVideoId !== '3JZ_D3ELwOQ') {
+            console.error('[Evidence Validator] V-05 Gen-3 raw record has invalid generation or videoId');
+            hasErrors = true;
+          }
+          if (gen3Raw.requestStarted !== true || typeof gen3Raw.requestStartTime !== 'number') {
+            console.error('[Evidence Validator] V-05 Gen-3 raw record missing requestStarted or requestStartTime');
+            hasErrors = true;
+          }
+          if (!gen3Raw.selectedTrackIdentity || !gen3Raw.capturedRequestIdentity) {
+            console.error('[Evidence Validator] V-05 Gen-3 raw record missing track identities');
+            hasErrors = true;
+          }
+          if (gen3Raw.trackBindingMatched !== true || !matchesTrackIdentity(gen3Raw.selectedTrackIdentity, gen3Raw.capturedRequestIdentity)) {
+            console.error('[Evidence Validator] V-05 Gen-3 raw record failed track binding');
+            hasErrors = true;
+          }
+          if (gen3Raw.actualOutcome !== 'COMPLETED_AND_ACCEPTED') {
+            console.error('[Evidence Validator] V-05 Gen-3 raw record must have actualOutcome COMPLETED_AND_ACCEPTED');
+            hasErrors = true;
+          }
+          if (gen3Raw.payloadProvenance !== 'REAL_BROWSER_FETCH') {
+            console.error('[Evidence Validator] V-05 Gen-3 raw record must have payloadProvenance REAL_BROWSER_FETCH');
+            hasErrors = true;
+          }
+          if (typeof gen3Raw.payloadLengthBytes !== 'number' || gen3Raw.payloadLengthBytes <= 0) {
+            console.error('[Evidence Validator] V-05 Gen-3 raw record payloadLengthBytes must be > 0');
+            hasErrors = true;
+          }
+          if (typeof gen3Raw.parsedSegmentCount !== 'number' || gen3Raw.parsedSegmentCount <= 0) {
+            console.error('[Evidence Validator] V-05 Gen-3 raw record parsedSegmentCount must be > 0');
+            hasErrors = true;
+          }
+          if (typeof gen3Raw.totalDurationMs !== 'number' || gen3Raw.totalDurationMs <= 0) {
+            console.error('[Evidence Validator] V-05 Gen-3 raw record totalDurationMs must be > 0');
+            hasErrors = true;
+          }
+          if (typeof gen3Raw.completionTime !== 'number' || gen3Raw.completionTime <= gen3Raw.requestStartTime) {
+            console.error('[Evidence Validator] V-05 Gen-3 completionTime must be > requestStartTime');
+            hasErrors = true;
+          }
+
+          // Cross-check matrix fields against raw Gen-3 record
+          if (rapidEntry.activeGeneration.segmentCount !== gen3Raw.parsedSegmentCount) {
+            console.error('[Evidence Validator] V-05 activeGeneration segmentCount mismatch with raw Gen-3 record');
+            hasErrors = true;
+          }
+          if (rapidEntry.activeGeneration.totalDurationMs !== gen3Raw.totalDurationMs) {
+            console.error('[Evidence Validator] V-05 activeGeneration totalDurationMs mismatch with raw Gen-3 record');
+            hasErrors = true;
+          }
+          if (rapidEntry.activeGeneration.payloadLengthBytes !== gen3Raw.payloadLengthBytes) {
+            console.error('[Evidence Validator] V-05 activeGeneration payloadLengthBytes mismatch with raw Gen-3 record');
+            hasErrors = true;
+          }
+          if (rapidEntry.activeGeneration.actualFetchOutcome !== gen3Raw.actualOutcome) {
+            console.error('[Evidence Validator] V-05 activeGeneration actualFetchOutcome mismatch with raw Gen-3 record');
+            hasErrors = true;
+          }
+        }
       }
     }
 

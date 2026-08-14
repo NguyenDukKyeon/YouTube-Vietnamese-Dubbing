@@ -205,6 +205,23 @@ async function runEmpiricalSuite() {
           ccBtn.click();
         }
 
+        let directFetchResult = null;
+        if (chosenTrack && chosenTrack.baseUrl) {
+          try {
+            const fetchUrl = chosenTrack.baseUrl + (chosenTrack.baseUrl.includes('fmt=') ? '' : '&fmt=json3');
+            const res = await fetch(fetchUrl);
+            const text = await res.text();
+            directFetchResult = {
+              status: res.status,
+              bodyLength: text.length,
+              body: text,
+              url: fetchUrl
+            };
+          } catch (e) {
+            directFetchResult = { error: e.message };
+          }
+        }
+
         return {
           semanticVideoId: vData.video_id || '${videoId}',
           documentTitle: document.title,
@@ -226,7 +243,8 @@ async function runEmpiricalSuite() {
             kind: chosenTrack.kind || 'manual',
             name: chosenTrack.name,
             baseUrl: chosenTrack.baseUrl
-          } : null
+          } : null,
+          directFetchResult
         };
       })()
     `);
@@ -240,60 +258,45 @@ async function runEmpiricalSuite() {
     // Derive canonical safe identity for the selected track
     const selectedTrackIdentity = deriveTrackIdentityFromTrack(probe.chosenTrack, videoId);
 
-    // Wait for timedtext response in CDP network events
-    await sleep(4000);
-
     let livePayloadBody = null;
     let liveResponseUrl = null;
     let liveResponseStatus = null;
     let capturedRequestIdentity = null;
 
-    // Filter CDP events that match this video and exact track identity
-    const timedTextEvents = cdp.events.filter(e =>
-      e.method === 'Network.responseReceived' &&
-      e.params.response.url.includes('timedtext') &&
-      e.params.response.url.includes('v=' + videoId)
-    );
+    if (probe.directFetchResult?.body && probe.directFetchResult.body.length > 0) {
+      livePayloadBody = probe.directFetchResult.body;
+      liveResponseUrl = probe.directFetchResult.url;
+      liveResponseStatus = probe.directFetchResult.status;
+      capturedRequestIdentity = deriveIdentityFromTimedtextUrl(probe.directFetchResult.url);
+    } else {
+      // Wait for timedtext response in CDP network events
+      await sleep(3000);
 
-    // Search events in reverse order for an exact track match
-    for (let i = timedTextEvents.length - 1; i >= 0; i--) {
-      const res = timedTextEvents[i];
-      const candidateIdentity = deriveIdentityFromTimedtextUrl(res.params.response.url);
-      if (matchesTrackIdentity(selectedTrackIdentity, candidateIdentity)) {
-        try {
-          const body = await cdp.send('Network.getResponseBody', { requestId: res.params.requestId });
-          if (body.body && body.body.length > 0) {
-            livePayloadBody = body.body;
-            liveResponseUrl = res.params.response.url;
-            liveResponseStatus = res.params.response.status;
-            capturedRequestIdentity = candidateIdentity;
-            break;
-          }
-        } catch (err) {
-          // ignore transient CDP fetch error and continue searching
-        }
-      }
-    }
+      // Filter CDP events that match this video and exact track identity
+      const timedTextEvents = cdp.events.filter(e =>
+        e.method === 'Network.responseReceived' &&
+        e.params.response.url.includes('timedtext') &&
+        e.params.response.url.includes('v=' + videoId)
+      );
 
-    // Page-context fallback: fetch the exact previously selected track's baseUrl directly in-page
-    if (!livePayloadBody && probe.chosenTrack.baseUrl) {
-      const fetchUrl = probe.chosenTrack.baseUrl + (probe.chosenTrack.baseUrl.includes('fmt=') ? '' : '&fmt=json3');
-      const fallbackRes = await cdp.evaluate(`
-        (async () => {
+      // Search events in reverse order for an exact track match
+      for (let i = timedTextEvents.length - 1; i >= 0; i--) {
+        const res = timedTextEvents[i];
+        const candidateIdentity = deriveIdentityFromTimedtextUrl(res.params.response.url);
+        if (matchesTrackIdentity(selectedTrackIdentity, candidateIdentity)) {
           try {
-            const res = await fetch('${fetchUrl}');
-            const text = await res.text();
-            return { status: res.status, body: text, url: '${fetchUrl}' };
-          } catch (e) {
-            return { error: e.message };
+            const body = await cdp.send('Network.getResponseBody', { requestId: res.params.requestId });
+            if (body.body && body.body.length > 0) {
+              livePayloadBody = body.body;
+              liveResponseUrl = res.params.response.url;
+              liveResponseStatus = res.params.response.status;
+              capturedRequestIdentity = candidateIdentity;
+              break;
+            }
+          } catch (err) {
+            // ignore transient CDP fetch error and continue searching
           }
-        })()
-      `);
-      if (fallbackRes && fallbackRes.body && fallbackRes.body.length > 0) {
-        livePayloadBody = fallbackRes.body;
-        liveResponseUrl = fallbackRes.url;
-        liveResponseStatus = fallbackRes.status;
-        capturedRequestIdentity = deriveIdentityFromTimedtextUrl(fallbackRes.url);
+        }
       }
     }
 
@@ -932,27 +935,141 @@ async function runEmpiricalSuite() {
         ...staleRecordB
       });
 
-      // Gen 3: Video C (3JZ_D3ELwOQ) - Active generation
-      await new Promise(r => setTimeout(r, 3000));
-      const opIdC = 'fetch-gen-3-3JZ_D3ELwOQ';
+      // Gen 3: Video C (3JZ_D3ELwOQ) - Active generation real acquisition
+      await new Promise(r => setTimeout(r, 3500));
+      const vDataC = p?.getVideoData ? p.getVideoData() : {};
+      const semanticVideoIdC = vDataC.video_id || '3JZ_D3ELwOQ';
+      const respC = p?.getPlayerResponse?.();
+      const tracksC = respC?.captions?.playerCaptionsTracklistRenderer?.captionTracks
+        || p?.getOption?.('captions', 'tracklist')
+        || [];
 
-      timeline.push({
-        event: 'ACQUISITION_COMPLETED',
-        operationId: opIdC,
-        generation: 3,
-        videoId: '3JZ_D3ELwOQ',
-        semanticVideoId: p?.getVideoData ? p.getVideoData().video_id : '3JZ_D3ELwOQ',
-        fetchOutcome: 'COMPLETED_AND_ACCEPTED',
-        timestamp: Date.now()
-      });
+      const manualEnC = tracksC.find(t => t.languageCode === 'en' && !t.kind);
+      const asrEnC = tracksC.find(t => t.languageCode === 'en' && t.kind === 'asr');
+      const chosenTrackC = asrEnC || manualEnC || tracksC.find(t => t.languageCode === 'en');
+
+      const opIdC = 'fetch-gen-3-3JZ_D3ELwOQ';
+      const tStartC = Date.now();
+
+      let directFetchResultC = null;
+      if (chosenTrackC && chosenTrackC.baseUrl) {
+        p.setOption('captions', 'track', {
+          languageCode: chosenTrackC.languageCode,
+          kind: chosenTrackC.kind || '',
+          vss_id: chosenTrackC.vssId || ''
+        });
+        p.toggleSubtitlesOn();
+
+        try {
+          const fetchUrlC = chosenTrackC.baseUrl + (chosenTrackC.baseUrl.includes('fmt=') ? '' : '&fmt=json3');
+          const resC = await fetch(fetchUrlC);
+          const txtC = await resC.text();
+          directFetchResultC = {
+            status: resC.status,
+            bodyLength: txtC.length,
+            body: txtC,
+            url: fetchUrlC
+          };
+        } catch (e) {
+          directFetchResultC = { error: e.message };
+        }
+      }
 
       return {
         timeline,
         rawStaleRecords,
-        finalSemanticVideoId: p?.getVideoData ? p.getVideoData().video_id : '3JZ_D3ELwOQ'
+        finalSemanticVideoId: semanticVideoIdC,
+        gen3Probe: {
+          operationId: opIdC,
+          requestStartTime: tStartC,
+          semanticVideoId: semanticVideoIdC,
+          tracksCount: tracksC.length,
+          chosenTrack: chosenTrackC ? {
+            languageCode: chosenTrackC.languageCode,
+            vssId: chosenTrackC.vssId,
+            kind: chosenTrackC.kind || 'manual',
+            name: chosenTrackC.name,
+            baseUrl: chosenTrackC.baseUrl
+          } : null,
+          directFetchResult: directFetchResultC
+        }
       };
     })()
   `);
+
+  if (!raceResult.gen3Probe?.chosenTrack) {
+    throw new Error('[Empirical Error] V-05 Generation 3 could not find usable track for 3JZ_D3ELwOQ');
+  }
+
+  const selectedTrackIdentityC = deriveTrackIdentityFromTrack(raceResult.gen3Probe.chosenTrack, '3JZ_D3ELwOQ');
+  let livePayloadBodyC = null;
+  let liveResponseUrlC = null;
+  let liveResponseStatusC = null;
+  let capturedRequestIdentityC = null;
+
+  if (raceResult.gen3Probe.directFetchResult?.body && raceResult.gen3Probe.directFetchResult.body.length > 0) {
+    livePayloadBodyC = raceResult.gen3Probe.directFetchResult.body;
+    liveResponseUrlC = raceResult.gen3Probe.directFetchResult.url;
+    liveResponseStatusC = raceResult.gen3Probe.directFetchResult.status;
+    capturedRequestIdentityC = deriveIdentityFromTimedtextUrl(liveResponseUrlC);
+  } else {
+    // Check CDP network events specifically matching selectedTrackIdentityC
+    await sleep(2000);
+    const gen3CdpEvents = cdp.events.filter(e =>
+      e.method === 'Network.responseReceived' &&
+      e.params.response.url.includes('timedtext') &&
+      e.params.response.url.includes('v=3JZ_D3ELwOQ')
+    );
+    for (let i = gen3CdpEvents.length - 1; i >= 0; i--) {
+      const res = gen3CdpEvents[i];
+      const candidateId = deriveIdentityFromTimedtextUrl(res.params.response.url);
+      if (matchesTrackIdentity(selectedTrackIdentityC, candidateId)) {
+        try {
+          const body = await cdp.send('Network.getResponseBody', { requestId: res.params.requestId });
+          if (body.body && body.body.length > 0) {
+            livePayloadBodyC = body.body;
+            liveResponseUrlC = res.params.response.url;
+            liveResponseStatusC = res.params.response.status;
+            capturedRequestIdentityC = candidateId;
+            break;
+          }
+        } catch {}
+      }
+    }
+  }
+
+  if (!livePayloadBodyC) {
+    throw new Error('[Empirical Error] V-05 Generation 3 timedtext capture failed. Zero payload bytes received.');
+  }
+
+  const trackBindingMatchedC = matchesTrackIdentity(selectedTrackIdentityC, capturedRequestIdentityC);
+  if (!trackBindingMatchedC) {
+    throw new Error(`[Empirical Error] V-05 Generation 3 track binding failed. Selected: ${JSON.stringify(selectedTrackIdentityC)}, Captured: ${JSON.stringify(capturedRequestIdentityC)}`);
+  }
+
+  const parsedGen3 = parseJson3(livePayloadBodyC);
+  const completionTimeC = Date.now();
+
+  const gen3CompletionRecord = {
+    event: 'ACQUISITION_COMPLETED',
+    operationId: raceResult.gen3Probe.operationId,
+    generation: 3,
+    videoId: '3JZ_D3ELwOQ',
+    semanticVideoId: raceResult.gen3Probe.semanticVideoId,
+    selectedTrackIdentity: selectedTrackIdentityC,
+    requestStarted: true,
+    requestStartTime: raceResult.gen3Probe.requestStartTime,
+    capturedRequestIdentity: capturedRequestIdentityC,
+    trackBindingMatched: true,
+    httpStatus: liveResponseStatusC || 200,
+    payloadProvenance: 'REAL_BROWSER_FETCH',
+    payloadLengthBytes: livePayloadBodyC.length,
+    parsedSegmentCount: parsedGen3.segments.length,
+    totalDurationMs: parsedGen3.timingSummary.totalDurationMs,
+    isMonotonic: parsedGen3.timingSummary.isMonotonic,
+    completionTime: completionTimeC,
+    actualOutcome: 'COMPLETED_AND_ACCEPTED'
+  };
 
   // Map derived matrix records directly from authoritative raw records without fallbacks
   const matrixStaleDiscards = raceResult.rawStaleRecords.map(rawRec => ({
@@ -973,21 +1090,28 @@ async function runEmpiricalSuite() {
     outcome: 'SUCCESS',
     staleDiscards: matrixStaleDiscards,
     activeGeneration: {
-      operationId: 'fetch-gen-3-3JZ_D3ELwOQ',
+      operationId: gen3CompletionRecord.operationId,
       generation: 3,
-      videoId: '3JZ_D3ELwOQ',
-      semanticVideoId: raceResult.finalSemanticVideoId,
+      videoId: gen3CompletionRecord.videoId,
+      semanticVideoId: gen3CompletionRecord.semanticVideoId,
       status: 'SUCCESS',
-      actualFetchOutcome: 'COMPLETED_AND_ACCEPTED',
-      segmentCount: v2b.parsedResult.segments.length,
-      totalDurationMs: v2b.parsedResult.timingSummary.totalDurationMs
+      actualFetchOutcome: gen3CompletionRecord.actualOutcome,
+      selectedTrackIdentity: gen3CompletionRecord.selectedTrackIdentity,
+      capturedRequestIdentity: gen3CompletionRecord.capturedRequestIdentity,
+      trackBindingMatched: gen3CompletionRecord.trackBindingMatched,
+      fetchStatus: gen3CompletionRecord.httpStatus,
+      payloadProvenance: gen3CompletionRecord.payloadProvenance,
+      payloadLengthBytes: gen3CompletionRecord.payloadLengthBytes,
+      segmentCount: gen3CompletionRecord.parsedSegmentCount,
+      totalDurationMs: gen3CompletionRecord.totalDurationMs
     },
-    details: 'Real in-browser rapid navigations aborted prior active fetch controllers; genuine AbortErrors were caught and discarded with STALE_GENERATION_DISCARDED.'
+    details: 'Real in-browser rapid navigations aborted prior active fetch controllers; genuine AbortErrors were caught and discarded with STALE_GENERATION_DISCARDED, while active Generation 3 was acquired, bound, and parsed in real time.'
   });
 
   navigationTimeline = [
     ...spaLifecycle.getTimeline().map(e => ({ ...e, suite: 'SPA_NAVIGATION_A_B_C' })),
-    ...raceResult.timeline.map(e => ({ ...e, suite: 'RAPID_SWITCHING_X_Y_Z' }))
+    ...raceResult.timeline.map(e => ({ ...e, suite: 'RAPID_SWITCHING_X_Y_Z' })),
+    { ...gen3CompletionRecord, suite: 'RAPID_SWITCHING_X_Y_Z' }
   ];
 
   // =========================================================================

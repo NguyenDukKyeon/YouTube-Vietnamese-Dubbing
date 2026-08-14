@@ -21,7 +21,7 @@
       "endMs": 6839,
       "text": "In this 3-minute introduction, I'm going to answer four frequently asked questions"
     },
-    "latencyMs": 6296
+    "latencyMs": 6255
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -36,16 +36,16 @@
     "fetchStatus": 200,
     "payloadProvenance": "REAL_BROWSER_FETCH",
     "outcome": "SUCCESS",
-    "segmentCount": 79,
-    "totalDurationMs": 249604,
+    "segmentCount": 90,
+    "totalDurationMs": 273500,
     "isMonotonic": true,
     "anomaliesCount": 0,
     "sampleSegment": {
-      "startMs": 28244,
-      "endMs": 29579,
-      "text": "Oh,"
+      "startMs": 433,
+      "endMs": 27533,
+      "text": "♪ ♪"
     },
-    "latencyMs": 6182
+    "latencyMs": 6175
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -69,7 +69,7 @@
       "endMs": 6360,
       "text": "Welcome to the ultimate React course. In"
     },
-    "latencyMs": 6164
+    "latencyMs": 6176
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -93,33 +93,33 @@
       "endMs": 4920,
       "text": "[Music]"
     },
-    "latencyMs": 6235
+    "latencyMs": 6214
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-03a",
-    "videoId": "kJQP7kiw5Fk",
-    "title": "Despacito (Spanish Only Classification)",
-    "trackType": "none_english",
-    "languageCode": "es",
-    "acquisitionMethod": "real_browser_player_probe",
-    "format": "none",
-    "outcome": "CLASSIFIED_UNSUPPORTED",
-    "reason": "NO_USABLE_ENGLISH_CAPTIONS",
-    "latencyMs": 35
-  },
-  {
-    "provenance": "REAL_BROWSER_OBSERVATION",
-    "caseId": "V-03b",
     "videoId": "9bZkp7q19f0",
-    "title": "Gangnam Style (Zero Caption Classification)",
+    "title": "PSY - GANGNAM STYLE (Non-English Captions Only)",
     "trackType": "none_english",
     "languageCode": "ko",
     "acquisitionMethod": "real_browser_player_probe",
     "format": "none",
     "outcome": "CLASSIFIED_UNSUPPORTED",
+    "reason": "NO_USABLE_ENGLISH_CAPTIONS",
+    "latencyMs": 5146
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-03b",
+    "videoId": "fN1CmbGOz6I",
+    "title": "Short Video (Zero Caption Tracks)",
+    "trackType": "none_english",
+    "languageCode": "none",
+    "acquisitionMethod": "real_browser_player_probe",
+    "format": "none",
+    "outcome": "CLASSIFIED_UNSUPPORTED",
     "reason": "NO_CAPTION_TRACKS_IN_METADATA",
-    "latencyMs": 30
+    "latencyMs": 5165
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -149,26 +149,31 @@
         "generation": 1,
         "videoId": "W6NZfCO5SIk",
         "status": "STALE_GENERATION_DISCARDED",
-        "abortReason": "Navigation to SqcY0GlETPk",
-        "abortTime": 1786724233614
+        "aborted": true,
+        "abortError": "AbortError",
+        "rejectionReason": "Navigation to SqcY0GlETPk (generation 1 < active generation 2)"
       },
       {
         "operationId": "fetch-gen-2-SqcY0GlETPk",
         "generation": 2,
         "videoId": "SqcY0GlETPk",
         "status": "STALE_GENERATION_DISCARDED",
-        "abortReason": "Navigation to 3JZ_D3ELwOQ",
-        "abortTime": 1786724233630
+        "aborted": true,
+        "abortError": "AbortError",
+        "rejectionReason": "Navigation to 3JZ_D3ELwOQ (generation 2 < active generation 3)"
       }
     ],
     "activeGeneration": {
       "operationId": "fetch-gen-3-3JZ_D3ELwOQ",
       "generation": 3,
       "videoId": "3JZ_D3ELwOQ",
+      "semanticVideoId": "3JZ_D3ELwOQ",
       "status": "SUCCESS",
-      "semanticVideoId": "3JZ_D3ELwOQ"
+      "actualFetchOutcome": "COMPLETED_AND_ACCEPTED",
+      "segmentCount": 108,
+      "totalDurationMs": 255799
     },
-    "details": "Real in-browser rapid navigations aborted prior fetch controllers; out-of-order completions were discarded with STALE_GENERATION_DISCARDED."
+    "details": "Real in-browser rapid navigations aborted prior active fetch controllers; genuine AbortErrors were caught and discarded with STALE_GENERATION_DISCARDED."
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -191,7 +196,7 @@
       "endMs": 6360,
       "text": "Welcome to the ultimate React course. In"
     },
-    "latencyMs": 6164,
+    "latencyMs": 6176,
     "linkage": "Direct reuse of verified live empirical capture from V-02a (SqcY0GlETPk)"
   },
   {

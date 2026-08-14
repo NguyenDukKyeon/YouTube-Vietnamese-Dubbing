@@ -3,7 +3,7 @@
     "provenance": "REAL_BROWSER_OBSERVATION",
     "code": "NO_USABLE_ENGLISH_CAPTIONS",
     "description": "Video contains caption tracks, but none match English (manual or ASR). Classified explicitly as unsupported for English dubbing.",
-    "observedOn": "kJQP7kiw5Fk (Spanish only filter test)",
+    "observedOn": "9bZkp7q19f0 (Gangnam Style Korean only track)",
     "errorStage": "TRACK_SELECTION",
     "mitigation": "Classify as NO_USABLE_ENGLISH_CAPTIONS status without false success"
   },
@@ -11,14 +11,14 @@
     "provenance": "REAL_BROWSER_OBSERVATION",
     "code": "NO_CAPTION_TRACKS_IN_METADATA",
     "description": "Video metadata contains zero caption tracks (creator disabled or unavailable).",
-    "observedOn": "9bZkp7q19f0 (Gangnam Style)",
+    "observedOn": "fN1CmbGOz6I (Short Video 0 caption tracks)",
     "errorStage": "TRACK_SELECTION",
     "mitigation": "Classify as NO_CAPTION_TRACKS_IN_METADATA"
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
     "code": "STALE_GENERATION_DISCARDED",
-    "description": "Asynchronous fetch/probe completed after user navigated to another video.",
+    "description": "Asynchronous fetch aborted and discarded when user navigated rapidly to subsequent video.",
     "observedOn": "V-05 Rapid Switching Suite (fetch-gen-1-W6NZfCO5SIk & fetch-gen-2-SqcY0GlETPk)",
     "errorStage": "LIFECYCLE_VALIDATION",
     "mitigation": "Discard result immediately using generation counter; abort in-flight controller"

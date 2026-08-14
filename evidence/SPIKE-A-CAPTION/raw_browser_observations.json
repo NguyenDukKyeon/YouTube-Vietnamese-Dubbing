@@ -46,7 +46,7 @@
         "text": "In this 3-minute introduction, I'm going to answer four frequently asked questions"
       }
     },
-    "latencyMs": 6296
+    "latencyMs": 6255
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -120,18 +120,18 @@
     "timedtextCapture": {
       "httpStatus": 200,
       "payloadProvenance": "REAL_BROWSER_FETCH",
-      "payloadLengthBytes": 12955,
-      "sanitizedRequestUrl": "https://www.youtube.com/api/timedtext?v=kJQP7kiw5Fk&ei=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=en-US&name=English%20-%20United%20States&potc=[REDACTED]&pot=[REDACTED]&fmt=json3&xorb=[REDACTED]&xobt=[REDACTED]&xovt=[REDACTED]&cbr=[REDACTED]&cbrver=[REDACTED]&c=[REDACTED]&cver=[REDACTED]&cplayer=[REDACTED]&cos=[REDACTED]&cosver=[REDACTED]&cplatform=[REDACTED]",
-      "parsedSegmentCount": 79,
-      "totalDurationMs": 249604,
+      "payloadLengthBytes": 18737,
+      "sanitizedRequestUrl": "https://www.youtube.com/api/timedtext?v=kJQP7kiw5Fk&ei=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=en&name=en&potc=[REDACTED]&pot=[REDACTED]&fmt=json3&xorb=[REDACTED]&xobt=[REDACTED]&xovt=[REDACTED]&cbr=[REDACTED]&cbrver=[REDACTED]&c=[REDACTED]&cver=[REDACTED]&cplayer=[REDACTED]&cos=[REDACTED]&cosver=[REDACTED]&cplatform=[REDACTED]",
+      "parsedSegmentCount": 90,
+      "totalDurationMs": 273500,
       "isMonotonic": true,
       "sampleSegment": {
-        "startMs": 28244,
-        "endMs": 29579,
-        "text": "Oh,"
+        "startMs": 433,
+        "endMs": 27533,
+        "text": "♪ ♪"
       }
     },
-    "latencyMs": 6182
+    "latencyMs": 6175
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -171,7 +171,7 @@
         "text": "Welcome to the ultimate React course. In"
       }
     },
-    "latencyMs": 6164
+    "latencyMs": 6176
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -211,6 +211,50 @@
         "text": "[Music]"
       }
     },
-    "latencyMs": 6235
+    "latencyMs": 6214
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-03a",
+    "videoId": "9bZkp7q19f0",
+    "semanticPlayerVideoId": "9bZkp7q19f0",
+    "title": "PSY - GANGNAM STYLE (Non-English Captions)",
+    "documentTitle": "PSY - GANGNAM STYLE(강남스타일) M/V - YouTube",
+    "tracksCount": 1,
+    "allTracksSanitized": [
+      {
+        "languageCode": "ko",
+        "vssId": "a.ko",
+        "kind": "asr",
+        "name": {
+          "simpleText": "Korean (auto-generated)"
+        },
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=9bZkp7q19f0&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=ko"
+      }
+    ],
+    "hasManualEn": false,
+    "hasAsrEn": false,
+    "isAsrOnly": false,
+    "selectedTrackVssId": null,
+    "selectedTrackKind": null,
+    "classificationResult": "NO_USABLE_ENGLISH_CAPTIONS",
+    "latencyMs": 5146
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-03b",
+    "videoId": "fN1CmbGOz6I",
+    "semanticPlayerVideoId": "fN1CmbGOz6I",
+    "title": "Short Video (Zero Caption Tracks)",
+    "documentTitle": "YouTube",
+    "tracksCount": 0,
+    "allTracksSanitized": [],
+    "hasManualEn": false,
+    "hasAsrEn": false,
+    "isAsrOnly": false,
+    "selectedTrackVssId": null,
+    "selectedTrackKind": null,
+    "classificationResult": "NO_CAPTION_TRACKS_IN_METADATA",
+    "latencyMs": 5165
   }
 ]

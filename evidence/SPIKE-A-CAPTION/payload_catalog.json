@@ -2,18 +2,22 @@
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
     "format": "json3",
+    "sourceCaseId": "V-01a",
+    "sourceVideoId": "W6NZfCO5SIk",
+    "selectedTrackVssId": ".en",
+    "payloadLengthBytes": 90146,
     "description": "YouTube JSON3 timedtext structure containing wireMagic, events array, tStartMs, dDurationMs, and segs text segments.",
-    "sampleSnippet": "{\n  \"wireMagic\": \"pb3\",\n  \"events\": [\n    {\n      \"tStartMs\": 199,\n      \"dDurationMs\": 6640,\n      \"segs\": [\n        {\n          \"utf8\": \"Freshmin helps reduce the cost of ebooks effectively\"\n        }\n      ]\n    },\n    {\n      \"tStartMs\": 7000,\n      \"dDurationMs\": 4500,\n      \"segs\": [\n        {\n          \"utf8\": \"We're no strangers to love\"\n        }\n      ]\n    }\n  ]\n}",
+    "sampleSnippet": "{\n  \"wireMagic\": \"pb3\",\n  \"events\": [\n    {\n      \"tStartMs\": 1310,\n      \"dDurationMs\": 5529,\n      \"segs\": [\n        {\n          \"utf8\": \"In this 3-minute introduction, I'm going to answer four frequently asked questions\"\n        }\n      ]\n    },\n    {\n      \"tStartMs\": 6839,\n      \"dDurationMs\": 3871,\n      \"segs\": [\n        {\n          \"utf8\": \"about JavaScript. What is JavaScript, what can you do with\"\n        }\n      ]\n    }\n  ]\n}",
     "normalizedOutput": [
       {
-        "startMs": 199,
+        "startMs": 1310,
         "endMs": 6839,
-        "text": "Freshmin helps reduce the cost of ebooks effectively"
+        "text": "In this 3-minute introduction, I'm going to answer four frequently asked questions"
       },
       {
-        "startMs": 7000,
-        "endMs": 11500,
-        "text": "We're no strangers to love"
+        "startMs": 6839,
+        "endMs": 10710,
+        "text": "about JavaScript. What is JavaScript, what can you do with"
       }
     ]
   },

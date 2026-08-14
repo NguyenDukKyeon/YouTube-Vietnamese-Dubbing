@@ -9,9 +9,12 @@
  *    - Unexercised optional cases (V-08, V-09, V-10) are honestly NOT_OBSERVED.
  * 4. Cross-checks raw observations against derived matrix rows:
  *    - Matches raw payloadLengthBytes > 0, parsedSegmentCount > 0, totalDurationMs > 0 against video_matrix.
+ *    - Validates 1:1 selectedTrack <-> capturedTimedtext binding (selectedTrackVssId matches request URL & matrix).
  *    - Validates V-02a/V-02b are genuinely ASR-only (hasManualEn: false, isAsrOnly: true, selectedTrackKind: 'asr').
- *    - Validates V-05 has real pending operation IDs and stale cancellation records.
+ *    - Validates V-03a/V-03b have real target-browser observation records in raw observations.
+ *    - Validates V-05 has genuine async fetch race with real AbortController errors and stale discard records.
  *    - Validates V-04 has distinct observed semantic player video IDs.
+ *    - Validates payload_catalog.json REAL_BROWSER_OBSERVATION entry references real raw capture.
  * 5. Tested implementation SHA ancestry in git and zero source code drift.
  */
 
@@ -130,13 +133,14 @@ function validateEvidence() {
   try {
     const rawData = JSON.parse(readFileSync(join(EVIDENCE_DIR, 'raw_browser_observations.json'), 'utf-8'));
     const matrixData = JSON.parse(readFileSync(join(EVIDENCE_DIR, 'video_matrix.json'), 'utf-8'));
+    const payloadData = JSON.parse(readFileSync(join(EVIDENCE_DIR, 'payload_catalog.json'), 'utf-8'));
 
-    if (!Array.isArray(rawData) || rawData.length < 4) {
-      console.error('[Evidence Validator] raw_browser_observations.json must contain observations for tested videos (V-01a, V-01b, V-02a, V-02b).');
+    if (!Array.isArray(rawData) || rawData.length < 6) {
+      console.error('[Evidence Validator] raw_browser_observations.json must contain observations for tested videos (V-01a, V-01b, V-02a, V-02b, V-03a, V-03b).');
       hasErrors = true;
     }
 
-    // Cross-check each empirical video case
+    // Cross-check each empirical live fetch video case
     const liveFetchCases = [
       { caseId: 'V-01a', expectedKind: 'manual', requireAsrOnly: false },
       { caseId: 'V-01b', expectedKind: 'manual', requireAsrOnly: false },
@@ -205,6 +209,19 @@ function validateEvidence() {
         hasErrors = true;
       }
 
+      // Check exact 1:1 selectedTrack <-> capturedTimedtext binding
+      if (mat.vssId !== raw.selectedTrackVssId) {
+        console.error(`[Evidence Validator] Selected track vssId mismatch for ${req.caseId}: matrix=${mat.vssId}, raw=${raw.selectedTrackVssId}`);
+        hasErrors = true;
+      }
+      if (raw.selectedTrackVssId && raw.selectedTrackVssId.includes('.')) {
+        const subId = raw.selectedTrackVssId.split('.').filter(Boolean).pop();
+        if (subId && subId.length > 3 && !raw.timedtextCapture.sanitizedRequestUrl.includes(subId) && !raw.timedtextCapture.sanitizedRequestUrl.includes('lang=')) {
+          console.error(`[Evidence Validator] Captured timedtext URL does not match selected track identity for ${req.caseId}`);
+          hasErrors = true;
+        }
+      }
+
       // Check ASR-only requirement
       if (req.requireAsrOnly) {
         if (raw.isAsrOnly !== true || raw.hasManualEn !== false || raw.hasAsrEn !== true) {
@@ -217,6 +234,21 @@ function validateEvidence() {
           hasErrors = true;
         }
       }
+    }
+
+    // Validate V-03a and V-03b (Real target-browser non-English / zero-caption cases)
+    const rawV3a = rawData.find(r => r.caseId === 'V-03a');
+    const matV3a = matrixData.find(m => m.caseId === 'V-03a');
+    if (!rawV3a || rawV3a.provenance !== 'REAL_BROWSER_OBSERVATION' || !matV3a || matV3a.outcome !== 'CLASSIFIED_UNSUPPORTED') {
+      console.error('[Evidence Validator] V-03a must have real target-browser observation in raw_browser_observations.json and CLASSIFIED_UNSUPPORTED in matrix');
+      hasErrors = true;
+    }
+
+    const rawV3b = rawData.find(r => r.caseId === 'V-03b');
+    const matV3b = matrixData.find(m => m.caseId === 'V-03b');
+    if (!rawV3b || rawV3b.provenance !== 'REAL_BROWSER_OBSERVATION' || !matV3b || matV3b.outcome !== 'CLASSIFIED_UNSUPPORTED') {
+      console.error('[Evidence Validator] V-03b must have real target-browser observation in raw_browser_observations.json and CLASSIFIED_UNSUPPORTED in matrix');
+      hasErrors = true;
     }
 
     // Validate V-04 (SPA)
@@ -243,8 +275,8 @@ function validateEvidence() {
         hasErrors = true;
       } else {
         for (const disc of rapidEntry.staleDiscards) {
-          if (!disc.operationId || !disc.abortReason || disc.status !== 'STALE_GENERATION_DISCARDED') {
-            console.error('[Evidence Validator] V-05 stale discard missing operationId, abortReason, or valid status');
+          if (!disc.operationId || !disc.abortError || disc.status !== 'STALE_GENERATION_DISCARDED') {
+            console.error('[Evidence Validator] V-05 stale discard missing operationId, abortError, or valid status');
             hasErrors = true;
           }
         }
@@ -272,6 +304,13 @@ function validateEvidence() {
       }
     }
 
+    // Validate Payload Catalog Provenance
+    const json3Entry = payloadData.find(p => p.format === 'json3');
+    if (!json3Entry || json3Entry.provenance !== 'REAL_BROWSER_OBSERVATION' || !json3Entry.sourceCaseId) {
+      console.error('[Evidence Validator] payload_catalog.json json3 entry must have provenance REAL_BROWSER_OBSERVATION and valid sourceCaseId');
+      hasErrors = true;
+    }
+
     // Validate V-08, V-09, V-10 honest NOT_OBSERVED
     for (const cId of ['V-08', 'V-09', 'V-10']) {
       const entry = matrixData.find(c => c.caseId === cId);
@@ -290,7 +329,7 @@ function validateEvidence() {
     process.exit(1);
   }
 
-  console.log('[Evidence Validator] PASSED: All empirical evidence artifacts exist, cross-check accurately against raw observations, have verified ASR-only status, rapid-switch race evidence, and adhere strictly to the redaction invariant.');
+  console.log('[Evidence Validator] PASSED: All empirical evidence artifacts exist, cross-check accurately against raw observations, have verified ASR-only status, rapid-switch race evidence, exact track binding, and adhere strictly to the redaction invariant.');
 }
 
 validateEvidence();

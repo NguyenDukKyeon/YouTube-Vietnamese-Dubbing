@@ -7,17 +7,17 @@
     "totalDurationMs": 2896420,
     "isMonotonic": true,
     "anomalies": [],
-    "probeLatencyMs": 6296
+    "probeLatencyMs": 6255
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
     "caseId": "V-01b",
     "videoId": "kJQP7kiw5Fk",
-    "segmentCount": 79,
-    "totalDurationMs": 249604,
+    "segmentCount": 90,
+    "totalDurationMs": 273500,
     "isMonotonic": true,
     "anomalies": [],
-    "probeLatencyMs": 6182
+    "probeLatencyMs": 6175
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -14812,7 +14812,7 @@
         "prevEndMs": 4798800
       }
     ],
-    "probeLatencyMs": 6164
+    "probeLatencyMs": 6176
   },
   {
     "provenance": "REAL_BROWSER_OBSERVATION",
@@ -15523,6 +15523,6 @@
         "prevEndMs": 255799
       }
     ],
-    "probeLatencyMs": 6235
+    "probeLatencyMs": 6214
   }
 ]

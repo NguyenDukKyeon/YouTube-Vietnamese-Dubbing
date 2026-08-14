@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": 1786724219320,
+    "timestamp": 1786725017072,
     "event": "VIDEO_TRANSITION_STARTED",
     "videoId": "W6NZfCO5SIk",
     "generation": 1,
@@ -8,7 +8,7 @@
     "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786724225489,
+    "timestamp": 1786725023214,
     "event": "ACQUISITION_COMPLETED",
     "videoId": "W6NZfCO5SIk",
     "generation": 1,
@@ -18,7 +18,7 @@
     "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786724225490,
+    "timestamp": 1786725023214,
     "event": "ABORT_PRIOR_REQUEST",
     "videoId": "W6NZfCO5SIk",
     "generation": 1,
@@ -26,7 +26,7 @@
     "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786724225490,
+    "timestamp": 1786725023214,
     "event": "VIDEO_TRANSITION_STARTED",
     "videoId": "SqcY0GlETPk",
     "generation": 2,
@@ -34,7 +34,7 @@
     "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786724229539,
+    "timestamp": 1786725027258,
     "event": "ACQUISITION_COMPLETED",
     "videoId": "SqcY0GlETPk",
     "generation": 2,
@@ -44,7 +44,7 @@
     "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786724229540,
+    "timestamp": 1786725027258,
     "event": "ABORT_PRIOR_REQUEST",
     "videoId": "SqcY0GlETPk",
     "generation": 2,
@@ -52,7 +52,7 @@
     "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786724229540,
+    "timestamp": 1786725027258,
     "event": "VIDEO_TRANSITION_STARTED",
     "videoId": "3JZ_D3ELwOQ",
     "generation": 3,
@@ -60,7 +60,7 @@
     "suite": "SPA_NAVIGATION_A_B_C"
   },
   {
-    "timestamp": 1786724233585,
+    "timestamp": 1786725031318,
     "event": "ACQUISITION_COMPLETED",
     "videoId": "3JZ_D3ELwOQ",
     "generation": 3,
@@ -74,8 +74,8 @@
     "operationId": "fetch-gen-1-W6NZfCO5SIk",
     "generation": 1,
     "videoId": "W6NZfCO5SIk",
-    "startTime": 1786724233585,
-    "status": "PENDING",
+    "selectedTrackVssId": ".en",
+    "timestamp": 1786725036505,
     "suite": "RAPID_SWITCHING_X_Y_Z"
   },
   {
@@ -83,8 +83,11 @@
     "operationId": "fetch-gen-1-W6NZfCO5SIk",
     "generation": 1,
     "videoId": "W6NZfCO5SIk",
-    "timestamp": 1786724233614,
-    "reason": "Navigation to SqcY0GlETPk",
+    "abortOutcome": {
+      "status": "ABORTED_OR_FAILED"
+    },
+    "timestamp": 1786725036588,
+    "reason": "Navigation to SqcY0GlETPk (generation 1 < active generation 2)",
     "suite": "RAPID_SWITCHING_X_Y_Z"
   },
   {
@@ -92,8 +95,8 @@
     "operationId": "fetch-gen-2-SqcY0GlETPk",
     "generation": 2,
     "videoId": "SqcY0GlETPk",
-    "startTime": 1786724233615,
-    "status": "PENDING",
+    "selectedTrackVssId": "a.en",
+    "timestamp": 1786725038605,
     "suite": "RAPID_SWITCHING_X_Y_Z"
   },
   {
@@ -101,8 +104,11 @@
     "operationId": "fetch-gen-2-SqcY0GlETPk",
     "generation": 2,
     "videoId": "SqcY0GlETPk",
-    "timestamp": 1786724233630,
-    "reason": "Navigation to 3JZ_D3ELwOQ",
+    "abortOutcome": {
+      "status": "ABORTED_OR_FAILED"
+    },
+    "timestamp": 1786725038667,
+    "reason": "Navigation to 3JZ_D3ELwOQ (generation 2 < active generation 3)",
     "suite": "RAPID_SWITCHING_X_Y_Z"
   },
   {
@@ -111,8 +117,8 @@
     "generation": 3,
     "videoId": "3JZ_D3ELwOQ",
     "semanticVideoId": "3JZ_D3ELwOQ",
-    "status": "SUCCESS",
-    "timestamp": 1786724237221,
+    "fetchOutcome": "COMPLETED_SUCCESS",
+    "timestamp": 1786725041755,
     "suite": "RAPID_SWITCHING_X_Y_Z"
   }
 ]

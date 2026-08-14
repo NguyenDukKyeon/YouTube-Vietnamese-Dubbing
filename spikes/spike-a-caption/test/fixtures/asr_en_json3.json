@@ -1,0 +1,34 @@
+{
+  "wireMagic": "pb3",
+  "pens": [{}],
+  "wsWinStyles": [{}],
+  "wpWinPositions": [{}],
+  "events": [
+    {
+      "tStartMs": 240,
+      "dDurationMs": 2400,
+      "wWinId": 1,
+      "segs": [
+        { "utf8": "so today we're going " },
+        { "utf8": "to talk about" }
+      ]
+    },
+    {
+      "tStartMs": 2640,
+      "dDurationMs": 3120,
+      "wWinId": 1,
+      "segs": [
+        { "utf8": "machine learning and " },
+        { "utf8": "automatic speech recognition" }
+      ]
+    },
+    {
+      "tStartMs": 5800,
+      "dDurationMs": 2900,
+      "wWinId": 1,
+      "segs": [
+        { "utf8": "running in real time on the browser" }
+      ]
+    }
+  ]
+}

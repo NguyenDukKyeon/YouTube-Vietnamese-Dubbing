@@ -1,0 +1,26 @@
+[
+  {
+    "case": "manual_en_jNQXAC9IVRw",
+    "segmentCount": 3,
+    "totalDurationMs": 9000,
+    "isMonotonic": true,
+    "anomalies": [],
+    "averageLatencyMs": 45
+  },
+  {
+    "case": "asr_en__uQrJ0TkZlc",
+    "segmentCount": 2,
+    "totalDurationMs": 6300,
+    "isMonotonic": true,
+    "anomalies": [],
+    "averageLatencyMs": 38
+  },
+  {
+    "case": "long_form_lecture",
+    "segmentCount": 600,
+    "totalDurationMs": 2399800,
+    "isMonotonic": true,
+    "anomalies": [],
+    "averageLatencyMs": 120
+  }
+]

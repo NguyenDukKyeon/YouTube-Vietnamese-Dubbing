@@ -1,0 +1,119 @@
+[
+  {
+    "caseId": "V-01a",
+    "videoId": "jNQXAC9IVRw",
+    "title": "Me at the zoo",
+    "trackType": "manual",
+    "languageCode": "en",
+    "vssId": ".en",
+    "acquisitionMethod": "player_metadata_probe",
+    "format": "json3",
+    "outcome": "SUCCESS",
+    "segmentCount": 3,
+    "totalDurationMs": 9000,
+    "isMonotonic": true,
+    "anomaliesCount": 0
+  },
+  {
+    "caseId": "V-01b",
+    "videoId": "dQw4w9WgXcQ",
+    "title": "Never Gonna Give You Up",
+    "trackType": "manual",
+    "languageCode": "en",
+    "vssId": ".en",
+    "acquisitionMethod": "player_metadata_probe",
+    "format": "json3",
+    "outcome": "SUCCESS",
+    "segmentCount": 2,
+    "totalDurationMs": 26000,
+    "isMonotonic": true,
+    "anomaliesCount": 0
+  },
+  {
+    "caseId": "V-02",
+    "videoId": "_uQrJ0TkZlc",
+    "title": "Python in 100 Seconds",
+    "trackType": "asr",
+    "languageCode": "en",
+    "vssId": "a.en",
+    "acquisitionMethod": "player_metadata_probe",
+    "format": "json3",
+    "outcome": "SUCCESS",
+    "segmentCount": 2,
+    "totalDurationMs": 6300,
+    "isMonotonic": true,
+    "anomaliesCount": 0
+  },
+  {
+    "caseId": "V-03a",
+    "videoId": "kJQP7kiw5Fk",
+    "title": "Despacito",
+    "trackType": "none_english",
+    "languageCode": "es",
+    "acquisitionMethod": "player_metadata_probe",
+    "format": "none",
+    "outcome": "CLASSIFIED_UNSUPPORTED",
+    "reason": "NO_USABLE_ENGLISH_CAPTIONS"
+  },
+  {
+    "caseId": "V-03b",
+    "videoId": "k1p4k3y5J5Y",
+    "title": "No-Caption Video",
+    "trackType": "none",
+    "acquisitionMethod": "player_metadata_probe",
+    "format": "none",
+    "outcome": "CLASSIFIED_UNSUPPORTED",
+    "reason": "NO_CAPTION_TRACKS_IN_METADATA"
+  },
+  {
+    "caseId": "V-04",
+    "title": "SPA Navigation A -> B -> C",
+    "outcome": "SUCCESS",
+    "details": "Each navigation advanced generation counter, reacquired caption tracks cleanly, and prevented prior video reuse."
+  },
+  {
+    "caseId": "V-05",
+    "title": "Rapid Video Switching X -> Y -> Z",
+    "outcome": "SUCCESS",
+    "staleXStatus": "STALE_GENERATION_DISCARDED",
+    "staleYStatus": "STALE_GENERATION_DISCARDED",
+    "validZStatus": "SUCCESS",
+    "details": "In-flight requests for X and Y were aborted on transition, and late arrivals were rejected as STALE_GENERATION_DISCARDED."
+  },
+  {
+    "caseId": "V-06",
+    "videoId": "long_form_lecture_01",
+    "title": "40-minute Technical Lecture",
+    "trackType": "manual",
+    "format": "json3",
+    "outcome": "SUCCESS",
+    "segmentCount": 600,
+    "totalDurationMs": 2399800,
+    "isMonotonic": true,
+    "anomaliesCount": 0
+  },
+  {
+    "caseId": "V-07",
+    "title": "Logged-out Guest Context",
+    "outcome": "OBSERVED",
+    "details": "Public video timedtext metadata is served without requiring Google account login or auth cookies."
+  },
+  {
+    "caseId": "V-08",
+    "title": "Logged-in Context",
+    "outcome": "OBSERVED",
+    "details": "Extension operates identically within user browser session; no OAuth uploader permissions required."
+  },
+  {
+    "caseId": "V-09",
+    "title": "Ad Transition Lifecycle",
+    "outcome": "OBSERVED",
+    "details": "Ad playback uses separate player state / ad videoId; lifecycle manager ignores ad IDs or resets on main video resumption."
+  },
+  {
+    "caseId": "V-10",
+    "title": "Age-Restricted / Members-Only Edge Case",
+    "outcome": "RECORDED_NON_MVP",
+    "details": "Restricted videos require authenticated player session; outside MVP baseline per D1."
+  }
+]

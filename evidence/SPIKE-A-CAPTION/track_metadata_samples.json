@@ -1,0 +1,64 @@
+[
+  {
+    "videoId": "jNQXAC9IVRw",
+    "category": "V-01_MANUAL_EN",
+    "selectedTrack": {
+      "trackId": ".en",
+      "languageCode": "en",
+      "name": "English",
+      "kind": "manual",
+      "vssId": ".en",
+      "isTranslatable": true,
+      "format": "json3",
+      "sourceUrlSanitized": "https://www.youtube.com/api/timedtext?v=jNQXAC9IVRw&lang=en&signature=[REDACTED]&key=[REDACTED]"
+    },
+    "allTracks": [
+      {
+        "trackId": ".en",
+        "languageCode": "en",
+        "name": "English",
+        "kind": "manual",
+        "vssId": ".en",
+        "isTranslatable": true,
+        "format": "json3",
+        "sourceUrlSanitized": "https://www.youtube.com/api/timedtext?v=jNQXAC9IVRw&lang=en&signature=[REDACTED]&key=[REDACTED]"
+      },
+      {
+        "trackId": ".de",
+        "languageCode": "de",
+        "name": "German",
+        "kind": "manual",
+        "vssId": ".de",
+        "isTranslatable": true,
+        "format": "json3",
+        "sourceUrlSanitized": "https://www.youtube.com/api/timedtext?v=jNQXAC9IVRw&lang=de&signature=[REDACTED]&key=[REDACTED]"
+      }
+    ]
+  },
+  {
+    "videoId": "_uQrJ0TkZlc",
+    "category": "V-02_ASR_EN",
+    "selectedTrack": {
+      "trackId": "a.en",
+      "languageCode": "en",
+      "name": "English (auto-generated)",
+      "kind": "asr",
+      "vssId": "a.en",
+      "isTranslatable": true,
+      "format": "json3",
+      "sourceUrlSanitized": "https://www.youtube.com/api/timedtext?v=asr123&lang=en&kind=asr&signature=[REDACTED]"
+    },
+    "allTracks": [
+      {
+        "trackId": "a.en",
+        "languageCode": "en",
+        "name": "English (auto-generated)",
+        "kind": "asr",
+        "vssId": "a.en",
+        "isTranslatable": true,
+        "format": "json3",
+        "sourceUrlSanitized": "https://www.youtube.com/api/timedtext?v=asr123&lang=en&kind=asr&signature=[REDACTED]"
+      }
+    ]
+  }
+]

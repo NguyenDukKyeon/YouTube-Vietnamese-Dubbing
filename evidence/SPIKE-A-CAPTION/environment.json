@@ -1,0 +1,20 @@
+{
+  "task": "SPIKE-A-CAPTION",
+  "testedImplementationSha": "1523bc5dcb554b07defd342c752c4fb58d062ca8",
+  "runTimestamp": "2026-08-14T18:04:16.008Z",
+  "os": "Windows_NT 10.0.26100 (Windows 11)",
+  "nodeVersion": "v24.15.0",
+  "chromeVersion": "Google Chrome 151.0.7922.109",
+  "chromeFlags": [
+    "--headless=new",
+    "--mute-audio",
+    "--disable-gpu"
+  ],
+  "extensionManifestVersion": "MV3",
+  "sessionContext": "Target Windows Chrome CDP empirical execution session",
+  "redactionPolicy": "Strict redaction: all signature, key, ei, expire, sparams, po_token parameters redacted",
+  "provenanceTopology": {
+    "testedImplementationSha": "1523bc5dcb554b07defd342c752c4fb58d062ca8",
+    "description": "Empirical artifacts capture real Chrome target execution at testedImplementationSha. Subsequent evidence-only commit(s) maintain valid ancestry without self-referential hash recursion."
+  }
+}

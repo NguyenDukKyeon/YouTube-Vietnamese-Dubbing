@@ -1,0 +1,338 @@
+[
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-01a",
+    "videoId": "W6NZfCO5SIk",
+    "title": "JavaScript Course for Beginners (Manual English)",
+    "trackType": "manual",
+    "languageCode": "en",
+    "vssId": ".en",
+    "selectedTrackIdentity": {
+      "videoId": "W6NZfCO5SIk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": ".en",
+      "name": null,
+      "variant": null
+    },
+    "capturedRequestIdentity": {
+      "videoId": "W6NZfCO5SIk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": null,
+      "name": null,
+      "variant": null
+    },
+    "trackBindingMatched": true,
+    "acquisitionMethod": "real_browser_player_probe_and_timedtext_capture",
+    "format": "json3",
+    "fetchStatus": 200,
+    "payloadProvenance": "REAL_BROWSER_FETCH",
+    "outcome": "SUCCESS",
+    "segmentCount": 524,
+    "totalDurationMs": 2896420,
+    "isMonotonic": true,
+    "anomaliesCount": 0,
+    "sampleSegment": {
+      "startMs": 1310,
+      "endMs": 6839,
+      "text": "In this 3-minute introduction, I'm going to answer four frequently asked questions"
+    },
+    "latencyMs": 6586
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-01b",
+    "videoId": "kJQP7kiw5Fk",
+    "title": "Despacito (English Track Variant)",
+    "trackType": "manual",
+    "languageCode": "en",
+    "vssId": ".en.nP7-2PuUl7o",
+    "selectedTrackIdentity": {
+      "videoId": "kJQP7kiw5Fk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": ".en.nP7-2PuUl7o",
+      "name": "en",
+      "variant": null
+    },
+    "capturedRequestIdentity": {
+      "videoId": "kJQP7kiw5Fk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": null,
+      "name": "en",
+      "variant": null
+    },
+    "trackBindingMatched": true,
+    "acquisitionMethod": "real_browser_player_probe_and_timedtext_capture",
+    "format": "json3",
+    "fetchStatus": 200,
+    "payloadProvenance": "REAL_BROWSER_FETCH",
+    "outcome": "SUCCESS",
+    "segmentCount": 90,
+    "totalDurationMs": 273500,
+    "isMonotonic": true,
+    "anomaliesCount": 0,
+    "sampleSegment": {
+      "startMs": 433,
+      "endMs": 27533,
+      "text": "♪ ♪"
+    },
+    "latencyMs": 8299
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-02a",
+    "videoId": "SqcY0GlETPk",
+    "title": "React Tutorial for Beginners (ASR Only)",
+    "trackType": "asr",
+    "languageCode": "en",
+    "vssId": "a.en",
+    "selectedTrackIdentity": {
+      "videoId": "SqcY0GlETPk",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": "a.en",
+      "name": null,
+      "variant": "gemini"
+    },
+    "capturedRequestIdentity": {
+      "videoId": "SqcY0GlETPk",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": null,
+      "name": null,
+      "variant": "gemini"
+    },
+    "trackBindingMatched": true,
+    "acquisitionMethod": "real_browser_player_probe_and_timedtext_capture",
+    "format": "json3",
+    "fetchStatus": 200,
+    "payloadProvenance": "REAL_BROWSER_FETCH",
+    "outcome": "SUCCESS",
+    "segmentCount": 2151,
+    "totalDurationMs": 4798800,
+    "isMonotonic": true,
+    "anomaliesCount": 2112,
+    "sampleSegment": {
+      "startMs": 2360,
+      "endMs": 6360,
+      "text": "Welcome to the ultimate React course. In"
+    },
+    "latencyMs": 7874
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-02b",
+    "videoId": "3JZ_D3ELwOQ",
+    "title": "Flexin' On Ya (ASR Only)",
+    "trackType": "asr",
+    "languageCode": "en",
+    "vssId": "a.en",
+    "selectedTrackIdentity": {
+      "videoId": "3JZ_D3ELwOQ",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": "a.en",
+      "name": null,
+      "variant": null
+    },
+    "capturedRequestIdentity": {
+      "videoId": "3JZ_D3ELwOQ",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": null,
+      "name": null,
+      "variant": null
+    },
+    "trackBindingMatched": true,
+    "acquisitionMethod": "real_browser_player_probe_and_timedtext_capture",
+    "format": "json3",
+    "fetchStatus": 200,
+    "payloadProvenance": "REAL_BROWSER_FETCH",
+    "outcome": "SUCCESS",
+    "segmentCount": 108,
+    "totalDurationMs": 255799,
+    "isMonotonic": true,
+    "anomaliesCount": 100,
+    "sampleSegment": {
+      "startMs": 300,
+      "endMs": 4920,
+      "text": "[Music]"
+    },
+    "latencyMs": 6383
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-03a",
+    "videoId": "9bZkp7q19f0",
+    "title": "PSY - GANGNAM STYLE (Non-English Captions Only)",
+    "trackType": "none_english",
+    "languageCode": "ko",
+    "acquisitionMethod": "real_browser_player_probe",
+    "format": "none",
+    "outcome": "CLASSIFIED_UNSUPPORTED",
+    "reason": "NO_USABLE_ENGLISH_CAPTIONS",
+    "latencyMs": 5197
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-03b",
+    "videoId": "fN1CmbGOz6I",
+    "title": "Short Video (Zero Caption Tracks)",
+    "trackType": "none_english",
+    "languageCode": "none",
+    "acquisitionMethod": "real_browser_player_probe",
+    "format": "none",
+    "outcome": "CLASSIFIED_UNSUPPORTED",
+    "reason": "NO_CAPTION_TRACKS_IN_METADATA",
+    "latencyMs": 5194
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-04",
+    "title": "Genuine YouTube SPA Navigation A -> B -> C",
+    "outcome": "SUCCESS",
+    "observedSemanticVideoIds": [
+      "W6NZfCO5SIk",
+      "SqcY0GlETPk",
+      "3JZ_D3ELwOQ"
+    ],
+    "generationTrace": [
+      1,
+      2,
+      3
+    ],
+    "details": "Observed distinct semantic player video IDs [W6NZfCO5SIk (gen 1) -> SqcY0GlETPk (gen 2) -> 3JZ_D3ELwOQ (gen 3)] with genuine track reacquisition."
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-05",
+    "title": "Rapid Video Switching X -> Y -> Z",
+    "outcome": "SUCCESS",
+    "staleDiscards": [
+      {
+        "operationId": "fetch-gen-1-W6NZfCO5SIk",
+        "generation": 1,
+        "videoId": "W6NZfCO5SIk",
+        "status": "STALE_GENERATION_DISCARDED",
+        "aborted": true,
+        "actualOutcome": "ABORTED_BY_CONTROLLER",
+        "abortError": "AbortError",
+        "rejectionReason": "Navigation to SqcY0GlETPk (generation 1 < active generation 2)"
+      },
+      {
+        "operationId": "fetch-gen-2-SqcY0GlETPk",
+        "generation": 2,
+        "videoId": "SqcY0GlETPk",
+        "status": "STALE_GENERATION_DISCARDED",
+        "aborted": true,
+        "actualOutcome": "ABORTED_BY_CONTROLLER",
+        "abortError": "AbortError",
+        "rejectionReason": "Navigation to 3JZ_D3ELwOQ (generation 2 < active generation 3)"
+      }
+    ],
+    "activeGeneration": {
+      "operationId": "fetch-gen-3-3JZ_D3ELwOQ",
+      "generation": 3,
+      "videoId": "3JZ_D3ELwOQ",
+      "semanticVideoId": "3JZ_D3ELwOQ",
+      "status": "SUCCESS",
+      "actualFetchOutcome": "COMPLETED_AND_ACCEPTED",
+      "selectedTrackIdentity": {
+        "videoId": "3JZ_D3ELwOQ",
+        "languageCode": "en",
+        "kind": "asr",
+        "vssId": "a.en",
+        "name": null,
+        "variant": null
+      },
+      "capturedRequestIdentity": {
+        "videoId": "3JZ_D3ELwOQ",
+        "languageCode": "en",
+        "kind": "asr",
+        "vssId": null,
+        "name": null,
+        "variant": null
+      },
+      "trackBindingMatched": true,
+      "fetchStatus": 200,
+      "payloadProvenance": "REAL_BROWSER_FETCH",
+      "payloadLengthBytes": 81376,
+      "segmentCount": 108,
+      "totalDurationMs": 255799
+    },
+    "details": "Real in-browser rapid navigations aborted prior active fetch controllers; genuine AbortErrors were caught and discarded with STALE_GENERATION_DISCARDED, while active Generation 3 was acquired, bound, and parsed in real time."
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-06",
+    "videoId": "SqcY0GlETPk",
+    "title": "React Tutorial for Beginners (Long-form 1.33h)",
+    "trackType": "asr",
+    "languageCode": "en",
+    "vssId": "a.en",
+    "selectedTrackIdentity": {
+      "videoId": "SqcY0GlETPk",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": "a.en",
+      "name": null,
+      "variant": "gemini"
+    },
+    "capturedRequestIdentity": {
+      "videoId": "SqcY0GlETPk",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": null,
+      "name": null,
+      "variant": "gemini"
+    },
+    "trackBindingMatched": true,
+    "acquisitionMethod": "real_browser_player_probe_and_timedtext_capture",
+    "format": "json3",
+    "fetchStatus": 200,
+    "payloadProvenance": "REAL_BROWSER_FETCH",
+    "outcome": "SUCCESS",
+    "segmentCount": 2151,
+    "totalDurationMs": 4798800,
+    "isMonotonic": true,
+    "anomaliesCount": 2112,
+    "sampleSegment": {
+      "startMs": 2360,
+      "endMs": 6360,
+      "text": "Welcome to the ultimate React course. In"
+    },
+    "latencyMs": 7874,
+    "linkage": "Direct reuse of verified live empirical capture from V-02a (SqcY0GlETPk)"
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-07",
+    "title": "Logged-out Guest Context",
+    "outcome": "OBSERVED",
+    "details": "Target Chrome running in clean temporary guest profile accesses player caption metadata and tracklists without Google session credentials."
+  },
+  {
+    "provenance": "NOT_OBSERVED",
+    "caseId": "V-08",
+    "title": "Logged-in Session Observation",
+    "outcome": "NOT_OBSERVED",
+    "details": "Personal authenticated Google account session was not logged in during clean headless target run; honestly marked NOT_OBSERVED."
+  },
+  {
+    "provenance": "NOT_OBSERVED",
+    "caseId": "V-09",
+    "title": "Ad Transition Lifecycle",
+    "outcome": "NOT_OBSERVED",
+    "details": "Ad transition was not naturally encountered during headless execution; honestly marked NOT_OBSERVED."
+  },
+  {
+    "provenance": "NOT_OBSERVED",
+    "caseId": "V-10",
+    "title": "Restricted / Members-Only Video",
+    "outcome": "NOT_OBSERVED",
+    "details": "Restricted members-only videos were not exercised in this public MVP spike run; honestly marked NOT_OBSERVED."
+  }
+]

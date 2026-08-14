@@ -1,0 +1,175 @@
+[
+  {
+    "timestamp": 1786730709083,
+    "event": "VIDEO_TRANSITION_STARTED",
+    "videoId": "W6NZfCO5SIk",
+    "generation": 1,
+    "details": {},
+    "suite": "SPA_NAVIGATION_A_B_C"
+  },
+  {
+    "timestamp": 1786730715244,
+    "event": "ACQUISITION_COMPLETED",
+    "videoId": "W6NZfCO5SIk",
+    "generation": 1,
+    "details": {
+      "status": "SUCCESS"
+    },
+    "suite": "SPA_NAVIGATION_A_B_C"
+  },
+  {
+    "timestamp": 1786730715245,
+    "event": "ABORT_PRIOR_REQUEST",
+    "videoId": "W6NZfCO5SIk",
+    "generation": 1,
+    "details": {},
+    "suite": "SPA_NAVIGATION_A_B_C"
+  },
+  {
+    "timestamp": 1786730715245,
+    "event": "VIDEO_TRANSITION_STARTED",
+    "videoId": "SqcY0GlETPk",
+    "generation": 2,
+    "details": {},
+    "suite": "SPA_NAVIGATION_A_B_C"
+  },
+  {
+    "timestamp": 1786730719308,
+    "event": "ACQUISITION_COMPLETED",
+    "videoId": "SqcY0GlETPk",
+    "generation": 2,
+    "details": {
+      "status": "SUCCESS"
+    },
+    "suite": "SPA_NAVIGATION_A_B_C"
+  },
+  {
+    "timestamp": 1786730719308,
+    "event": "ABORT_PRIOR_REQUEST",
+    "videoId": "SqcY0GlETPk",
+    "generation": 2,
+    "details": {},
+    "suite": "SPA_NAVIGATION_A_B_C"
+  },
+  {
+    "timestamp": 1786730719308,
+    "event": "VIDEO_TRANSITION_STARTED",
+    "videoId": "3JZ_D3ELwOQ",
+    "generation": 3,
+    "details": {},
+    "suite": "SPA_NAVIGATION_A_B_C"
+  },
+  {
+    "timestamp": 1786730723362,
+    "event": "ACQUISITION_COMPLETED",
+    "videoId": "3JZ_D3ELwOQ",
+    "generation": 3,
+    "details": {
+      "status": "SUCCESS"
+    },
+    "suite": "SPA_NAVIGATION_A_B_C"
+  },
+  {
+    "event": "ACQUISITION_STARTED",
+    "operationId": "fetch-gen-1-W6NZfCO5SIk",
+    "generation": 1,
+    "videoId": "W6NZfCO5SIk",
+    "selectedTrackVssId": ".en",
+    "timestamp": 1786730728554,
+    "suite": "RAPID_SWITCHING_X_Y_Z"
+  },
+  {
+    "event": "ACQUISITION_ABORTED_STALE",
+    "operationId": "fetch-gen-1-W6NZfCO5SIk",
+    "generation": 1,
+    "videoId": "W6NZfCO5SIk",
+    "selectedTrackIdentity": {
+      "videoId": "W6NZfCO5SIk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": ".en"
+    },
+    "requestStarted": true,
+    "requestStartTime": 1786730728554,
+    "navigationTime": 1786730728570,
+    "controllerAbortCalled": true,
+    "signalAborted": true,
+    "actualOutcome": "ABORTED_BY_CONTROLLER",
+    "actualErrorName": "AbortError",
+    "actualErrorMessage": "signal is aborted without reason",
+    "actualErrorConstructor": "DOMException",
+    "completionOrAbortTime": 1786730728618,
+    "staleRejectionReason": "Navigation to SqcY0GlETPk (generation 1 < active generation 2)",
+    "activeGenerationAtDisposition": 2,
+    "suite": "RAPID_SWITCHING_X_Y_Z"
+  },
+  {
+    "event": "ACQUISITION_STARTED",
+    "operationId": "fetch-gen-2-SqcY0GlETPk",
+    "generation": 2,
+    "videoId": "SqcY0GlETPk",
+    "selectedTrackVssId": "a.en",
+    "timestamp": 1786730730630,
+    "suite": "RAPID_SWITCHING_X_Y_Z"
+  },
+  {
+    "event": "ACQUISITION_ABORTED_STALE",
+    "operationId": "fetch-gen-2-SqcY0GlETPk",
+    "generation": 2,
+    "videoId": "SqcY0GlETPk",
+    "selectedTrackIdentity": {
+      "videoId": "SqcY0GlETPk",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": "a.en"
+    },
+    "requestStarted": true,
+    "requestStartTime": 1786730730630,
+    "navigationTime": 1786730730646,
+    "controllerAbortCalled": true,
+    "signalAborted": true,
+    "actualOutcome": "ABORTED_BY_CONTROLLER",
+    "actualErrorName": "AbortError",
+    "actualErrorMessage": "signal is aborted without reason",
+    "actualErrorConstructor": "DOMException",
+    "completionOrAbortTime": 1786730730692,
+    "staleRejectionReason": "Navigation to 3JZ_D3ELwOQ (generation 2 < active generation 3)",
+    "activeGenerationAtDisposition": 3,
+    "suite": "RAPID_SWITCHING_X_Y_Z"
+  },
+  {
+    "event": "ACQUISITION_COMPLETED",
+    "operationId": "fetch-gen-3-3JZ_D3ELwOQ",
+    "generation": 3,
+    "videoId": "3JZ_D3ELwOQ",
+    "semanticVideoId": "3JZ_D3ELwOQ",
+    "selectedTrackIdentity": {
+      "videoId": "3JZ_D3ELwOQ",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": "a.en",
+      "name": null,
+      "variant": null
+    },
+    "requestStarted": true,
+    "requestStartTime": 1786730734204,
+    "capturedRequestIdentity": {
+      "videoId": "3JZ_D3ELwOQ",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": null,
+      "name": null,
+      "variant": null
+    },
+    "trackBindingMatched": true,
+    "httpStatus": 200,
+    "payloadProvenance": "REAL_BROWSER_FETCH",
+    "payloadLengthBytes": 81376,
+    "parsedSegmentCount": 108,
+    "totalDurationMs": 255799,
+    "isMonotonic": true,
+    "completionTime": 1786730736312,
+    "actualOutcome": "COMPLETED_AND_ACCEPTED",
+    "suite": "RAPID_SWITCHING_X_Y_Z"
+  }
+]

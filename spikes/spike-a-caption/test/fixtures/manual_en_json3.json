@@ -1,0 +1,35 @@
+{
+  "wireMagic": "pb3",
+  "pens": [{}],
+  "wsWinStyles": [{}],
+  "wpWinPositions": [{}],
+  "events": [
+    {
+      "tStartMs": 1000,
+      "dDurationMs": 3200,
+      "wWinId": 1,
+      "segs": [
+        { "utf8": "Welcome to this " },
+        { "utf8": "comprehensive demonstration." }
+      ]
+    },
+    {
+      "tStartMs": 4500,
+      "dDurationMs": 2800,
+      "wWinId": 1,
+      "segs": [
+        { "utf8": "We are testing manual " },
+        { "utf8": "English caption extraction." }
+      ]
+    },
+    {
+      "tStartMs": 7500,
+      "dDurationMs": 4000,
+      "wWinId": 1,
+      "segs": [
+        { "utf8": "Timing and text normalization " },
+        { "utf8": "must be preserved accurately." }
+      ]
+    }
+  ]
+}

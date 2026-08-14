@@ -1,0 +1,66 @@
+{
+  "multi_track": {
+    "captions": {
+      "playerCaptionsTracklistRenderer": {
+        "captionTracks": [
+          {
+            "baseUrl": "https://www.youtube.com/api/timedtext?v=vid123&lang=en&name=en&expire=1700000000&signature=SIG1",
+            "name": { "simpleText": "English" },
+            "vssId": ".en",
+            "languageCode": "en",
+            "isTranslatable": true
+          },
+          {
+            "baseUrl": "https://www.youtube.com/api/timedtext?v=vid123&lang=en&kind=asr&expire=1700000000&signature=SIG2",
+            "name": { "simpleText": "English (auto-generated)" },
+            "vssId": "a.en",
+            "languageCode": "en",
+            "kind": "asr",
+            "isTranslatable": true
+          },
+          {
+            "baseUrl": "https://www.youtube.com/api/timedtext?v=vid123&lang=vi&expire=1700000000&signature=SIG3",
+            "name": { "simpleText": "Tiếng Việt" },
+            "vssId": ".vi",
+            "languageCode": "vi",
+            "isTranslatable": true
+          }
+        ]
+      }
+    }
+  },
+  "asr_only": {
+    "captions": {
+      "playerCaptionsTracklistRenderer": {
+        "captionTracks": [
+          {
+            "baseUrl": "https://www.youtube.com/api/timedtext?v=vid456&lang=en&kind=asr&expire=1700000000&signature=SIG4",
+            "name": { "simpleText": "English (auto-generated)" },
+            "vssId": "a.en",
+            "languageCode": "en",
+            "kind": "asr",
+            "isTranslatable": true
+          }
+        ]
+      }
+    }
+  },
+  "non_english_only": {
+    "captions": {
+      "playerCaptionsTracklistRenderer": {
+        "captionTracks": [
+          {
+            "baseUrl": "https://www.youtube.com/api/timedtext?v=vid789&lang=ja&expire=1700000000&signature=SIG5",
+            "name": { "simpleText": "Japanese" },
+            "vssId": ".ja",
+            "languageCode": "ja",
+            "isTranslatable": true
+          }
+        ]
+      }
+    }
+  },
+  "no_captions": {
+    "captions": null
+  }
+}

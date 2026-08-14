@@ -1,0 +1,328 @@
+[
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-01a",
+    "videoId": "W6NZfCO5SIk",
+    "semanticPlayerVideoId": "W6NZfCO5SIk",
+    "title": "JavaScript Course for Beginners (Manual English)",
+    "documentTitle": "JavaScript Course for Beginners – Your First Step to Web Development - YouTube",
+    "tracksCount": 2,
+    "allTracksSanitized": [
+      {
+        "languageCode": "en",
+        "vssId": ".en",
+        "kind": "manual",
+        "name": {
+          "simpleText": "English"
+        },
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=W6NZfCO5SIk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=en"
+      },
+      {
+        "languageCode": "en",
+        "vssId": "a.en",
+        "kind": "asr",
+        "name": {
+          "simpleText": "English (auto-generated)"
+        },
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=W6NZfCO5SIk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en"
+      }
+    ],
+    "hasManualEn": true,
+    "hasAsrEn": true,
+    "isAsrOnly": false,
+    "selectedTrackVssId": ".en",
+    "selectedTrackKind": "manual",
+    "selectedTrackIdentity": {
+      "videoId": "W6NZfCO5SIk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": ".en",
+      "name": null,
+      "variant": null
+    },
+    "capturedRequestIdentity": {
+      "videoId": "W6NZfCO5SIk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": null,
+      "name": null,
+      "variant": null
+    },
+    "trackBindingMatched": true,
+    "timedtextCapture": {
+      "httpStatus": 200,
+      "payloadProvenance": "REAL_BROWSER_FETCH",
+      "payloadLengthBytes": 90146,
+      "sanitizedRequestUrl": "https://www.youtube.com/api/timedtext?v=W6NZfCO5SIk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=en&potc=[REDACTED]&pot=[REDACTED]&fmt=json3&xorb=[REDACTED]&xobt=[REDACTED]&xovt=[REDACTED]&cbr=[REDACTED]&cbrver=[REDACTED]&c=[REDACTED]&cver=[REDACTED]&cplayer=[REDACTED]&cos=[REDACTED]&cosver=[REDACTED]&cplatform=[REDACTED]",
+      "parsedSegmentCount": 524,
+      "totalDurationMs": 2896420,
+      "isMonotonic": true,
+      "sampleSegment": {
+        "startMs": 1310,
+        "endMs": 6839,
+        "text": "In this 3-minute introduction, I'm going to answer four frequently asked questions"
+      }
+    },
+    "latencyMs": 6586
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-01b",
+    "videoId": "kJQP7kiw5Fk",
+    "semanticPlayerVideoId": "kJQP7kiw5Fk",
+    "title": "Despacito (English Track Variant)",
+    "documentTitle": "Luis Fonsi - Despacito ft. Daddy Yankee - YouTube",
+    "tracksCount": 6,
+    "allTracksSanitized": [
+      {
+        "languageCode": "en",
+        "vssId": ".en.nP7-2PuUl7o",
+        "kind": "manual",
+        "name": {
+          "simpleText": "English - en"
+        },
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=kJQP7kiw5Fk&ei=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=en&name=en"
+      },
+      {
+        "languageCode": "en",
+        "vssId": ".en.eEY6OEpapPo",
+        "kind": "manual",
+        "name": {
+          "simpleText": "English - English"
+        },
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=kJQP7kiw5Fk&ei=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=en&name=English"
+      },
+      {
+        "languageCode": "en-US",
+        "vssId": ".en-US.njLgzgtehjs",
+        "kind": "manual",
+        "name": {
+          "simpleText": "English (United States) - English - United States"
+        },
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=kJQP7kiw5Fk&ei=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=en-US&name=English%20-%20United%20States"
+      },
+      {
+        "languageCode": "ja",
+        "vssId": ".ja",
+        "kind": "manual",
+        "name": {
+          "simpleText": "Japanese"
+        },
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=kJQP7kiw5Fk&ei=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=ja"
+      },
+      {
+        "languageCode": "es",
+        "vssId": ".es",
+        "kind": "manual",
+        "name": {
+          "simpleText": "Spanish"
+        },
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=kJQP7kiw5Fk&ei=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=es"
+      },
+      {
+        "languageCode": "es-ES",
+        "vssId": ".es-ES.7eCR4kqQbL4",
+        "kind": "manual",
+        "name": {
+          "simpleText": "Spanish (Spain) - Spanish - Spain"
+        },
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=kJQP7kiw5Fk&ei=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=es-ES&name=Spanish%20-%20Spain"
+      }
+    ],
+    "hasManualEn": true,
+    "hasAsrEn": false,
+    "isAsrOnly": false,
+    "selectedTrackVssId": ".en.nP7-2PuUl7o",
+    "selectedTrackKind": "manual",
+    "selectedTrackIdentity": {
+      "videoId": "kJQP7kiw5Fk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": ".en.nP7-2PuUl7o",
+      "name": "en",
+      "variant": null
+    },
+    "capturedRequestIdentity": {
+      "videoId": "kJQP7kiw5Fk",
+      "languageCode": "en",
+      "kind": "manual",
+      "vssId": null,
+      "name": "en",
+      "variant": null
+    },
+    "trackBindingMatched": true,
+    "timedtextCapture": {
+      "httpStatus": 200,
+      "payloadProvenance": "REAL_BROWSER_FETCH",
+      "payloadLengthBytes": 18737,
+      "sanitizedRequestUrl": "https://www.youtube.com/api/timedtext?v=kJQP7kiw5Fk&ei=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&lang=en&name=en&potc=[REDACTED]&pot=[REDACTED]&fmt=json3&xorb=[REDACTED]&xobt=[REDACTED]&xovt=[REDACTED]&cbr=[REDACTED]&cbrver=[REDACTED]&c=[REDACTED]&cver=[REDACTED]&cplayer=[REDACTED]&cos=[REDACTED]&cosver=[REDACTED]&cplatform=[REDACTED]",
+      "parsedSegmentCount": 90,
+      "totalDurationMs": 273500,
+      "isMonotonic": true,
+      "sampleSegment": {
+        "startMs": 433,
+        "endMs": 27533,
+        "text": "♪ ♪"
+      }
+    },
+    "latencyMs": 8299
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-02a",
+    "videoId": "SqcY0GlETPk",
+    "semanticPlayerVideoId": "SqcY0GlETPk",
+    "title": "React Tutorial for Beginners (ASR Only)",
+    "documentTitle": "React Tutorial for Beginners - YouTube",
+    "tracksCount": 1,
+    "allTracksSanitized": [
+      {
+        "languageCode": "en",
+        "vssId": "a.en",
+        "kind": "asr",
+        "name": {
+          "simpleText": "English (auto-generated)"
+        },
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=SqcY0GlETPk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en&variant=gemini"
+      }
+    ],
+    "hasManualEn": false,
+    "hasAsrEn": true,
+    "isAsrOnly": true,
+    "selectedTrackVssId": "a.en",
+    "selectedTrackKind": "asr",
+    "selectedTrackIdentity": {
+      "videoId": "SqcY0GlETPk",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": "a.en",
+      "name": null,
+      "variant": "gemini"
+    },
+    "capturedRequestIdentity": {
+      "videoId": "SqcY0GlETPk",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": null,
+      "name": null,
+      "variant": "gemini"
+    },
+    "trackBindingMatched": true,
+    "timedtextCapture": {
+      "httpStatus": 200,
+      "payloadProvenance": "REAL_BROWSER_FETCH",
+      "payloadLengthBytes": 1145797,
+      "sanitizedRequestUrl": "https://www.youtube.com/api/timedtext?v=SqcY0GlETPk&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en&variant=gemini&potc=[REDACTED]&pot=[REDACTED]&fmt=json3&xorb=[REDACTED]&xobt=[REDACTED]&xovt=[REDACTED]&cbr=[REDACTED]&cbrver=[REDACTED]&c=[REDACTED]&cver=[REDACTED]&cplayer=[REDACTED]&cos=[REDACTED]&cosver=[REDACTED]&cplatform=[REDACTED]",
+      "parsedSegmentCount": 2151,
+      "totalDurationMs": 4798800,
+      "isMonotonic": true,
+      "sampleSegment": {
+        "startMs": 2360,
+        "endMs": 6360,
+        "text": "Welcome to the ultimate React course. In"
+      }
+    },
+    "latencyMs": 7874
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-02b",
+    "videoId": "3JZ_D3ELwOQ",
+    "semanticPlayerVideoId": "3JZ_D3ELwOQ",
+    "title": "Flexin' On Ya (ASR Only)",
+    "documentTitle": "Flexin' On Ya (2014) - YouTube",
+    "tracksCount": 1,
+    "allTracksSanitized": [
+      {
+        "languageCode": "en",
+        "vssId": "a.en",
+        "kind": "asr",
+        "name": {
+          "simpleText": "English (auto-generated)"
+        },
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=3JZ_D3ELwOQ&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en"
+      }
+    ],
+    "hasManualEn": false,
+    "hasAsrEn": true,
+    "isAsrOnly": true,
+    "selectedTrackVssId": "a.en",
+    "selectedTrackKind": "asr",
+    "selectedTrackIdentity": {
+      "videoId": "3JZ_D3ELwOQ",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": "a.en",
+      "name": null,
+      "variant": null
+    },
+    "capturedRequestIdentity": {
+      "videoId": "3JZ_D3ELwOQ",
+      "languageCode": "en",
+      "kind": "asr",
+      "vssId": null,
+      "name": null,
+      "variant": null
+    },
+    "trackBindingMatched": true,
+    "timedtextCapture": {
+      "httpStatus": 200,
+      "payloadProvenance": "REAL_BROWSER_FETCH",
+      "payloadLengthBytes": 81376,
+      "sanitizedRequestUrl": "https://www.youtube.com/api/timedtext?v=3JZ_D3ELwOQ&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=en&potc=[REDACTED]&pot=[REDACTED]&fmt=json3&xorb=[REDACTED]&xobt=[REDACTED]&xovt=[REDACTED]&cbr=[REDACTED]&cbrver=[REDACTED]&c=[REDACTED]&cver=[REDACTED]&cplayer=[REDACTED]&cos=[REDACTED]&cosver=[REDACTED]&cplatform=[REDACTED]",
+      "parsedSegmentCount": 108,
+      "totalDurationMs": 255799,
+      "isMonotonic": true,
+      "sampleSegment": {
+        "startMs": 300,
+        "endMs": 4920,
+        "text": "[Music]"
+      }
+    },
+    "latencyMs": 6383
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-03a",
+    "videoId": "9bZkp7q19f0",
+    "semanticPlayerVideoId": "9bZkp7q19f0",
+    "title": "PSY - GANGNAM STYLE (Non-English Captions)",
+    "documentTitle": "PSY - GANGNAM STYLE(강남스타일) M/V - YouTube",
+    "tracksCount": 1,
+    "allTracksSanitized": [
+      {
+        "languageCode": "ko",
+        "vssId": "a.ko",
+        "kind": "asr",
+        "name": {
+          "simpleText": "Korean (auto-generated)"
+        },
+        "baseUrlSanitized": "https://www.youtube.com/api/timedtext?v=9bZkp7q19f0&ei=[REDACTED]&caps=[REDACTED]&opi=[REDACTED]&exp=[REDACTED]&xoaf=[REDACTED]&xowf=[REDACTED]&hl=[REDACTED]&ip=[REDACTED]&ipbits=[REDACTED]&expire=[REDACTED]&sparams=[REDACTED]&signature=[REDACTED]&key=[REDACTED]&kind=asr&lang=ko"
+      }
+    ],
+    "hasManualEn": false,
+    "hasAsrEn": false,
+    "isAsrOnly": false,
+    "selectedTrackVssId": null,
+    "selectedTrackKind": null,
+    "classificationResult": "NO_USABLE_ENGLISH_CAPTIONS",
+    "latencyMs": 5197
+  },
+  {
+    "provenance": "REAL_BROWSER_OBSERVATION",
+    "caseId": "V-03b",
+    "videoId": "fN1CmbGOz6I",
+    "semanticPlayerVideoId": "fN1CmbGOz6I",
+    "title": "Short Video (Zero Caption Tracks)",
+    "documentTitle": "YouTube",
+    "tracksCount": 0,
+    "allTracksSanitized": [],
+    "hasManualEn": false,
+    "hasAsrEn": false,
+    "isAsrOnly": false,
+    "selectedTrackVssId": null,
+    "selectedTrackKind": null,
+    "classificationResult": "NO_CAPTION_TRACKS_IN_METADATA",
+    "latencyMs": 5194
+  }
+]

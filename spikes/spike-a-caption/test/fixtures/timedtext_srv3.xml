@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<timedtext format="3">
+  <head>
+    <ws id="0"/>
+    <wp id="0" ap="7" ah="0" av="0" rc="1" cc="1"/>
+  </head>
+  <body>
+    <p t="1500" d="3500" wp="0" ws="0">
+      <s>This is an XML timedtext</s>
+      <s> format payload.</s>
+    </p>
+    <p t="5200" d="2800" wp="0" ws="0">
+      <s>Testing cross-format resilience.</s>
+    </p>
+  </body>
+</timedtext>

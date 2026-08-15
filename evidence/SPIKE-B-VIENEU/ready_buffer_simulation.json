@@ -1,0 +1,44 @@
+{
+  "totalChunks": 35,
+  "totalWallSec": 250.265,
+  "totalAudioSec": 272.0,
+  "overallThroughput": 1.087,
+  "rates": {
+    "1.0": {
+      "playbackRate": 1.0,
+      "isSustained": true,
+      "headroomPerSec": 0.087,
+      "exhaustionCountWithInitialBuffer": 9,
+      "minBufferLevelSec": -7.478,
+      "finalBufferLevelSec": 44.477,
+      "requiredInitialPrebufferSec": 7.478
+    },
+    "1.25": {
+      "playbackRate": 1.25,
+      "isSustained": false,
+      "headroomPerSec": -0.163,
+      "exhaustionCountWithInitialBuffer": 11,
+      "minBufferLevelSec": -12.359,
+      "finalBufferLevelSec": 19.691,
+      "requiredInitialPrebufferSec": 12.359
+    },
+    "1.5": {
+      "playbackRate": 1.5,
+      "isSustained": false,
+      "headroomPerSec": -0.413,
+      "exhaustionCountWithInitialBuffer": 13,
+      "minBufferLevelSec": -29.071,
+      "finalBufferLevelSec": 17.861,
+      "requiredInitialPrebufferSec": 29.071
+    },
+    "2.0": {
+      "playbackRate": 2.0,
+      "isSustained": false,
+      "headroomPerSec": -0.913,
+      "exhaustionCountWithInitialBuffer": 19,
+      "minBufferLevelSec": -41.641,
+      "finalBufferLevelSec": 14.201,
+      "requiredInitialPrebufferSec": 41.641
+    }
+  }
+}

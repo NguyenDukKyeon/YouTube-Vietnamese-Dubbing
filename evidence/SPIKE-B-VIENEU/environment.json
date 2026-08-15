@@ -1,0 +1,31 @@
+{
+  "testedImplementationSha": "b6805205fd6335f5887a3f92851e34b309ab3d2b",
+  "os": {
+    "platform": "win32",
+    "system": "Windows",
+    "release": "11",
+    "version": "10.0.26200",
+    "architecture": "64bit"
+  },
+  "hardware": {
+    "cpu": "Intel(R) Core(TM) i5-10400H CPU @ 2.60GHz",
+    "physicalCores": 4,
+    "logicalCores": 8,
+    "totalRamGb": 7.61,
+    "availableRamGb": 0.5,
+    "gpu": "Intel(R) UHD Graphics"
+  },
+  "runtime": {
+    "pythonVersion": "3.12.13",
+    "pythonExecutable": "D:\\Workspace\\Youtube dubbing\\spikes\\spike-b-vieneu\\.venv\\Scripts\\python.exe",
+    "onnxruntimeVersion": "1.28.0",
+    "vieneuPackageVersion": "3.2.5",
+    "backend": "ONNX CPU (OnnxV3LiteEngine)",
+    "precision": "int8",
+    "modelRepo": "pnnbao-ump/VieNeu-TTS-v3-Turbo",
+    "modelSubfolder": "onnx_int8",
+    "codecRepo": "OpenMOSS-Team/MOSS-Audio-Tokenizer-Nano-ONNX",
+    "sampleRateHz": 48000,
+    "channels": 1
+  }
+}

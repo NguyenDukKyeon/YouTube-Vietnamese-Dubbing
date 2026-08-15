@@ -1,0 +1,646 @@
+{
+  "totalChunks": 35,
+  "totalWallSec": 250.27,
+  "totalAudioSec": 272.0,
+  "sustainedThroughput": 1.0868,
+  "sustainedRtf": 0.9201,
+  "initialRssMb": 2014.45,
+  "peakRssMb": 2033.78,
+  "finalRssMb": 1192.38,
+  "rssGrowthRateMbPerChunk": -23.4877,
+  "isMemoryStable": true,
+  "timeline": [
+    {
+      "sequenceIndex": 1,
+      "sampleId": "VN-NORM-01",
+      "category": "NORMAL_VIETNAMESE",
+      "charCount": 73,
+      "wallSec": 2.9386,
+      "audioSec": 5.04,
+      "rtf": 0.5831,
+      "mediaSecondsPerWallSecond": 1.7151,
+      "cumulativeWallSec": 2.939,
+      "cumulativeAudioSec": 5.04,
+      "cumulativeThroughput": 1.7151,
+      "rssMb": 2014.45
+    },
+    {
+      "sequenceIndex": 2,
+      "sampleId": "VN-NORM-02",
+      "category": "NORMAL_VIETNAMESE",
+      "charCount": 123,
+      "wallSec": 5.5853,
+      "audioSec": 7.6,
+      "rtf": 0.7349,
+      "mediaSecondsPerWallSecond": 1.3607,
+      "cumulativeWallSec": 8.524,
+      "cumulativeAudioSec": 12.64,
+      "cumulativeThroughput": 1.4829,
+      "rssMb": 2033.78
+    },
+    {
+      "sequenceIndex": 3,
+      "sampleId": "VN-CS-01",
+      "category": "CODE_SWITCHING",
+      "charCount": 116,
+      "wallSec": 9.1973,
+      "audioSec": 8.64,
+      "rtf": 1.0645,
+      "mediaSecondsPerWallSecond": 0.9394,
+      "cumulativeWallSec": 17.721,
+      "cumulativeAudioSec": 21.28,
+      "cumulativeThroughput": 1.2008,
+      "rssMb": 1908.32
+    },
+    {
+      "sequenceIndex": 4,
+      "sampleId": "VN-CS-02",
+      "category": "CODE_SWITCHING",
+      "charCount": 112,
+      "wallSec": 9.6025,
+      "audioSec": 8.32,
+      "rtf": 1.1541,
+      "mediaSecondsPerWallSecond": 0.8664,
+      "cumulativeWallSec": 27.324,
+      "cumulativeAudioSec": 29.6,
+      "cumulativeThroughput": 1.0833,
+      "rssMb": 1232.29
+    },
+    {
+      "sequenceIndex": 5,
+      "sampleId": "VN-CS-03",
+      "category": "CODE_SWITCHING",
+      "charCount": 101,
+      "wallSec": 15.7976,
+      "audioSec": 9.76,
+      "rtf": 1.6186,
+      "mediaSecondsPerWallSecond": 0.6178,
+      "cumulativeWallSec": 43.121,
+      "cumulativeAudioSec": 39.36,
+      "cumulativeThroughput": 0.9128,
+      "rssMb": 1043.84
+    },
+    {
+      "sequenceIndex": 6,
+      "sampleId": "VN-PROG-01",
+      "category": "PROGRAMMING_TECHNICAL",
+      "charCount": 118,
+      "wallSec": 8.6762,
+      "audioSec": 11.44,
+      "rtf": 0.7584,
+      "mediaSecondsPerWallSecond": 1.3185,
+      "cumulativeWallSec": 51.798,
+      "cumulativeAudioSec": 50.8,
+      "cumulativeThroughput": 0.9807,
+      "rssMb": 1509.43
+    },
+    {
+      "sequenceIndex": 7,
+      "sampleId": "VN-MATH-01",
+      "category": "MATHEMATICS",
+      "charCount": 98,
+      "wallSec": 3.9185,
+      "audioSec": 5.68,
+      "rtf": 0.6899,
+      "mediaSecondsPerWallSecond": 1.4495,
+      "cumulativeWallSec": 55.716,
+      "cumulativeAudioSec": 56.48,
+      "cumulativeThroughput": 1.0137,
+      "rssMb": 1517.05
+    },
+    {
+      "sequenceIndex": 8,
+      "sampleId": "VN-MATH-02",
+      "category": "MATHEMATICS",
+      "charCount": 106,
+      "wallSec": 6.258,
+      "audioSec": 6.08,
+      "rtf": 1.0293,
+      "mediaSecondsPerWallSecond": 0.9716,
+      "cumulativeWallSec": 61.974,
+      "cumulativeAudioSec": 62.56,
+      "cumulativeThroughput": 1.0095,
+      "rssMb": 1508.09
+    },
+    {
+      "sequenceIndex": 9,
+      "sampleId": "VN-PHYS-01",
+      "category": "PHYSICS",
+      "charCount": 122,
+      "wallSec": 14.8003,
+      "audioSec": 7.28,
+      "rtf": 2.033,
+      "mediaSecondsPerWallSecond": 0.4919,
+      "cumulativeWallSec": 76.774,
+      "cumulativeAudioSec": 69.84,
+      "cumulativeThroughput": 0.9097,
+      "rssMb": 684.04
+    },
+    {
+      "sequenceIndex": 10,
+      "sampleId": "VN-CHEM-01",
+      "category": "CHEMISTRY",
+      "charCount": 119,
+      "wallSec": 9.6466,
+      "audioSec": 10.16,
+      "rtf": 0.9495,
+      "mediaSecondsPerWallSecond": 1.0532,
+      "cumulativeWallSec": 86.421,
+      "cumulativeAudioSec": 80.0,
+      "cumulativeThroughput": 0.9257,
+      "rssMb": 1455.66
+    },
+    {
+      "sequenceIndex": 11,
+      "sampleId": "VN-NUM-01",
+      "category": "NUMBERS_DATES_VERSIONS",
+      "charCount": 121,
+      "wallSec": 12.7861,
+      "audioSec": 13.36,
+      "rtf": 0.957,
+      "mediaSecondsPerWallSecond": 1.0449,
+      "cumulativeWallSec": 99.207,
+      "cumulativeAudioSec": 93.36,
+      "cumulativeThroughput": 0.9411,
+      "rssMb": 1439.69
+    },
+    {
+      "sequenceIndex": 12,
+      "sampleId": "VN-ACRO-01",
+      "category": "ACRONYMS",
+      "charCount": 97,
+      "wallSec": 7.1029,
+      "audioSec": 8.8,
+      "rtf": 0.8072,
+      "mediaSecondsPerWallSecond": 1.2389,
+      "cumulativeWallSec": 106.31,
+      "cumulativeAudioSec": 102.16,
+      "cumulativeThroughput": 0.961,
+      "rssMb": 1705.7
+    },
+    {
+      "sequenceIndex": 13,
+      "sampleId": "VN-PUNCT-01",
+      "category": "PUNCTUATION_HEAVY",
+      "charCount": 117,
+      "wallSec": 9.2697,
+      "audioSec": 9.6,
+      "rtf": 0.9656,
+      "mediaSecondsPerWallSecond": 1.0356,
+      "cumulativeWallSec": 115.58,
+      "cumulativeAudioSec": 111.76,
+      "cumulativeThroughput": 0.967,
+      "rssMb": 1824.56
+    },
+    {
+      "sequenceIndex": 14,
+      "sampleId": "VN-LONG-01",
+      "category": "LONG_PARAGRAPH",
+      "charCount": 322,
+      "wallSec": 18.9224,
+      "audioSec": 19.96,
+      "rtf": 0.948,
+      "mediaSecondsPerWallSecond": 1.0548,
+      "cumulativeWallSec": 134.502,
+      "cumulativeAudioSec": 131.72,
+      "cumulativeThroughput": 0.9793,
+      "rssMb": 1499.13
+    },
+    {
+      "sequenceIndex": 15,
+      "sampleId": "VN-FIT-01",
+      "category": "DURATION_FIT_SHORT",
+      "charCount": 10,
+      "wallSec": 0.7608,
+      "audioSec": 0.72,
+      "rtf": 1.0566,
+      "mediaSecondsPerWallSecond": 0.9464,
+      "cumulativeWallSec": 135.263,
+      "cumulativeAudioSec": 132.44,
+      "cumulativeThroughput": 0.9791,
+      "rssMb": 1091.65
+    },
+    {
+      "sequenceIndex": 16,
+      "sampleId": "VN-FIT-02",
+      "category": "DURATION_FIT_SHORT",
+      "charCount": 31,
+      "wallSec": 1.1136,
+      "audioSec": 2.08,
+      "rtf": 0.5354,
+      "mediaSecondsPerWallSecond": 1.8678,
+      "cumulativeWallSec": 136.376,
+      "cumulativeAudioSec": 134.52,
+      "cumulativeThroughput": 0.9864,
+      "rssMb": 1129.96
+    },
+    {
+      "sequenceIndex": 17,
+      "sampleId": "VN-FIT-03",
+      "category": "DURATION_FIT_SHORT",
+      "charCount": 33,
+      "wallSec": 1.128,
+      "audioSec": 2.16,
+      "rtf": 0.5222,
+      "mediaSecondsPerWallSecond": 1.915,
+      "cumulativeWallSec": 137.504,
+      "cumulativeAudioSec": 136.68,
+      "cumulativeThroughput": 0.994,
+      "rssMb": 1152.47
+    },
+    {
+      "sequenceIndex": 18,
+      "sampleId": "VN-NORM-01",
+      "category": "NORMAL_VIETNAMESE",
+      "charCount": 73,
+      "wallSec": 2.6546,
+      "audioSec": 4.48,
+      "rtf": 0.5926,
+      "mediaSecondsPerWallSecond": 1.6876,
+      "cumulativeWallSec": 140.159,
+      "cumulativeAudioSec": 141.16,
+      "cumulativeThroughput": 1.0071,
+      "rssMb": 1162.53
+    },
+    {
+      "sequenceIndex": 19,
+      "sampleId": "VN-NORM-02",
+      "category": "NORMAL_VIETNAMESE",
+      "charCount": 123,
+      "wallSec": 5.1279,
+      "audioSec": 7.04,
+      "rtf": 0.7284,
+      "mediaSecondsPerWallSecond": 1.3729,
+      "cumulativeWallSec": 145.287,
+      "cumulativeAudioSec": 148.2,
+      "cumulativeThroughput": 1.0201,
+      "rssMb": 1310.79
+    },
+    {
+      "sequenceIndex": 20,
+      "sampleId": "VN-CS-01",
+      "category": "CODE_SWITCHING",
+      "charCount": 116,
+      "wallSec": 5.659,
+      "audioSec": 8.16,
+      "rtf": 0.6935,
+      "mediaSecondsPerWallSecond": 1.442,
+      "cumulativeWallSec": 150.946,
+      "cumulativeAudioSec": 156.36,
+      "cumulativeThroughput": 1.0359,
+      "rssMb": 1122.28
+    },
+    {
+      "sequenceIndex": 21,
+      "sampleId": "VN-CS-02",
+      "category": "CODE_SWITCHING",
+      "charCount": 112,
+      "wallSec": 4.4512,
+      "audioSec": 8.0,
+      "rtf": 0.5564,
+      "mediaSecondsPerWallSecond": 1.7973,
+      "cumulativeWallSec": 155.397,
+      "cumulativeAudioSec": 164.36,
+      "cumulativeThroughput": 1.0577,
+      "rssMb": 1139.3
+    },
+    {
+      "sequenceIndex": 22,
+      "sampleId": "VN-CS-03",
+      "category": "CODE_SWITCHING",
+      "charCount": 101,
+      "wallSec": 4.3498,
+      "audioSec": 7.84,
+      "rtf": 0.5548,
+      "mediaSecondsPerWallSecond": 1.8024,
+      "cumulativeWallSec": 159.747,
+      "cumulativeAudioSec": 172.2,
+      "cumulativeThroughput": 1.078,
+      "rssMb": 1140.8
+    },
+    {
+      "sequenceIndex": 23,
+      "sampleId": "VN-PROG-01",
+      "category": "PROGRAMMING_TECHNICAL",
+      "charCount": 118,
+      "wallSec": 8.4259,
+      "audioSec": 11.44,
+      "rtf": 0.7365,
+      "mediaSecondsPerWallSecond": 1.3577,
+      "cumulativeWallSec": 168.173,
+      "cumulativeAudioSec": 183.64,
+      "cumulativeThroughput": 1.092,
+      "rssMb": 1837.75
+    },
+    {
+      "sequenceIndex": 24,
+      "sampleId": "VN-MATH-01",
+      "category": "MATHEMATICS",
+      "charCount": 98,
+      "wallSec": 3.5221,
+      "audioSec": 5.68,
+      "rtf": 0.6201,
+      "mediaSecondsPerWallSecond": 1.6127,
+      "cumulativeWallSec": 171.695,
+      "cumulativeAudioSec": 189.32,
+      "cumulativeThroughput": 1.1027,
+      "rssMb": 1226.49
+    },
+    {
+      "sequenceIndex": 25,
+      "sampleId": "VN-MATH-02",
+      "category": "MATHEMATICS",
+      "charCount": 106,
+      "wallSec": 4.2988,
+      "audioSec": 6.8,
+      "rtf": 0.6322,
+      "mediaSecondsPerWallSecond": 1.5818,
+      "cumulativeWallSec": 175.994,
+      "cumulativeAudioSec": 196.12,
+      "cumulativeThroughput": 1.1144,
+      "rssMb": 1380.95
+    },
+    {
+      "sequenceIndex": 26,
+      "sampleId": "VN-PHYS-01",
+      "category": "PHYSICS",
+      "charCount": 122,
+      "wallSec": 3.9574,
+      "audioSec": 7.28,
+      "rtf": 0.5436,
+      "mediaSecondsPerWallSecond": 1.8396,
+      "cumulativeWallSec": 179.951,
+      "cumulativeAudioSec": 203.4,
+      "cumulativeThroughput": 1.1303,
+      "rssMb": 1718.29
+    },
+    {
+      "sequenceIndex": 27,
+      "sampleId": "VN-CHEM-01",
+      "category": "CHEMISTRY",
+      "charCount": 119,
+      "wallSec": 5.6945,
+      "audioSec": 10.08,
+      "rtf": 0.5649,
+      "mediaSecondsPerWallSecond": 1.7701,
+      "cumulativeWallSec": 185.646,
+      "cumulativeAudioSec": 213.48,
+      "cumulativeThroughput": 1.1499,
+      "rssMb": 1793.63
+    },
+    {
+      "sequenceIndex": 28,
+      "sampleId": "VN-NUM-01",
+      "category": "NUMBERS_DATES_VERSIONS",
+      "charCount": 121,
+      "wallSec": 8.7105,
+      "audioSec": 12.48,
+      "rtf": 0.698,
+      "mediaSecondsPerWallSecond": 1.4328,
+      "cumulativeWallSec": 194.356,
+      "cumulativeAudioSec": 225.96,
+      "cumulativeThroughput": 1.1626,
+      "rssMb": 1891.45
+    },
+    {
+      "sequenceIndex": 29,
+      "sampleId": "VN-ACRO-01",
+      "category": "ACRONYMS",
+      "charCount": 97,
+      "wallSec": 7.8908,
+      "audioSec": 8.56,
+      "rtf": 0.9218,
+      "mediaSecondsPerWallSecond": 1.0848,
+      "cumulativeWallSec": 202.247,
+      "cumulativeAudioSec": 234.52,
+      "cumulativeThroughput": 1.1596,
+      "rssMb": 1795.11
+    },
+    {
+      "sequenceIndex": 30,
+      "sampleId": "VN-PUNCT-01",
+      "category": "PUNCTUATION_HEAVY",
+      "charCount": 117,
+      "wallSec": 15.5589,
+      "audioSec": 8.64,
+      "rtf": 1.8008,
+      "mediaSecondsPerWallSecond": 0.5553,
+      "cumulativeWallSec": 217.806,
+      "cumulativeAudioSec": 243.16,
+      "cumulativeThroughput": 1.1164,
+      "rssMb": 860.86
+    },
+    {
+      "sequenceIndex": 31,
+      "sampleId": "VN-LONG-01",
+      "category": "LONG_PARAGRAPH",
+      "charCount": 322,
+      "wallSec": 25.1405,
+      "audioSec": 18.68,
+      "rtf": 1.3458,
+      "mediaSecondsPerWallSecond": 0.743,
+      "cumulativeWallSec": 242.946,
+      "cumulativeAudioSec": 261.84,
+      "cumulativeThroughput": 1.0778,
+      "rssMb": 1149.27
+    },
+    {
+      "sequenceIndex": 32,
+      "sampleId": "VN-FIT-01",
+      "category": "DURATION_FIT_SHORT",
+      "charCount": 10,
+      "wallSec": 0.6333,
+      "audioSec": 0.72,
+      "rtf": 0.8796,
+      "mediaSecondsPerWallSecond": 1.1368,
+      "cumulativeWallSec": 243.58,
+      "cumulativeAudioSec": 262.56,
+      "cumulativeThroughput": 1.0779,
+      "rssMb": 1182.23
+    },
+    {
+      "sequenceIndex": 33,
+      "sampleId": "VN-FIT-02",
+      "category": "DURATION_FIT_SHORT",
+      "charCount": 31,
+      "wallSec": 1.4433,
+      "audioSec": 2.32,
+      "rtf": 0.6221,
+      "mediaSecondsPerWallSecond": 1.6075,
+      "cumulativeWallSec": 245.023,
+      "cumulativeAudioSec": 264.88,
+      "cumulativeThroughput": 1.081,
+      "rssMb": 1184.36
+    },
+    {
+      "sequenceIndex": 34,
+      "sampleId": "VN-FIT-03",
+      "category": "DURATION_FIT_SHORT",
+      "charCount": 33,
+      "wallSec": 1.4904,
+      "audioSec": 2.24,
+      "rtf": 0.6653,
+      "mediaSecondsPerWallSecond": 1.503,
+      "cumulativeWallSec": 246.513,
+      "cumulativeAudioSec": 267.12,
+      "cumulativeThroughput": 1.0836,
+      "rssMb": 1188.78
+    },
+    {
+      "sequenceIndex": 35,
+      "sampleId": "VN-NORM-01",
+      "category": "NORMAL_VIETNAMESE",
+      "charCount": 73,
+      "wallSec": 3.7523,
+      "audioSec": 4.88,
+      "rtf": 0.7689,
+      "mediaSecondsPerWallSecond": 1.3005,
+      "cumulativeWallSec": 250.265,
+      "cumulativeAudioSec": 272.0,
+      "cumulativeThroughput": 1.0868,
+      "rssMb": 1192.38
+    }
+  ],
+  "chunkSimData": [
+    {
+      "wall_sec": 2.9386388000002626,
+      "audio_sec": 5.04
+    },
+    {
+      "wall_sec": 5.585322400000223,
+      "audio_sec": 7.6
+    },
+    {
+      "wall_sec": 9.197330100001636,
+      "audio_sec": 8.64
+    },
+    {
+      "wall_sec": 9.602453199999218,
+      "audio_sec": 8.32
+    },
+    {
+      "wall_sec": 15.797568799998771,
+      "audio_sec": 9.76
+    },
+    {
+      "wall_sec": 8.676206199999797,
+      "audio_sec": 11.44
+    },
+    {
+      "wall_sec": 3.9184845999989193,
+      "audio_sec": 5.68
+    },
+    {
+      "wall_sec": 6.257980799999132,
+      "audio_sec": 6.08
+    },
+    {
+      "wall_sec": 14.800327999999354,
+      "audio_sec": 7.28
+    },
+    {
+      "wall_sec": 9.646600699999908,
+      "audio_sec": 10.16
+    },
+    {
+      "wall_sec": 12.786062200000742,
+      "audio_sec": 13.36
+    },
+    {
+      "wall_sec": 7.102936400000544,
+      "audio_sec": 8.8
+    },
+    {
+      "wall_sec": 9.269697800000358,
+      "audio_sec": 9.6
+    },
+    {
+      "wall_sec": 18.92240479999964,
+      "audio_sec": 19.96
+    },
+    {
+      "wall_sec": 0.7607757000005222,
+      "audio_sec": 0.72
+    },
+    {
+      "wall_sec": 1.1135807000009663,
+      "audio_sec": 2.08
+    },
+    {
+      "wall_sec": 1.1279640000011568,
+      "audio_sec": 2.16
+    },
+    {
+      "wall_sec": 2.6546330000001035,
+      "audio_sec": 4.48
+    },
+    {
+      "wall_sec": 5.127913700000136,
+      "audio_sec": 7.04
+    },
+    {
+      "wall_sec": 5.658985199999734,
+      "audio_sec": 8.16
+    },
+    {
+      "wall_sec": 4.451188299999558,
+      "audio_sec": 8.0
+    },
+    {
+      "wall_sec": 4.349753399999827,
+      "audio_sec": 7.84
+    },
+    {
+      "wall_sec": 8.425890299999082,
+      "audio_sec": 11.44
+    },
+    {
+      "wall_sec": 3.522079799999119,
+      "audio_sec": 5.68
+    },
+    {
+      "wall_sec": 4.298831000000064,
+      "audio_sec": 6.8
+    },
+    {
+      "wall_sec": 3.957443700001022,
+      "audio_sec": 7.28
+    },
+    {
+      "wall_sec": 5.694511300000158,
+      "audio_sec": 10.08
+    },
+    {
+      "wall_sec": 8.710470300000452,
+      "audio_sec": 12.48
+    },
+    {
+      "wall_sec": 7.890771699998368,
+      "audio_sec": 8.56
+    },
+    {
+      "wall_sec": 15.558942399999069,
+      "audio_sec": 8.64
+    },
+    {
+      "wall_sec": 25.140456400000403,
+      "audio_sec": 18.68
+    },
+    {
+      "wall_sec": 0.6333416000015859,
+      "audio_sec": 0.72
+    },
+    {
+      "wall_sec": 1.4432615000005171,
+      "audio_sec": 2.32
+    },
+    {
+      "wall_sec": 1.4903776999999536,
+      "audio_sec": 2.24
+    },
+    {
+      "wall_sec": 3.7522960000005696,
+      "audio_sec": 4.88
+    }
+  ]
+}

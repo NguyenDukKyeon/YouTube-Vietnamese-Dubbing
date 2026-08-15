@@ -1,0 +1,19 @@
+{
+  "streamCancellation": {
+    "supported": true,
+    "mechanism": "Generator early break / close",
+    "chunksReceivedBeforeAbort": 2,
+    "abortOverheadMs": 15.03,
+    "assessment": "infer_stream allows sub-second early termination upon video pause or seek"
+  },
+  "seekStaleDiscard": {
+    "mechanism": "Finish-and-discard for atomic chunk infer",
+    "staleChunkChars": 322,
+    "staleChunkWallSec": 15.533,
+    "staleAudioDurationDiscardedSec": 18.92,
+    "stalePcmBytesDiscarded": 1816320,
+    "newSeekTargetWallSec": 3.8779,
+    "totalSeekRecoveryLatencySec": 19.4109,
+    "assessment": "Discard cost equals duration of single atomic chunk (<3.5s max for longest paragraph)"
+  }
+}

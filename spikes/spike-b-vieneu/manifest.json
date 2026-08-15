@@ -1,0 +1,14 @@
+{
+  "id": "SPIKE-B-VIENEU",
+  "title": "VieNeu target-machine feasibility benchmark",
+  "phase": "TECHNICAL_SPIKES",
+  "type": "technical-spike",
+  "status": "READY",
+  "runtime": "Python 3.12 (ONNX Runtime CPU / int8)",
+  "entrypoint": "src/benchmark_runner.py",
+  "evidencePath": "evidence/SPIKE-B-VIENEU",
+  "allowedPaths": [
+    "spikes/spike-b-vieneu/**",
+    "evidence/SPIKE-B-VIENEU/**"
+  ]
+}
